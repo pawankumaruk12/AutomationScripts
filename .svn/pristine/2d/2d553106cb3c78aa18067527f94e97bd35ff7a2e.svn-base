@@ -1,0 +1,46 @@
+package com.org.api.unittest;
+
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static io.restassured.RestAssured.given;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.testng.AssertJUnit;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.org.api.CommonLogin;
+
+	public class AccountsService extends CommonLogin{
+		public static String ACCOUNT_ID;
+      // @Test
+		public static String getLastAccountId(String accountId, String jsessionId, String xsrfToken) throws Exception {
+    	   String AccountList = "src/test/resources/ListByAccounts.json";
+    		
+    		
+			Response resp = given().
+					
+					body(Files.readAllBytes(Paths.get(AccountList)))
+					.when()
+					.cookie("JSESSIONID",jsessionId)
+					.cookie("XSRF-TOKEN",xsrfToken).
+					contentType(ContentType.JSON).
+					//post(CommonLogin.API_PATH + "account/list");
+					post("http://192.168.56.139:8080/sdw/rest/account/list");
+		
+			AssertJUnit.assertEquals(resp.getStatusCode(), 200);
+			JsonParser parser = new JsonParser();
+			JsonObject fullBody = parser.parse(resp.getBody().asString()).getAsJsonObject();
+			ACCOUNT_ID = parser.parse(resp.getBody().asString()).getAsString();
+			System.out.println(ACCOUNT_ID);
+		
+			return fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("id").getAsString();
+			
+		}
+		
+	}
+
+
+

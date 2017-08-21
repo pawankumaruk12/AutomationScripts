@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name="Test">
+    <classes>
+      <class name="API_Testing.com.org.api.Create_Company"/>
+      <class name="API_Testing.com.org.api.CreateProject"/>
+      <class name="API_Testing.com.org.api.DeleteCompany"/>
+      <class name="API_Testing.com.org.api.Delete_Account"/>
+      <class name="API_Testing.com.org.api.CSCreates_Account_Post"/>
+      <class name="API_Testing.com.org.api.Company_Types"/>
+      <class name="API_Testing.com.org.api.ProjectList"/>
+      <class name="API_Testing.com.org.api.ProjectType"/>
+      <class name="API_Testing.com.org.api.List_Accounts_by_pagination"/>
+      <class name="API_Testing.com.org.api.UpdateCompany"/>
+      <class name="API_Testing.com.org.api.DeleteProject"/>
+      <class name="API_Testing.com.org.api.ListCompany"/>
+      <class name="API_Testing.com.org.api.Accounts_Type"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

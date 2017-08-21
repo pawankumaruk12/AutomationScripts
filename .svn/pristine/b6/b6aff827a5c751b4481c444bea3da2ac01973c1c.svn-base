@@ -1,0 +1,1 @@
+{"noOfRows":8,"startPosition":"0","filters":[{"columnName":"department.projectId","dataList":["CRa_BNgar93wS8GVUxqxkQ"],"condition":"="}],"simpleSearch":"","sorts":[{"columnName":"department.name","sortOrder":"asc"},{"columnName":"person.lastName","sortOrder":"asc"},{"columnName":"person.firstName","sortOrder":"asc"}]}
