@@ -8,7 +8,7 @@ import io.restassured.http.ContentType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-// This tested and working on 17th March 2017kkllklkl
+// This tested and working on 17th March 2017
 public class UpdatesProjectDocument extends CommonLogin {
 	@Test
 	public void UpdatesProjectDocuments() throws Exception {

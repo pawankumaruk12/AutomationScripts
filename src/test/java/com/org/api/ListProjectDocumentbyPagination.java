@@ -7,7 +7,7 @@ import io.restassured.http.ContentType;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
-//need to test ..pending
+//Tested and working on 31st March 2017
 public class ListProjectDocumentbyPagination extends CommonLogin {
 	@Test
 	public void ListProjectDocuments() throws Exception {

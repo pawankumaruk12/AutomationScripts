@@ -22,6 +22,8 @@ public class ListCompany extends CommonLogin {
 				.post(API_PATH + "company/list");
 
 		System.out.println(resp.getBody().asString());
+		//System.out.println(resp.body().prettyPrint());
+		System.out.println(resp.body().prettyPeek());
 		AssertJUnit.assertEquals(resp.getStatusCode(), 200);
 		if (resp.getStatusCode() == 200) {
 			System.out.println("API is working fine");
