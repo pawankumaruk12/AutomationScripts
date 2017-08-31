@@ -6,10 +6,11 @@ import io.restassured.http.ContentType;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 //it is not implemented, because after creating project team member, we can assign agent
-
+@Ignore
 public class AssignPersonToAgency extends CommonLogin{
 	@Test
 	public void CreatesPersons() throws Exception {

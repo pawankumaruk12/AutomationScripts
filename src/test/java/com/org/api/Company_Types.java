@@ -7,7 +7,7 @@ import io.restassured.http.ContentType;
 
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-
+//working on 31st Aug
 public class Company_Types extends CommonLogin {
 	@Test
 	public void Company_Type() throws Exception{

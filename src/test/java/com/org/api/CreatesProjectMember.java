@@ -5,9 +5,11 @@ import java.nio.file.Paths;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 //Need to form request json and test it, could not find this api in crewstart
+@Ignore
 public class CreatesProjectMember extends CommonLogin{
 	@Test
 	public void CreatesProjectMembers() throws Exception{

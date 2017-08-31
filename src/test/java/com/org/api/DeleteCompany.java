@@ -1,10 +1,12 @@
 package com.org.api;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
-
+@Ignore
+//Need to implement to get dynamic company id from company service
 public class DeleteCompany extends CommonLogin{
 	@Test
 	public void DeleteCompanys() throws Exception {

@@ -1,12 +1,14 @@
 package com.org.api;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 
 import com.org.api.unittest.PersonService;
-
+@Ignore
+//This API is not implemented in CrewStart
 // Tested on 13th Mar 2017 and working
 	public class DeletePerson extends CommonLogin{
 		public static String PERSON_ID;

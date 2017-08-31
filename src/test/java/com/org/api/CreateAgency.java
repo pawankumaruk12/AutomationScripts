@@ -4,9 +4,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-//Tested and working on 14th March 2017
+//Tested and working on 14th March 2017, but change the agency name everytime
+@Ignore
 
 public class CreateAgency extends CommonLogin{
 	@Test

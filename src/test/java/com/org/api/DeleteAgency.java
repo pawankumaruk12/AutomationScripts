@@ -1,5 +1,6 @@
 package com.org.api;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
@@ -7,7 +8,8 @@ import io.restassured.http.ContentType;
 
 import com.org.api.unittest.AgencyService;
 
-//Tested and working on 14th march 2017
+//Tested and working on 14th march 2017 and agent should not associated with last created agency
+@Ignore
 public class DeleteAgency extends CommonLogin {
 	public static String AGENCY_ID;
 

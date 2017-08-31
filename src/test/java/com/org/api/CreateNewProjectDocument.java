@@ -5,9 +5,11 @@ import java.nio.file.Paths;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-// Tested and working on 17th March 2017
+// Tested and working on 17th March 2017, change the details on Json
+@Ignore
 public class CreateNewProjectDocument extends CommonLogin{
 	@Test
 	public void CreatesNewProjectDocuments() throws Exception {

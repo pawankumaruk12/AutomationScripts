@@ -6,9 +6,10 @@ import io.restassured.http.ContentType;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-
+//@Ignore
 public class Accounts_Type extends CommonLogin {
 	@Test
 	public void Accounts_Types() throws Exception {

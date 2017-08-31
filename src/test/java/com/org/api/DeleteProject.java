@@ -1,5 +1,6 @@
 package com.org.api;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
@@ -7,9 +8,11 @@ import io.restassured.http.ContentType;
 
 import com.org.api.unittest.ProjectService;
 
+//working on 31st Aug and last project should not have children
+@Ignore
 public class DeleteProject extends CommonLogin{
 	public static String PROJECT_ID;
-	
+
 	@Test
 	public void DeleteProjects() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");

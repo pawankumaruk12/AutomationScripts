@@ -1,6 +1,7 @@
 package com.org.api;
 
 //Tested and working on 31st March 2017.. everytime update the account name in request payload json
+
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -11,9 +12,10 @@ import io.restassured.response.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
+@Ignore
 public class CSCreates_Account_Post extends CommonLogin{
 
 	@Test(priority=1)

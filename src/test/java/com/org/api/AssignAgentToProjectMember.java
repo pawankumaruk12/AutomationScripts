@@ -7,7 +7,9 @@ import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.annotations.Test;
+@Ignore
 // need to form request json and test it, could not find this api in crewstart
 public class AssignAgentToProjectMember extends CommonLogin {
 	@Test
