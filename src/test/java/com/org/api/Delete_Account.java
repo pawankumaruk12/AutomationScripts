@@ -11,7 +11,7 @@ import com.org.api.unittest.AccountsService;
 // working fine on 31st Aug, but make sure last created account should not have children(company/project)
 public class Delete_Account extends CommonLogin {
 	public static String ACCOUNT_ID;
-	@Test
+	@Test(enabled = false)
 	public void Delete_Accounts() throws Exception {
 
 

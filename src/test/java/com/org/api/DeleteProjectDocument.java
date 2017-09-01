@@ -10,7 +10,7 @@ import com.org.api.unittest.ProjectDocumentService;
 // Tested and working on 17th March 2017
 	public class DeleteProjectDocument extends CommonLogin{
 		public static String PROJECTDOCUMENT_ID;
-		@Test
+		@Test(enabled = false)
 		public void DeleteProjectDocuments() throws Exception {
 			String jsessionId = resp.cookie("JSESSIONID");
 			String xsrfToken = resp.cookie("XSRF-TOKEN");

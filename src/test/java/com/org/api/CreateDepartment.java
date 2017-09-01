@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 // working fine on 31st Aug, but change the dept name on json everytime
 @Ignore
 public class CreateDepartment extends CommonLogin{
-	@Test
+	@Test(enabled = false)
 	public void CreateDepartments() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

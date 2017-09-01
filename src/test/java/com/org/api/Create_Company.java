@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 @Ignore
 // working on 31st Aug, but change the company name on json
 public class Create_Company extends CommonLogin {
-	@Test
+	@Test(enabled = false)
 	public void Create_Companys() throws Exception{
 	
 		String jsessionId = resp.cookie("JSESSIONID");

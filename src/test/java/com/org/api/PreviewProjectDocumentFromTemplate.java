@@ -3,13 +3,14 @@
 
 package com.org.api;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
-
+@Ignore
 // Tested and working fine on 17th March 2017
 public class PreviewProjectDocumentFromTemplate extends CommonLogin {
-	@Test
+	@Test(enabled = false)
 	public void PreviewProjectDocumentsfromTemplate() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

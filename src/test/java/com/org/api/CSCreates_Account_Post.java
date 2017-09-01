@@ -15,10 +15,11 @@ import java.nio.file.Paths;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 @Ignore
 public class CSCreates_Account_Post extends CommonLogin{
-
-	@Test(priority=1)
+@Test(enabled = false)
+	//@Test(priority=1)(enabled = false)
 	public void Create_Account() throws Exception {
 
 		String jsessionId = resp.cookie("JSESSIONID");
@@ -56,9 +57,9 @@ public class CSCreates_Account_Post extends CommonLogin{
 
 
 	}
+	@Test(enabled = false)
 
-
-	@Test(priority=2, dependsOnMethods = {"Create_Account"})
+	//@Test(priority=2, dependsOnMethods = {"Create_Account"})
 	public void CheckingDuplicateAccount() throws Exception {
 
 		String jsessionId = resp.cookie("JSESSIONID");
@@ -89,8 +90,8 @@ public class CSCreates_Account_Post extends CommonLogin{
 
 
 	}
-
-	@Test(priority=3, dependsOnMethods = {"CheckingDuplicateAccount"})
+	@Test(enabled = false)
+//	@Test(priority=3, dependsOnMethods = {"CheckingDuplicateAccount"})
 	public void CheckingBlankAccount() throws Exception {
 
 		String jsessionId = resp.cookie("JSESSIONID");
@@ -114,8 +115,8 @@ public class CSCreates_Account_Post extends CommonLogin{
 
 
 	}
-
-	@Test(priority=4, dependsOnMethods = {"CheckingBlankAccount"})
+	@Test(enabled = false)
+//	@Test(priority=4, dependsOnMethods = {"CheckingBlankAccount"})
 	public void createAccountAsHOD() throws Exception {
 
 		this.loginAsHOD();

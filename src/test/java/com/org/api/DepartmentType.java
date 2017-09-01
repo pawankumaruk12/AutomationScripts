@@ -11,7 +11,7 @@ import com.org.api.unittest.ProjectService;
 
 public class DepartmentType extends CommonLogin {
 	public static String PROJECT_ID;
-	@Test
+	@Test(enabled = false)
 	public void DepartmentTypes() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

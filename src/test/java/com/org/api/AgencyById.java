@@ -8,7 +8,7 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import com.org.api.unittest.AgencyService;
-//@Ignore
+
 //Tested and working on 14th march 2017
 public class AgencyById extends CommonLogin {
 	public static String AGENCY_ID;

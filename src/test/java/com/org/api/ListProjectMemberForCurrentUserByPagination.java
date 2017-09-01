@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 //Need to Test
 public class ListProjectMemberForCurrentUserByPagination extends CommonLogin {
-	@Test
+	@Test(enabled = false)
 	public void ListProjectMemberForCurrentUserByPaginations() throws Exception {
 
 		String jsessionId = resp.cookie("JSESSIONID");

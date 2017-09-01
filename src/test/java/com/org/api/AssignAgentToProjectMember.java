@@ -9,10 +9,10 @@ import static io.restassured.RestAssured.given;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.annotations.Test;
-@Ignore
+
 // need to form request json and test it, could not find this api in crewstart
 public class AssignAgentToProjectMember extends CommonLogin {
-	@Test
+	@Test(enabled = false)
 	public void AssignAgentToProjectMembers() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

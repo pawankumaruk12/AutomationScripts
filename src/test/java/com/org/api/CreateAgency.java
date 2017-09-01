@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 @Ignore
 
 public class CreateAgency extends CommonLogin{
-	@Test
+	@Test(enabled = false)
 	public void CreatesAgency() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 //tested and working on 13th March and change email id and phone number in json everytime
 
 public class CreatesPerson extends CommonLogin{
-	@Test
+	@Test(enabled = false)
 	public void CreatesPersons() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

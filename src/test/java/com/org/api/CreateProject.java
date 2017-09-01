@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 @Ignore
 // working on 31st Aug, but change the project name on json everytime
 public class CreateProject extends CommonLogin {
-	@Test
+	@Test(enabled = false)
 	public void CreateProjects() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 //Need to form request json and test it, could not find this api in crewstart
 @Ignore
 public class CreatesProjectMember extends CommonLogin{
-	@Test
+	@Test(enabled = false)
 	public void CreatesProjectMembers() throws Exception{
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

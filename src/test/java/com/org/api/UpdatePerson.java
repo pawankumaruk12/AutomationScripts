@@ -5,11 +5,13 @@ import java.nio.file.Paths;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 // Version id need to updated in request json
+@Ignore
 public class UpdatePerson extends CommonLogin {
-	@Test
+	@Test(enabled = false)
 	public void UpdatePersons() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

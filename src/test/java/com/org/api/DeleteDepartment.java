@@ -8,7 +8,7 @@ import com.org.api.unittest.DepartmentService;
 public class DeleteDepartment extends CommonLogin {
 	public static String DEPARTMENT_ID;
 
-	@Test
+	@Test(enabled = false)
 	public void DeleteDepartments() throws Exception {
 		String jsessionId= resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

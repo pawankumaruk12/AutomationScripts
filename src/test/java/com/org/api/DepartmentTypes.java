@@ -9,8 +9,8 @@ import org.testng.annotations.Test;
 
 import com.org.api.unittest.ProjectService;
 public class DepartmentTypes extends CommonLogin{
-	public static String PROJECT_ID; 
-	@Test
+	public static String PROJECT_ID;
+	@Test(enabled = false)
 	public void DepartmentType() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 //it is not implemented, because after creating project team member, we can assign agent
 @Ignore
 public class AssignPersonToAgency extends CommonLogin{
-	@Test
+	@Test(enabled = false)
 	public void CreatesPersons() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

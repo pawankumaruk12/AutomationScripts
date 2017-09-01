@@ -8,7 +8,7 @@ import io.restassured.http.ContentType;
 @Ignore
 //Need to implement to get dynamic company id from company service
 public class DeleteCompany extends CommonLogin{
-	@Test
+	@Test(enabled = false)
 	public void DeleteCompanys() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

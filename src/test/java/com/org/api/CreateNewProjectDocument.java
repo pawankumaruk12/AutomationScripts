@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 // Tested and working on 17th March 2017, change the details on Json
 @Ignore
 public class CreateNewProjectDocument extends CommonLogin{
-	@Test
+	@Test(enabled = false)
 	public void CreatesNewProjectDocuments() throws Exception {
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");

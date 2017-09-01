@@ -12,7 +12,7 @@ import com.org.api.unittest.PersonService;
 // Tested on 13th Mar 2017 and working
 	public class DeletePerson extends CommonLogin{
 		public static String PERSON_ID;
-		@Test
+		@Test(enabled = false)
 		public void DeletePersons() throws Exception {
 			String jsessionId = resp.cookie("JSESSIONID");
 			String xsrfToken = resp.cookie("XSRF-TOKEN");

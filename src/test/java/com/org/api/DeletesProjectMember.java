@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 // No need to test this api, as this api is not in use
 public class DeletesProjectMember extends CommonLogin{
-	@Test
+	@Test(enabled = false)
 	public void DeleteProjectMembers() throws Exception{
 		String jsessionId = resp.cookie("JSESSIONID");
 		String xsrfToken = resp.cookie("XSRF-TOKEN");
