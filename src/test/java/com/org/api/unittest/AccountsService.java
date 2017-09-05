@@ -38,10 +38,10 @@ public class AccountsService extends CommonLogin{
 		ACCOUNT_ID = js.get("results[0].account.id");
 		return ACCOUNT_ID;
 
-//			AssertJUnit.assertEquals(resp.getStatusCode(), 200);
+//			AssertJUnit.assertEquals(response.getStatusCode(), 200);
 //			JsonParser parser = new JsonParser();
-//			JsonObject fullBody = parser.parse(resp.getBody().asString()).getAsJsonObject();
-//			ACCOUNT_ID = parser.parse(resp.getBody().asString()).getAsString();
+//			JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+//			ACCOUNT_ID = parser.parse(response.getBody().asString()).getAsString();
 //			System.out.println(ACCOUNT_ID);
 //
 //			return fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("id").getAsString();

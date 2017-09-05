@@ -7,15 +7,15 @@ import java.nio.file.Paths;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 //Working on 1st Sep 2017
-public class List_Accounts_by_pagination extends CommonLogin {
+public class ListAccountsbypagination extends CommonLogin {
 	@Test
 	public void List_Accounts() throws Exception {
 	
-	String jsessionId =  resp.cookie("JSESSIONID");
-	String xsrfToken =  resp.cookie("XSRF-TOKEN");
+	String jsessionId =  response.cookie("JSESSIONID");
+	String xsrfToken =  response.cookie("XSRF-TOKEN");
 	
 	
-	resp = given().
+	response = given().
 			body(Files.readAllBytes(Paths.get("src/test/resources/ListByAccounts.json"))).
 			when()
 			.cookie("JSESSIONID",jsessionId)
@@ -25,12 +25,12 @@ public class List_Accounts_by_pagination extends CommonLogin {
 			//post("http://192.168.56.139:8080/sdw/rest/account/list");
 			post(CommonLogin.API_PATH + "account/list");
 	
-			System.out.println(resp.getBody().asString());
-			AssertJUnit.assertEquals( resp.getStatusCode(), 200);
-			if (resp.getStatusCode()==200){
+			System.out.println(response.getBody().asString());
+			AssertJUnit.assertEquals( response.getStatusCode(), 200);
+			if (response.getStatusCode()==200){
 				System.out.println("API is working fine");
-				System.out.println(resp.getStatusCode());
-				System.out.println(resp.asString());
+				System.out.println(response.getStatusCode());
+				System.out.println(response.asString());
 			}
 			else {
 				System.out.println("API is not working fine");

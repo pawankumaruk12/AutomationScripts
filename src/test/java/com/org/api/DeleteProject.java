@@ -15,23 +15,23 @@ public class DeleteProject extends CommonLogin{
 
 	@Test(enabled = false)
 	public void DeleteProjects() throws Exception {
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		
 		PROJECT_ID = ProjectService.getLastProjectId(null, jsessionId, xsrfToken);
 		
 		
-	resp = given().
+	response = given().
 				when()
 				.cookie("JSESSIONID",jsessionId)
 				.cookie("XSRF-TOKEN",xsrfToken).
 			contentType(ContentType.JSON).
 				post(API_PATH + "project/delete/" + PROJECT_ID);
-		System.out.println(resp.getBody().asString());
-		Assert.assertEquals(resp.getStatusCode(),200);
-	if (resp.getStatusCode() == 200) {
+		System.out.println(response.getBody().asString());
+		Assert.assertEquals(response.getStatusCode(),200);
+	if (response.getStatusCode() == 200) {
 		System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 	}
 		else
 			System.out.println("API is not working fine");

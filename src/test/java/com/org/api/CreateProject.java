@@ -4,23 +4,78 @@ package com.org.api;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Date;
+
 import static io.restassured.RestAssured.given;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.org.api.model.Project;
+import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@Ignore
+
+
+
+//@Ignore
 // working on 31st Aug, but change the project name on json everytime
 public class CreateProject extends CommonLogin {
+
+	@BeforeClass
+	public void init(){
+		System.out.println("=====Starting CreateProject Test=====");
+	}
+
+	@Test
+	public void testProjectCreation(){
+		String companyId = (String) Repository.getValue("companyId");
+
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
+
+		Project project = new Project();
+		project.setName("AutoProject" + new Date());
+		project.setDescription("Automation Project");
+		project.setProductionId(null);
+		project.setTypeId(1);
+		project.setCompanyId(companyId);
+
+
+		Gson gson = new Gson();
+		String json = gson.toJson(project);
+
+		response = given().
+				body(json).
+				when()
+				.cookie("JSESSIONID",jsessionId)
+				.cookie("XSRF-TOKEN",xsrfToken).
+				contentType(ContentType.JSON).
+				post(API_PATH + "project/create");
+
+		JsonParser parser = new JsonParser();
+		JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+
+		String projectId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("project").get("id").getAsString();
+		Repository.addData("projectId",projectId);
+
+	}
+
+
+
+
+
 	@Test(enabled = false)
 	public void CreateProjects() throws Exception {
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		String CreateProjectJson = "src/test/resources/CreateProject.json";
 		
-		resp = given().
+		response = given().
 				body(Files.readAllBytes(Paths.get(CreateProjectJson))).
 				when()
 				.cookie("JSESSIONID", jsessionId)
@@ -28,12 +83,12 @@ public class CreateProject extends CommonLogin {
 				contentType(ContentType.JSON).
 				post(API_PATH + "project/create");
 		
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals(resp.getStatusCode(), 201);
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals(response.getStatusCode(), 201);
 
-		if (resp.getStatusCode()==201){
+		if (response.getStatusCode()==201){
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		}
 		else {
 			System.out.println("API is not working");

@@ -13,12 +13,12 @@ public class DepartmentType extends CommonLogin {
 	public static String PROJECT_ID;
 	@Test(enabled = false)
 	public void DepartmentTypes() throws Exception {
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		PROJECT_ID = ProjectService.getLastProjectId(null, jsessionId, xsrfToken);
 		System.out.println(PROJECT_ID);
 		
-		resp = given().
+		response = given().
 				
 				body(Files.readAllBytes(Paths.get("src/test/resources/DepartmentType.json"))).
 				when()
@@ -27,12 +27,12 @@ public class DepartmentType extends CommonLogin {
 				contentType(ContentType.JSON).
 				post(API_PATH + "department/types" + PROJECT_ID);
 		
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals(resp.getStatusCode(), 200);
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals(response.getStatusCode(), 200);
 		
-		if (resp.getStatusCode()==200) {
+		if (response.getStatusCode()==200) {
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		}
 		else
 		{System.out.println("API is not working fine");

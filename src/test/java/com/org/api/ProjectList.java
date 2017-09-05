@@ -12,11 +12,11 @@ public class ProjectList extends CommonLogin {
 	@Test
 	public void List_Api() throws Exception {
 
-	String jsessionId =  resp.cookie("JSESSIONID");
-	String xsrfToken =  resp.cookie("XSRF-TOKEN");
+	String jsessionId =  response.cookie("JSESSIONID");
+	String xsrfToken =  response.cookie("XSRF-TOKEN");
 	
 	
-	resp = given().
+	response = given().
 			body(Files.readAllBytes(Paths.get("src/test/resources/project_list.json"))).
 			when()
 			.cookie("JSESSIONID",jsessionId)
@@ -25,11 +25,11 @@ public class ProjectList extends CommonLogin {
 			post(API_PATH + "project/list");
 	
 	
-			System.out.println(resp.getBody().asString());
-			AssertJUnit.assertEquals( resp.getStatusCode(), 200);
-			if (resp.getStatusCode()==200){
+			System.out.println(response.getBody().asString());
+			AssertJUnit.assertEquals( response.getStatusCode(), 200);
+			if (response.getStatusCode()==200){
 				System.out.println("API is working fine");
-				System.out.println(resp.getStatusCode());
+				System.out.println(response.getStatusCode());
 			}
 			else {
 				System.out.println("API is not working fine");

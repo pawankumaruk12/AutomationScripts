@@ -9,18 +9,18 @@ import io.restassured.http.ContentType;
 import com.org.api.unittest.AccountsService;
 @Ignore
 // working fine on 31st Aug, but make sure last created account should not have children(company/project)
-public class Delete_Account extends CommonLogin {
+public class DeleteAccount extends CommonLogin {
 	public static String ACCOUNT_ID;
 	@Test(enabled = false)
 	public void Delete_Accounts() throws Exception {
 
 
-		String jsessionId =  resp.cookie("JSESSIONID");
-		String xsrfToken =  resp.cookie("XSRF-TOKEN");
+		String jsessionId =  response.cookie("JSESSIONID");
+		String xsrfToken =  response.cookie("XSRF-TOKEN");
 		ACCOUNT_ID = AccountsService.getLastAccountId(null, jsessionId, xsrfToken);
 
 		System.out.println(ACCOUNT_ID);
-		resp = given().
+		response = given().
 				when()
 				.cookie("JSESSIONID",jsessionId)
 				.cookie("XSRF-TOKEN",xsrfToken).
@@ -28,11 +28,11 @@ public class Delete_Account extends CommonLogin {
 						post(API_PATH + "account/delete/" + ACCOUNT_ID);
 
 
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals( resp.getStatusCode(), 200);
-		if (resp.getStatusCode()==200){
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals( response.getStatusCode(), 200);
+		if (response.getStatusCode()==200){
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		}
 		else {
 			System.out.println("API is not working fine");

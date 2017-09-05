@@ -6,18 +6,17 @@ import io.restassured.http.ContentType;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 //@Ignore
-public class Accounts_Type extends CommonLogin {
+public class AccountsType extends CommonLogin {
 	@Test
 	public void Accounts_Types() throws Exception {
 
-	String jsessionId =  resp.cookie("JSESSIONID");
-	String xsfrToken =  resp.cookie("XSRF-TOKEN");
+	String jsessionId =  response.cookie("JSESSIONID");
+	String xsfrToken =  response.cookie("XSRF-TOKEN");
 	
-	 resp = given().
+	 response = given().
 			body(Files.readAllBytes(Paths.get("src/test/resources/AccountType.json"))).
 			when()
 			.cookie("JSESSIONID",jsessionId)
@@ -27,11 +26,11 @@ public class Accounts_Type extends CommonLogin {
 			post(API_PATH + "account/types");
 	
 	
-			System.out.println(resp.getBody().asString());
-			AssertJUnit.assertEquals( resp.getStatusCode(), 200);
-			if (resp.getStatusCode()==200){
+			System.out.println(response.getBody().asString());
+			AssertJUnit.assertEquals( response.getStatusCode(), 200);
+			if (response.getStatusCode()==200){
 				System.out.println("API is working fine");
-				System.out.println(resp.getStatusCode());
+				System.out.println(response.getStatusCode());
 			}
 			else {
 				System.out.println("API is not working fine");

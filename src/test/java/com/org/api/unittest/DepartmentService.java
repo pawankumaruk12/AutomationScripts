@@ -16,7 +16,7 @@ import com.org.api.CommonLogin;
 		public static String DEPARTMENT_ID;
        @Test
 		public static String getLastDepartmentId(String projectId, String jsessionId, String xsrfToken) throws Exception {
-			String departmentListPayloadFilePath = "src/test/resources/department_list_payload.json";
+			String departmentListPayloadFilePath = "src/test/resources/departmentlistpayload.json";
 			
 			Response  resp = given()
 					.when()

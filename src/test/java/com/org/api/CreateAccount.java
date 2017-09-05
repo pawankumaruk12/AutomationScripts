@@ -3,6 +3,12 @@ package com.org.api;
 //Tested and working on 31st March 2017.. everytime update the account name in request payload json
 
 import static io.restassured.RestAssured.given;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.org.api.model.Account;
+import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 //import java.nio.file.Files;
@@ -11,19 +17,62 @@ import io.restassured.response.Response;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Date;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@Ignore
-public class CSCreates_Account_Post extends CommonLogin{
-@Test(enabled = false)
+public class CreateAccount extends CommonLogin{
+
+	@BeforeClass
+	public void init(){
+		System.out.println("=====Starting CreateAccount Test=====");
+	}
+
+	@Test
+	public void testAccountCreation(){
+
+
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
+
+		Account account = new Account();
+		account.setName("AutoAccount" + new Date());
+		account.setDescription("Automation Account");
+		account.setTypeId(1);
+		account.setAccountId(1);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(account);
+
+		Response createResponse = given().
+				body(json).
+				when()
+				.cookie("JSESSIONID",jsessionId)
+				.cookie("XSRF-TOKEN",xsrfToken).
+						contentType(ContentType.JSON).
+						post(API_PATH + "account/create").then()
+				.assertThat().statusCode(201).and().extract().response();
+
+
+		JsonParser parser = new JsonParser();
+		JsonObject fullBody = parser.parse(createResponse.getBody().asString()).getAsJsonObject();
+
+		String accountId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("id").getAsString();
+		Repository.addData("accountId", accountId);
+
+
+
+
+	}
+
+//@Test
 	//@Test(priority=1)(enabled = false)
 	public void Create_Account() throws Exception {
 
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		String createAcc_json_path = "src/test/resources/createAccount.json";
 
 		Response res = given().
@@ -44,7 +93,7 @@ public class CSCreates_Account_Post extends CommonLogin{
 		System.out.println(AccountId);
 
 
-		//System.out.println(resp.getBody().asString());
+		//System.out.println(response.getBody().asString());
 		Assert.assertEquals( res.getStatusCode(), 201);
 		if (res.getStatusCode()==201){
 			System.out.println("API is working fine");
@@ -62,8 +111,8 @@ public class CSCreates_Account_Post extends CommonLogin{
 	//@Test(priority=2, dependsOnMethods = {"Create_Account"})
 	public void CheckingDuplicateAccount() throws Exception {
 
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		String createAcc_json_path = "src/test/resources/createAccount.json";
 
 		Response res = given().
@@ -94,8 +143,8 @@ public class CSCreates_Account_Post extends CommonLogin{
 //	@Test(priority=3, dependsOnMethods = {"CheckingDuplicateAccount"})
 	public void CheckingBlankAccount() throws Exception {
 
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		//String createAcc_json_path = "src/test/resources/createAccount.json";
 
 		Response res = given().
@@ -120,8 +169,8 @@ public class CSCreates_Account_Post extends CommonLogin{
 	public void createAccountAsHOD() throws Exception {
 
 		this.loginAsHOD();
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		String createAcc_json_path = "src/test/resources/createAccount.json";
 		//String createAcc_json_path = "src/test/resources/createAccount.json";
 

@@ -3,32 +3,100 @@ package com.org.api;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import static io.restassured.RestAssured.given;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.org.api.model.Department;
+import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 // working fine on 31st Aug, but change the dept name on json everytime
-@Ignore
+//@Ignore
 public class CreateDepartment extends CommonLogin{
+
+	@BeforeClass
+	public void init(){
+		System.out.println("=====Starting Create Department Test=====");}
+	@Test
+	public void testDepartmentCreation() {
+		String projectId = (String) Repository.getValue("projectId");
+
+			String jsessionId = response.cookie("JSESSIONID");
+			String xsrfToken = response.cookie("XSRF-TOKEN");
+
+			Department department = new Department();
+			department.setName("AutoAccounts");
+			department.setDepartmentTypeId(1);
+			department.setDescription("Automation Accounts");
+			department.setProjectId(projectId);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(department);
+
+		response = given().
+				body(json).
+				when()
+				.cookie("JSESSIONID",jsessionId)
+				.cookie("XSRF-TOKEN",xsrfToken).
+						contentType(ContentType.JSON).
+						post(API_PATH + "department/create");
+
+		JsonParser parser = new JsonParser();
+		JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+
+		String departmentId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("department").get("id").getAsString();
+		Repository.addData("departmentId",departmentId);
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	@Test(enabled = false)
 	public void CreateDepartments() throws Exception {
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		String CreateDeptJson = "src/test/resources/CreateDept.json";
 		
-		resp = given().
+		response = given().
 				body(Files.readAllBytes(Paths.get(CreateDeptJson))).
 				when()
 				.cookie("JSESSIONID",jsessionId)
 				.cookie("XSRF-TOKEN",xsrfToken).
 				contentType(ContentType.JSON).
 				post(API_PATH + "department/create");
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals(resp.getStatusCode(), 200);
-		if (resp.getStatusCode() == 200) {
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals(response.getStatusCode(), 200);
+		if (response.getStatusCode() == 200) {
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		}
 		else {
 			System.out.println("API is not working");

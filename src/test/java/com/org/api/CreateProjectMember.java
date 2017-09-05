@@ -10,13 +10,13 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 //Need to form request json and test it, could not find this api in crewstart
 @Ignore
-public class CreatesProjectMember extends CommonLogin{
+public class CreateProjectMember extends CommonLogin{
 	@Test(enabled = false)
 	public void CreatesProjectMembers() throws Exception{
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		
-		resp = given().
+		response = given().
 				body(Files.readAllBytes(Paths.get("src/test/resources/CreateProjectMember.json"))).
 				when()
 				.cookie("JSESSIONID",jsessionId)
@@ -24,12 +24,12 @@ public class CreatesProjectMember extends CommonLogin{
 				contentType(ContentType.JSON).
 				post(API_PATH + "https://uat.sargent-disc.com/sdw/projectmember/create");
 				
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals(resp.getStatusCode(), 200);
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals(response.getStatusCode(), 200);
 		
-		if (resp.getStatusCode()==200) {
+		if (response.getStatusCode()==200) {
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		}
 		else
 		{System.out.println("API is not working fine");

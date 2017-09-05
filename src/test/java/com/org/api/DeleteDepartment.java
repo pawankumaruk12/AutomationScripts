@@ -10,22 +10,22 @@ public class DeleteDepartment extends CommonLogin {
 
 	@Test(enabled = false)
 	public void DeleteDepartments() throws Exception {
-		String jsessionId= resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId= response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		
 		 DEPARTMENT_ID =DepartmentService.getLastDepartmentId(null, jsessionId, xsrfToken);			
 		
-		resp = given().
+		response = given().
 				when()
 				.cookie("JSESSION",jsessionId)
 				.cookie("XSRF-TOKEN",xsrfToken).
 				contentType(ContentType.JSON).
 				post(API_PATH + "department/delete/" + DEPARTMENT_ID);
-		System.out.println(resp.getBody().asString());
-		Assert.assertEquals(resp.getStatusCode(), 200);
-		if (resp.getStatusCode() == 200){
+		System.out.println(response.getBody().asString());
+		Assert.assertEquals(response.getStatusCode(), 200);
+		if (response.getStatusCode() == 200){
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		}
 		else
 			System.out.println("API is not working fine");

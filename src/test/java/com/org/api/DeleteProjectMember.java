@@ -9,13 +9,13 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 // No need to test this api, as this api is not in use
-public class DeletesProjectMember extends CommonLogin{
+public class DeleteProjectMember extends CommonLogin{
 	@Test(enabled = false)
 	public void DeleteProjectMembers() throws Exception{
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 	//	PROJECTMEMBER_ID = 
-		resp = given().
+		response = given().
 				body(Files.readAllBytes(Paths.get("src/test/resources/CompanyType.json"))).
 				when()
 				.cookie("JSESSIONID",jsessionId)
@@ -23,12 +23,12 @@ public class DeletesProjectMember extends CommonLogin{
 				contentType(ContentType.JSON).
 				post(API_PATH + "ProjectMember/delete/");
 				
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals(resp.getStatusCode(), 200);
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals(response.getStatusCode(), 200);
 		
-		if (resp.getStatusCode()==200) {
+		if (response.getStatusCode()==200) {
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		}
 		else
 		{System.out.println("API is not working fine");

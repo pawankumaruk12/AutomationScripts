@@ -10,17 +10,17 @@ import org.testng.annotations.Test;
 public class ForgotPassword extends CommonLogin {
 	@Test
 	public void ForgotPasswords() throws Exception {
-		resp = given()
+		response = given()
 				.body(Files.readAllBytes(Paths
 						.get("src/test/resources/ForgotPassword.json"))).
 						when()
 							.contentType(ContentType.JSON)
 								.post(API_PATH + "authentication/forgotpassword");
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals( resp.getStatusCode(), 200);
-		if (resp.getStatusCode()==200){
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals( response.getStatusCode(), 200);
+		if (response.getStatusCode()==200){
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		}
 		else {
 			System.out.println("API is not working fine");

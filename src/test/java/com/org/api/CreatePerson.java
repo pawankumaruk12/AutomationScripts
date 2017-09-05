@@ -11,24 +11,24 @@ import org.testng.annotations.Test;
 @Ignore
 //tested and working on 13th March and change email id and phone number in json everytime
 
-public class CreatesPerson extends CommonLogin{
+public class CreatePerson extends CommonLogin{
 	@Test(enabled = false)
 	public void CreatesPersons() throws Exception {
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		String CreateNewPerson = "src/test/resources/CreatePerson.json";
-				resp = given().
+				response = given().
 				body(Files.readAllBytes(Paths.get(CreateNewPerson))).
 				when()
 				.cookie("JSESSIONID",jsessionId)
 				.cookie("XSRF-TOKEN",xsrfToken).
 				contentType(ContentType.JSON).
 				post(API_PATH + "person/create");
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals(resp.getStatusCode(), 201);
-		if (resp.getStatusCode() == 201) {
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals(response.getStatusCode(), 201);
+		if (response.getStatusCode() == 201) {
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		}
 		else {
 			System.out.println("API is not working");

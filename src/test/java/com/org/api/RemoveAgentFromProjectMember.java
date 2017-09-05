@@ -14,22 +14,22 @@ public class RemoveAgentFromProjectMember extends CommonLogin{
 	@Test(enabled = false)
 	public void RemoveAgentFromProjectMembers() throws Exception {
 	
-	String jsessionId = resp.cookie("JSESSIONID");
-	String xsrfToken = resp.cookie("XSRF-TOKEN");
+	String jsessionId = response.cookie("JSESSIONID");
+	String xsrfToken = response.cookie("XSRF-TOKEN");
 	//RestAssured.baseURI = "http://192.168.56.139:8080/sdw/rest/";
-	resp = given().
+	response = given().
 			body(Files.readAllBytes(Paths.get("src/test/resources/ListbyProjectDoc.json"))).
 			when()
 			.cookie("JSESSIONID",jsessionId)
 			.cookie("XSRF-TOKEN",xsrfToken).
 			contentType(ContentType.JSON).
 			post(API_PATH + "projectmember/removeagent/:id");
-	System.out.println(resp.getBody().asString());
-	AssertJUnit.assertEquals(resp.statusCode(), 200);
+	System.out.println(response.getBody().asString());
+	AssertJUnit.assertEquals(response.statusCode(), 200);
 	
-	if (resp.getStatusCode()==200){
+	if (response.getStatusCode()==200){
 		System.out.println("API is working fine");
-		System.out.println(resp.getStatusCode());
+		System.out.println(response.getStatusCode());
 	}
 	else
 	{

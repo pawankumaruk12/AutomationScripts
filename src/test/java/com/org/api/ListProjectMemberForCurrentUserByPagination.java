@@ -12,21 +12,21 @@ public class ListProjectMemberForCurrentUserByPagination extends CommonLogin {
 	@Test(enabled = false)
 	public void ListProjectMemberForCurrentUserByPaginations() throws Exception {
 
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 
-		resp = given()
+		response = given()
 				.body(Files.readAllBytes(Paths
 						.get("src/test/resources/ListbyProjectDoc.json")))
 				.when().cookie("JSESSIONID", jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
 				.post(API_PATH + "ProjectMember/listcurrentuser");
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals(resp.statusCode(), 200);
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals(response.statusCode(), 200);
 
-		if (resp.getStatusCode() == 200) {
+		if (response.getStatusCode() == 200) {
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		} else {
 			System.out.println("API is not working fine");
 		}

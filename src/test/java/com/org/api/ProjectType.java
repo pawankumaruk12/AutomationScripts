@@ -10,10 +10,10 @@ import org.testng.annotations.Test;
 public class ProjectType extends CommonLogin {
 	@Test
 	public void ProjectTypes() throws Exception {
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 
-		resp = given().
+		response = given().
 				body(Files.readAllBytes(Paths.get("src/test/resources/ProjectType.json"))).
 				when()
 				.cookie("JSESSIONID",jsessionId)
@@ -21,11 +21,11 @@ public class ProjectType extends CommonLogin {
 						contentType(ContentType.JSON).
 						post(API_PATH + "project/types");
 
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals(resp.getStatusCode(),200);
-		if (resp.getStatusCode()==200) {
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals(response.getStatusCode(),200);
+		if (response.getStatusCode()==200) {
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		}
 		else
 		{

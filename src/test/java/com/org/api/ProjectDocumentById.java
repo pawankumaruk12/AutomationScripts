@@ -12,21 +12,21 @@ public class ProjectDocumentById extends CommonLogin {
 
 	@Test
 	public void ProjectDocumentByIds() throws Exception {
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 
 		PROJECTDOCUMENT_ID = ProjectDocumentService.getLastDocumentId(null,
 				jsessionId, xsrfToken);
 		System.out.println(PROJECTDOCUMENT_ID);
-		resp = given().when().cookie("JSESSIONID", jsessionId)
+		response = given().when().cookie("JSESSIONID", jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
 				.post(API_PATH + "projectdocument/" + PROJECTDOCUMENT_ID);
 
-		System.out.println(resp.getBody().asString());
-		AssertJUnit.assertEquals(resp.getStatusCode(), 200);
-		if (resp.getStatusCode() == 200) {
+		System.out.println(response.getBody().asString());
+		AssertJUnit.assertEquals(response.getStatusCode(), 200);
+		if (response.getStatusCode() == 200) {
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 		} else {
 			System.out.println("API is not working");
 		}

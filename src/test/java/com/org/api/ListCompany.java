@@ -13,22 +13,22 @@ public class ListCompany extends CommonLogin {
 	@Test(enabled = false)
 	public void ListCompanys() throws Exception {
 
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
-		resp = given()
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
+		response = given()
 				.body(Files.readAllBytes(Paths
 						.get("src/test/resources/ListbyCompany.json"))).when()
 				.cookie("JSESSIONID", jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
 				.post(API_PATH + "company/list");
 
-		System.out.println(resp.getBody().asString());
-		//System.out.println(resp.body().prettyPrint());
-		System.out.println(resp.body().prettyPeek());
-		AssertJUnit.assertEquals(resp.getStatusCode(), 200);
-		if (resp.getStatusCode() == 200) {
+		System.out.println(response.getBody().asString());
+		//System.out.println(response.body().prettyPrint());
+		System.out.println(response.body().prettyPeek());
+		AssertJUnit.assertEquals(response.getStatusCode(), 200);
+		if (response.getStatusCode() == 200) {
 			System.out.println("API is working fine");
-			System.out.println(resp.getStatusCode());
+			System.out.println(response.getStatusCode());
 
 		} else {
 			System.out.println("API is not working fine");

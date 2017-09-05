@@ -10,21 +10,21 @@ import io.restassured.http.ContentType;
 public class DeleteCompany extends CommonLogin{
 	@Test(enabled = false)
 	public void DeleteCompanys() throws Exception {
-		String jsessionId = resp.cookie("JSESSIONID");
-		String xsrfToken = resp.cookie("XSRF-TOKEN");
+		String jsessionId = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
 		
-		resp = given().
+		response = given().
 				when()
 				.cookie("JSESSIONID", jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).
 				contentType(ContentType.JSON).
 				post(API_PATH + "company/delete/oXTZf4xofVB3Mc7IDpVvPg");
 		
-				System.out.println(resp.getBody().asString());
-				AssertJUnit.assertEquals(resp.getStatusCode(), 200);
-				if (resp.getStatusCode() == 200){
+				System.out.println(response.getBody().asString());
+				AssertJUnit.assertEquals(response.getStatusCode(), 200);
+				if (response.getStatusCode() == 200){
 					System.out.println("API is working fine");
-					System.out.println(resp.getStatusCode());
+					System.out.println(response.getStatusCode());
 				}
 				else
 					System.out.println("API is not working fine");

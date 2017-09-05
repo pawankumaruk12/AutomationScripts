@@ -18,7 +18,7 @@ public abstract class CommonLogin {
 	private static final String PATH_LOGIN_TM = "src/test/resources/login_hod.json";
 	private static final String PATH_LOGIN_AGENT = "src/test/resources/login_hod.json";
 
-	protected Response resp = null;
+	protected Response response = null;
 
 	public static final String API_PATH = "http://192.168.56.139:8080/sdw/rest/";
 
@@ -26,7 +26,7 @@ public abstract class CommonLogin {
 	public void login() throws IOException{
 
 
-		resp = given().
+		response = given().
 
 
 				body(Files.readAllBytes(Paths.get(PATH))).
@@ -35,8 +35,8 @@ public abstract class CommonLogin {
 
 				post("http://192.168.56.139:8080/sdw/rest/authentication/login");
 
-		System.out.println(resp.asString());
-		System.out.println(resp.getStatusCode());
+//		System.out.println(response.asString());
+//		System.out.println(response.getStatusCode());
 
 	}
 
