@@ -15,7 +15,7 @@ public class Logout extends CommonLogin {
 		String xsrfToken = response.cookie("XSRF-TOKEN");
 		response = given()
 				.body(Files.readAllBytes(Paths
-						.get("src/test/resources/Logout.json"))).when()
+						.get("src/test/resources/logout.json"))).when()
 				.cookie("JSESSIONID", jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
 				.post(API_PATH + "authentication/logout");
