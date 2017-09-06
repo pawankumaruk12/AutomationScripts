@@ -24,15 +24,9 @@ public class CreatePerson extends CommonLogin{
 				.cookie("XSRF-TOKEN",xsrfToken).
 				contentType(ContentType.JSON).
 				post(API_PATH + "person/create");
-		System.out.println(response.getBody().asString());
+		//System.out.println(response.getBody().asString());
 		AssertJUnit.assertEquals(response.getStatusCode(), 201);
-		if (response.getStatusCode() == 201) {
-			System.out.println("API is working fine");
-			System.out.println(response.getStatusCode());
-		}
-		else {
-			System.out.println("API is not working");
-		}	
+
 	}
 
 }

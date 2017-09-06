@@ -24,16 +24,9 @@ public class DepartmentTypes extends CommonLogin{
 				contentType(ContentType.JSON).
 				post(API_PATH + "department/types/" + PROJECT_ID );
 		
-		System.out.println(response.getBody().asString());
+		//System.out.println(response.getBody().asString());
 		AssertJUnit.assertEquals(response.getStatusCode(),200);
-		if (response.getStatusCode()==200) {
-			System.out.println("API is working fine");
-			System.out.println(response.getStatusCode());
-		}
-		else
-		{
-			System.out.println("API is not working fine");
-		}
+
 		
 			
 	}

@@ -39,22 +39,15 @@ public class ListProjectMemberByPagination extends CommonLogin{
 
 		JsonPath js = new JsonPath(responseString);
 		String ProjectMemberIds = js.get("results[0].projectMember.id");
-		System.out.println(ProjectMemberIds);
+		//System.out.println(ProjectMemberIds);
 
 
-		System.out.println(res.getBody().asString());
+		//System.out.println(res.getBody().asString());
 		//String X = response.getBody().jsonPath();
 		Assert.assertEquals(response.statusCode(), 200);
 		Assert.assertEquals(HttpStatus.SC_OK,200);
 
-		if (res.getStatusCode()==200){
-			System.out.println("API is working fine");
-			System.out.println(response.getStatusCode());
-		}
-		else
-		{
-			System.out.println("API is not working fine");
-		}
+
 
 	}
 }

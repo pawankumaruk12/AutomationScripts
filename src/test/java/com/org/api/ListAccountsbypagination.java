@@ -25,17 +25,9 @@ public class ListAccountsbypagination extends CommonLogin {
 			//post("http://192.168.56.139:8080/sdw/rest/account/list");
 			post(CommonLogin.API_PATH + "account/list");
 	
-			System.out.println(response.getBody().asString());
+			//System.out.println(response.getBody().asString());
 			AssertJUnit.assertEquals( response.getStatusCode(), 200);
-			if (response.getStatusCode()==200){
-				System.out.println("API is working fine");
-				System.out.println(response.getStatusCode());
-				System.out.println(response.asString());
-			}
-			else {
-				System.out.println("API is not working fine");
-				
-			}
+
 			
 			
 	}

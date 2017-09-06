@@ -1,50 +1,49 @@
 package com.org.api;
 
-//Tested and working on 31st March 2017..
 
-import static io.restassured.RestAssured.given;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.Account;
+import com.org.api.model.AccountBy;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
-//import java.nio.file.Files;
-//import java.nio.file.Paths;
 import io.restassured.response.Response;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import static io.restassured.RestAssured.given;
 
-public class CreateAccount extends CommonLogin{
+//import java.nio.file.Files;
+//import java.nio.file.Paths;
+
+public class AccountById extends CommonLogin{
 
 	@BeforeClass
 	public void init(){
-		System.out.println("=====Starting CreateAccount Test=====");
+		System.out.println("=====Starting AccountById Test=====");
 	}
 
-	@Test
-	public void testAccountCreation(){
-
+	@Test(enabled = false)
+	public void TestAccountById(){
+		String accountId = (String) Repository.getValue("accountId");
 
 		String jsessionId = response.cookie("JSESSIONID");
 		String xsrfToken = response.cookie("XSRF-TOKEN");
 
-		Account account = new Account();
-		account.setName("AutoAccount" + new Date());
-		account.setDescription("Automation Account");
-		account.setTypeId(1);
-		account.setAccountId(1);
+		AccountBy accountBy = new AccountBy();
+
+		//accountBy.setAccountPersonDB(accountId);
 
 		Gson gson = new Gson();
-		String json = gson.toJson(account);
+		String json = gson.toJson(accountBy);
 
 		Response createResponse = given().
 				body(json).
@@ -52,14 +51,14 @@ public class CreateAccount extends CommonLogin{
 				.cookie("JSESSIONID",jsessionId)
 				.cookie("XSRF-TOKEN",xsrfToken).
 						contentType(ContentType.JSON).
-						post(API_PATH + "account/create").then()
-				.assertThat().statusCode(201).and().extract().response();
+						post(API_PATH + "account/account/" + accountId).then()
+				.assertThat().statusCode(200).and().extract().response();
 
 
 		JsonParser parser = new JsonParser();
 		JsonObject fullBody = parser.parse(createResponse.getBody().asString()).getAsJsonObject();
 
-		String accountId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("id").getAsString();
+		String accountPersonDBId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("id").getAsString();
 		Repository.addData("accountId", accountId);
 
 

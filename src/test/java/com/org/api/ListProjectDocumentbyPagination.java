@@ -21,15 +21,8 @@ public class ListProjectDocumentbyPagination extends CommonLogin {
 				.when().cookie("JSESSIONID", jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
 				.post(API_PATH + "projectdocument/list");
-		System.out.println(response.getBody().asString());
+		//System.out.println(response.getBody().asString());
 		AssertJUnit.assertEquals(response.statusCode(), 200);
-
-		if (response.getStatusCode() == 200) {
-			System.out.println("API is working fine");
-			System.out.println(response.getStatusCode());
-		} else {
-			System.out.println("API is not working fine");
-		}
 
 	}
 }

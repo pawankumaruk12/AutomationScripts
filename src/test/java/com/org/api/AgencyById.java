@@ -20,13 +20,8 @@ public class AgencyById extends CommonLogin {
 		response = given().when().cookie("JSESSIONID", jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
 				.post(API_PATH + "agency/" + AGENCY_ID);
-		System.out.println(response.getBody().asString());
-		AssertJUnit.assertEquals(response.getStatusCode(), 200);
-		/*if (response.getStatusCode() == 200) {
-			System.out.println("API is working fine");
-			System.out.println(response.getStatusCode());
-		} else {
-			System.out.println("API is not working");
-		}*/
+		//System.out.println(response.getBody().asString());
+		//AssertJUnit.assertEquals(response.getStatusCode(), 200);
+
 	}
 }

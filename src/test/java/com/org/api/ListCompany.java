@@ -6,11 +6,11 @@ import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-// Need to fix the issue Expected :500,Actual   :200
+//working 6th sep, chaged the payload in json
 
 public class ListCompany extends CommonLogin {
 
-	@Test(enabled = false)
+	@Test
 	public void ListCompanys() throws Exception {
 
 		String jsessionId = response.cookie("JSESSIONID");
@@ -22,17 +22,10 @@ public class ListCompany extends CommonLogin {
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
 				.post(API_PATH + "company/list");
 
-		System.out.println(response.getBody().asString());
+		//System.out.println(response.getBody().asString());
 		//System.out.println(response.body().prettyPrint());
-		System.out.println(response.body().prettyPeek());
+		//System.out.println(response.body().prettyPeek());
 		AssertJUnit.assertEquals(response.getStatusCode(), 200);
-		if (response.getStatusCode() == 200) {
-			System.out.println("API is working fine");
-			System.out.println(response.getStatusCode());
-
-		} else {
-			System.out.println("API is not working fine");
-		}
 
 	}
 

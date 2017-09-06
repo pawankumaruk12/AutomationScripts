@@ -23,13 +23,7 @@ public class AssignAgentToProjectMember extends CommonLogin {
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
 				.post(API_PATH + "projectmember/assignagent");
 
-		if (response.getStatusCode() == 200) {
-			System.out.println("API is working fine");
-			System.out.println(response.getStatusCode());
-		} else {
-			System.out.println("API is not working fine");
 
-		}
 
 	}
 }
