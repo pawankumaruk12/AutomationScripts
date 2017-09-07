@@ -28,20 +28,22 @@ public class UpdateAccount extends CommonLogin {
     @Test
     public void testUpdateAccount()  {
 
-        String stringAccountId = (String) Repository.getValue(("accountId"));
+        String accountId = (String) Repository.getValue("accountId");
         String name = (String) Repository.getValue("name");
-        String stringTypeId =  (String) Repository.getValue("stringTypeId");
-        String Description = (String) Repository.getValue("description");
+        String typeId =  (String) Repository.getValue("stringTypeId");
+        String description = (String) Repository.getValue("description");
 
         String jsessionId = response.cookie("JSESSIONID");
         String xsrfToken = response.cookie("XSRF-TOKEN");
 
 
-        Account account = new Account(); {
+        Account account = new Account();
+        account.setId(accountId);
         account.setName(name);
-        account.setStringAccountId(stringAccountId);
-        account.setDescription(Description);
-        account.setStringTypeId(stringTypeId);
+        account.setAccountId(1);
+        account.setTypeId(1);
+        account.setDescription(description);
+        account.setVersionId(1);
 
 
         Gson gson = new Gson();
@@ -51,11 +53,10 @@ public class UpdateAccount extends CommonLogin {
                 body(json).
                 when()
                 .cookie("JSESSIONID",jsessionId)
-                .cookie("XSRF-TOKE", xsrfToken).
+                .cookie("XSRF-TOKEN", xsrfToken).
                         contentType(ContentType.JSON).
                 post(API_PATH + "account/update").
                 then().
                 assertThat().statusCode(200).and().extract().response();
         }
     }
-}

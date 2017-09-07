@@ -2,31 +2,22 @@ package com.org.api.model;
 
 public class Account {
 
+    private String id;
     private String name;
     private String description;
     private Integer typeId;
     private Integer accountId;
     private String accountPersonDBId;
-    private String stringAccountId;
+    private Integer versionId;
 
-    public String getStringTypeId() {
-        return stringTypeId;
+
+    public String getId() {
+        return id;
     }
 
-    public void setStringTypeId(String stringTypeId) {
-        this.stringTypeId = stringTypeId;
+    public void setId(String id) {
+        this.id = id;
     }
-
-    private String stringTypeId;
-
-    public String getStringAccountId() {
-        return stringAccountId;
-    }
-
-    public void setStringAccountId(String stringAccountId) {
-        this.stringAccountId = stringAccountId;
-    }
-
 
     public String getName() {
         return name;
@@ -68,6 +59,11 @@ public class Account {
         this.accountPersonDBId = accountPersonDBId;
     }
 
+    public Integer getVersionId() {
+        return versionId;
+    }
 
-
+    public void setVersionId(Integer versionId) {
+        this.versionId = versionId;
+    }
 }
