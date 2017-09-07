@@ -6,7 +6,7 @@
       <class name="com.org.api.CreateAccount"/>
       <class name="com.org.api.UpdateAccount"/>
 
-     <!-- <class name="com.org.api.CreateCompany"/>
+      <class name="com.org.api.CreateCompany"/>
       <class name="com.org.api.CreateProject"/>
       <class name="com.org.api.CreateDepartment"/>
 
@@ -68,9 +68,9 @@
       <class name="com.org.api.ProjectType"/>
       <class name="com.org.api.RemoveAgencyFromPerson"/>
       <class name="com.org.api.UpdateCompany"/>
-      <class name="com.org.api.UpdateCompany"/>
+
       <class name="com.org.api.UpdatePerson"/>
-      <class name="com.org.api.UpdatesProjectDocument"/>-->
+      <class name="com.org.api.UpdatesProjectDocument"/>
 
 
 

@@ -61,7 +61,16 @@ public class CreateCompany extends CommonLogin {
 
 		String companyId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("id").getAsString();
 		Repository.addData("companyId", companyId);
-
+		String name = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("name").getAsString();
+		Repository.addData("name",name);
+		String registeredNumber = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("registeredNumber").getAsString();
+		Repository.addData("registeredNumber", registeredNumber);
+		String vatNumber = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("vatNumber").getAsString();
+		Repository.addData("vatNumber",vatNumber);
+		String vatType = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("vatType").getAsString();
+		Repository.addData("vatType",vatType);
+		String sdCompanyId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("sdCompanyId").getAsString();
+		Repository.addData("sdCompanyId",sdCompanyId);
 
 	}
 

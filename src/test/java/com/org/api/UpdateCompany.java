@@ -3,6 +3,8 @@ package com.org.api;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import static io.restassured.RestAssured.given;
+
+import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
@@ -12,9 +14,17 @@ import org.testng.annotations.Test;
 @Ignore
 public class UpdateCompany extends CommonLogin {
 	@Test(enabled = false)
-	public void UpdateCompanys() throws Exception{
+	public void testUpdateCompany() throws Exception{
+
+		String accountId = (String) Repository.getValue("accountId");
+		String name = (String) Repository.getValue("name");
+		String typeId =  (String) Repository.getValue("stringTypeId");
+		String description = (String) Repository.getValue("description");
+
 		String jsessionId = response.cookie("JSESSIONID");
 		String xsrfToken = response.cookie("XSRF-TOKEN");
+
+
 		//String updatecompanyjson = "src/resources/UpdateCompany.json";
 		
 		response = given().
