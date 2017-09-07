@@ -23,6 +23,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import javax.naming.Name;
+
 public class CreateAccount extends CommonLogin{
 
 	@BeforeClass
@@ -61,6 +63,13 @@ public class CreateAccount extends CommonLogin{
 
 		String accountId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("id").getAsString();
 		Repository.addData("accountId", accountId);
+		String name = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("name").getAsString();
+		Repository.addData("name",name);
+		String description = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("description").getAsString();
+		Repository.addData("description",description);
+		String stringTypeId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("typeId").getAsString();
+		Repository.addData("stringTypeId",stringTypeId);
+
 
 
 
