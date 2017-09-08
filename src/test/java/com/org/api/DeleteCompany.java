@@ -1,15 +1,18 @@
 package com.org.api;
 
+import com.org.api.model.Repository;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
-@Ignore
-//Need to implement to get dynamic company id from company service
+
+
 public class DeleteCompany extends CommonLogin{
-	@Test(enabled = false)
-	public void DeleteCompanys() throws Exception {
+	@Test
+	public void testDeleteCompanys() throws Exception {
+		String companyId = (String) Repository.getValue("companyId");
+
 		String jsessionId = response.cookie("JSESSIONID");
 		String xsrfToken = response.cookie("XSRF-TOKEN");
 
@@ -18,10 +21,11 @@ public class DeleteCompany extends CommonLogin{
 				.cookie("JSESSIONID", jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).
 						contentType(ContentType.JSON).
-						post(API_PATH + "company/delete/oXTZf4xofVB3Mc7IDpVvPg");
+						post(API_PATH + "company/delete/" +companyId).
+						then().
+						assertThat().statusCode(200).and().extract().response();
 
-		//System.out.println(response.getBody().asString());
-		AssertJUnit.assertEquals(response.getStatusCode(), 200);
+
 	}
 	
 				

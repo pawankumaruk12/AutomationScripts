@@ -1,7 +1,18 @@
 package com.org.api.model;
 
+import java.sql.Timestamp;
+
 public class Company {
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
     private String name;
     private Integer typeId;
     private String accountId;
@@ -9,6 +20,22 @@ public class Company {
     private String vatNumber;
     private String sdCompanyId;
     private String vatType;
+    private String versionId;
+    //private Timestamp lastUpdated;
+
+
+
+
+
+    public String getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(String versionId) {
+        this.versionId = versionId;
+    }
+
+
 
     public String getName() {
         return name;

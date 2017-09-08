@@ -62,6 +62,18 @@ public class CreateProject extends CommonLogin {
 
 		String projectId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("project").get("id").getAsString();
 		Repository.addData("projectId",projectId);
+		String name = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("project").get("name").getAsString();
+		Repository.addData("name",name);
+		String typeId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("project").get("typeId").getAsString();
+		Repository.addData("typeId",typeId);
+		String description = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("project").get("description").getAsString();
+		Repository.addData("description",description);
+		String versionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("project").get("versionId").getAsString();
+		Repository.addData("versionId",versionId);
+
+
+
+
 
 	}
 
