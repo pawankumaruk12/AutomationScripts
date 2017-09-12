@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 public class UpdatePerson extends CommonLogin {
     @Test
     public void testUpdatePersons() throws Exception {
-        Person createdPerson = (Person) Repository.getValue("NEW_PERSON");
+       // Person createdPerson = (Person) Repository.getValue("NEW_PERSON");
 
         String id = (String) Repository.getValue("personId");
         String accountPersonDBId = (String) Repository.getValue("accountPersonDBId");

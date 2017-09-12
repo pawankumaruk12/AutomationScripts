@@ -7,13 +7,16 @@ import io.restassured.http.ContentType;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
-//Tested and working on 13th March 2017
+
 public class PersonListNoAgent extends CommonLogin {
 	@Test
-	public void PersonListNoAgents() throws Exception {
+	public void testPersonListNoAgents() throws Exception {
+
 		String jsessionId = response.cookie("JSESSIONID");
 		String xsrfToken = response.cookie("XSRF-TOKEN");
+
 		String PersonListNoAgent = "src/test/resources/PersonListNoAgent.json";
+
 		response = given().body(Files.readAllBytes(Paths.get(PersonListNoAgent)))
 				.when().cookie("JSESSIONID", jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)

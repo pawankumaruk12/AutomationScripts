@@ -31,7 +31,7 @@ public class CreateDepartment extends CommonLogin{
 
 			Department department = new Department();
 			department.setName("AutoAccounts");
-			department.setDepartmentTypeId(1);
+			department.setDepartmentTypeId("1");
 			department.setDescription("Automation Accounts");
 			department.setProjectId(projectId);
 
@@ -49,10 +49,27 @@ public class CreateDepartment extends CommonLogin{
 		JsonParser parser = new JsonParser();
 		JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
+		//String
+		projectId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("department").get("projectId").getAsString();
+		Repository.addData("projectId",projectId);
+
+
 		String departmentId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("department").get("id").getAsString();
 		Repository.addData("departmentId",departmentId);
 
-		}
+		String name = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("department").get("name").getAsString();
+		Repository.addData("name",name);
+
+		String description = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("department").get("description").getAsString();
+		Repository.addData("description",description);
+
+		String departmentTypeId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("department").get("departmentTypeId").getAsString();
+		Repository.addData("departmentTypeId",departmentTypeId);
+
+		//String versionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("department").get("versionId").getAsString();
+	//	Repository.addData("versionId",versionId);
+
+	}
 
 
 

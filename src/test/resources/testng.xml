@@ -2,69 +2,87 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 
-    <test name="AccountsPersondbId" group-by-instances="true" preserve-order="true">
+    <test name="DepartmentTest" group-by-instances="true" preserve-order="true">
         <classes>
             <class name="com.org.api.CreateAccount"/>
-            <class name="com.org.api.AccountById"/>
-            <class name="com.org.api.CreatePerson"/>
-            <class name="com.org.api.UpdatePerson"/>
-
+            <class name="com.org.api.CreateCompany"/>
+            <class name="com.org.api.CreateProject"/>
+            <class name="com.org.api.CreateDepartment"/>
+            <class name="com.org.api.UpdateDepartment"/>
         </classes>
     </test> <!-- Test -->
 
 
     <test name="AccountTest" group-by-instances="true" preserve-order="true">
-      <classes>
-        <class name="com.org.api.CreateAccount"/>
-        <class name="com.org.api.UpdateAccount"/>
-        <class name="com.org.api.DeleteAccount"/>
-      </classes>
-    </test> <!-- Test -->
-
+        <classes>
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.UpdateAccount"/>
+            <class name="com.org.api.AccountsType"/>
+            <class name="com.org.api.AccountById"/>
+            <class name="com.org.api.ListAccountsbypagination"/>
+            <class name="com.org.api.DeleteAccount"/>
+        </classes>
+    </test>
     <test name="CompanyTest" group-by-instances="true" preserve-order="true">
-      <classes>
+        <classes>
 
-        <class name="com.org.api.CreateAccount"/>
-        <class name="com.org.api.CreateCompany"/>
-        <class name="com.org.api.UpdateCompany"/>
-        <class name="com.org.api.DeleteCompany"/>
-        <class name="com.org.api.DeleteAccount"/>
-
-      </classes>
-    </test> <!-- Test -->
-
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.CreateCompany"/>
+            <class name="com.org.api.CompanyTypes"/>
+            <class name="com.org.api.ListCompany"/>
+            <class name="com.org.api.UpdateCompany"/>
+            <class name="com.org.api.DeleteCompany"/>
+            <class name="com.org.api.DeleteAccount"/>
+        </classes>
+    </test>
     <test name="ProjectTest" group-by-instances="true" preserve-order="true">
-    <classes>
-      <class name="com.org.api.CreateAccount"/>
-      <class name="com.org.api.CreateCompany"/>
-      <class name="com.org.api.CreateProject"/>
-      <class name="com.org.api.UpdateProject"/>
-      <class name="com.org.api.DeleteProject"/>
+        <classes>
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.CreateCompany"/>
+            <class name="com.org.api.CreateProject"/>
+            <class name="com.org.api.ProjectById"/>
+            <class name="com.org.api.ProjectList"/>
+            <class name="com.org.api.ProjectType"/>
+            <class name="com.org.api.UpdateProject"/>
+            <class name="com.org.api.DeleteProject"/>
+            <class name="com.org.api.DeleteCompany"/>
+            <class name="com.org.api.DeleteAccount"/>
+        </classes>
+    </test>
+
+    <test name="PersonTest" group-by-instances="true" preserve-order="true">
+        <classes>
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.CreateCompany"/>
+            <class name="com.org.api.AccountById"/>
+            <class name="com.org.api.CreatePerson"/>
+            <class name="com.org.api.UpdatePerson"/>
+            <class name="com.org.api.PersonById"/>
+            <class name="com.org.api.PersonListNoAgent"/>
+            <class name="com.org.api.DeletePerson"/>
+            <class name="com.org.api.DeleteCompany"/>
+            <class name="com.org.api.DeleteAccount"/>
+        </classes>
+    </test>
 
 
-    </classes>
-    </test> <!-- Test -->
+
+
+
 
     <test name="Remaining" group-by-instances="true" preserve-order="true">
       <classes>
 
-           <class name="com.org.api.CreateProject"/>
-           <class name="com.org.api.UpdateProject"/>
-
+          <class name="com.org.api.CreateAccount"/>
+          <class name="com.org.api.CreateCompany"/>
+          <class name="com.org.api.CreateProject"/>
            <class name="com.org.api.CreateDepartment"/>
 
-           <class name="com.org.api.CompanyTypes"/>
-           <class name="com.org.api.ProjectList"/>
-           <class name="com.org.api.ProjectType"/>
-           <class name="com.org.api.ListAccountsbypagination"/>
-           <class name="com.org.api.UpdateCompany"/>
-           <class name="com.org.api.ListCompany"/>
-           <class name="com.org.api.AccountsType"/>
            <class name="com.org.api.AgencyById"/>
            <class name="com.org.api.AssignAgentToProjectMember"/>
            <class name="com.org.api.AssignPersonToAgency"/>
-           <class name="com.org.api.CommonLogin"/>
-           <class name="com.org.api.CompanyTypes"/>
+         <class name="com.org.api.CommonLogin"/>
+
            <class name="com.org.api.CreateAgency"/>
 
 
@@ -75,7 +93,7 @@
            <class name="com.org.api.DeleteAgency"/>
 
            <class name="com.org.api.DeleteDepartment"/>
-           <class name="com.org.api.DeletePerson"/>
+
 
            <class name="com.org.api.DeleteProjectDocument"/>
            <class name="com.org.api.DeleteProjectMember"/>
@@ -83,9 +101,9 @@
            <class name="com.org.api.DepartmentType"/>
            <class name="com.org.api.DepartmentTypes"/>
            <class name="com.org.api.ForgotPassword"/>
-           <class name="com.org.api.ListAccountsbypagination"/>
+
            <class name="com.org.api.ListAgenciesByPagination"/>
-           <class name="com.org.api.ListCompany"/>
+
            <class name="com.org.api.ListDepartment"/>
            <class name="com.org.api.ListProjectDocumentbyPagination"/>
            <class name="com.org.api.ListProjectMemberByPagination"/>
@@ -94,14 +112,14 @@
            <class name="com.org.api.Logout"/>
            <class name="com.org.api.PasswordReset"/>
            <class name="com.org.api.PasswordResetLinkCheck"/>
-           <class name="com.org.api.PersonById"/>
-           <class name="com.org.api.PersonListNoAgent"/>
+
+
            <class name="com.org.api.PreviewProjectDocument"/>
            <class name="com.org.api.PreviewProjectDocumentFromTemplate"/>
            <class name="com.org.api.ProjectDocumentById"/>
-           <class name="com.org.api.ProjectList"/>
+
            <class name="com.org.api.ProjectMemberById"/>
-           <class name="com.org.api.ProjectType"/>
+
            <class name="com.org.api.RemoveAgencyFromPerson"/>
 
 

@@ -1,2 +1,1 @@
-{"noOfRows":8,"startPosition":0,"filters":[{"columnName":"account.id","dataList":["GAOa1dAiPbEZIq79Ca18bQ"],"condition":"="}],"sorts":[{"columnName":"lastName","sortOrder":"asc"},{"columnName":"firstName","sortOrder":"asc"}]}
-
+{ "noOfRows": "100", "startPosition": "0", "sorts": [ { "columnName": "lastUpdated", "sortOrder": "desc" } ], "filters": [ ] }

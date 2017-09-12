@@ -19,8 +19,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-//@Ignore
-// working on 31st Aug, but change the project name on json everytime
 public class CreateProject extends CommonLogin {
 
     @BeforeClass

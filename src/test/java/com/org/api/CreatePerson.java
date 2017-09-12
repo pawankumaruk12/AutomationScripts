@@ -1,9 +1,5 @@
 package com.org.api;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Date;
-
 import static io.restassured.RestAssured.given;
 
 import com.google.gson.Gson;
@@ -19,7 +15,6 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 public class CreatePerson extends CommonLogin {
-
 
     @Test
     public void testPersonCreation() {
@@ -57,6 +52,7 @@ public class CreatePerson extends CommonLogin {
 
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+
         Person createdPerson = gson.fromJson(fullBody.get("results").getAsJsonArray().get(0).getAsJsonObject().getAsJsonObject("person").toString(), Person.class);
         JsonObject jsonPerson = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("person");
 
@@ -81,7 +77,8 @@ public class CreatePerson extends CommonLogin {
         Repository.addData("teleCode", teleCode);
         String countryABBRCode = jsonPerson.get("countryABBRCode").getAsString();
         Repository.addData("countryABBRCode", countryABBRCode);
-        String versionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("person").get("versionId").getAsString();
+        String versionId =jsonPerson.get("versionId").getAsString();
+              //  String versionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("person").get("versionId").getAsString();
         Repository.addData("versionId", versionId);
     //    String agencyId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("person").get("agencyId").getAsString();
      //   Repository.addData("agencyId", agencyId);
