@@ -70,7 +70,7 @@
 
            <class name="com.org.api.CreateNewProjectDocument"/>
 
-           <class name="com.org.api.CreatePerson"/>
+
            <class name="com.org.api.CreateProjectMember"/>
            <class name="com.org.api.DeleteAgency"/>
 
@@ -104,7 +104,7 @@
            <class name="com.org.api.ProjectType"/>
            <class name="com.org.api.RemoveAgencyFromPerson"/>
 
-           <class name="com.org.api.UpdatePerson"/>
+
            <class name="com.org.api.UpdatesProjectDocument"/>
       </classes>
     </test>
