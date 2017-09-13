@@ -15,7 +15,7 @@ public abstract class CommonLogin {
 	private static final String PATH = "src/test/resources/login.json";
 	private static final String PATH_LOGIN_HOD = "src/test/resources/login_hod.json";
 	private static final String PATH_LOGIN_PM = "src/test/resources/login_hod.json";
-	private static final String PATH_LOGIN_TM = "src/test/resources/login_hod.json";
+	private static final String PATH_LOGIN_TM = "src/test/resources/login_tm.json";
 	private static final String PATH_LOGIN_AGENT = "src/test/resources/login_hod.json";
 
 	protected Response response = null;
@@ -41,41 +41,40 @@ public abstract class CommonLogin {
 	}
 
 	protected void loginAsHOD() throws Exception {
-		given().
+		response = given().
 				//		body(Files.readAllBytes(Paths.get(PATH))).
 						when().
 				contentType(ContentType.JSON).
 				post("http://192.168.56.139:8080/sdw/rest/authentication/logout");
 
-		given().
+		response = given().
 				body(Files.readAllBytes(Paths.get(PATH_LOGIN_HOD))).
 				when().
 				contentType(ContentType.JSON).
 				post("http://192.168.56.139:8080/sdw/rest/authentication/login");
 	}
 
-
 	protected void loginAsProjectManager() throws Exception {
-		given().
+		response =	given().
 				//		body(Files.readAllBytes(Paths.get(PATH))).
 						when().
 				contentType(ContentType.JSON).
 				post("http://192.168.56.139:8080/sdw/rest/authentication/logout");
 
-		given().
+		response = given().
 				body(Files.readAllBytes(Paths.get(PATH_LOGIN_PM))).
 				when().
 				contentType(ContentType.JSON).
 				post("http://192.168.56.139:8080/sdw/rest/authentication/login");
 	}
 	protected void loginAsTeamMember() throws Exception {
-		given().
-				//		body(Files.readAllBytes(Paths.get(PATH))).
+		response = given().
+						body(Files.readAllBytes(Paths.get(PATH))).
 						when().
 				contentType(ContentType.JSON).
 				post("http://192.168.56.139:8080/sdw/rest/authentication/logout");
 
-		given().
+		response = given().
 				body(Files.readAllBytes(Paths.get(PATH_LOGIN_TM))).
 				when().
 				contentType(ContentType.JSON).
@@ -83,13 +82,13 @@ public abstract class CommonLogin {
 	}
 
 	protected void loginAsAgent() throws Exception {
-		given().
+		response = given().
 				//		body(Files.readAllBytes(Paths.get(PATH))).
 						when().
 				contentType(ContentType.JSON).
 				post("http://192.168.56.139:8080/sdw/rest/authentication/logout");
 
-		given().
+		response = given().
 				body(Files.readAllBytes(Paths.get(PATH_LOGIN_AGENT))).
 				when().
 				contentType(ContentType.JSON).

@@ -3,6 +3,9 @@ package com.org.api.model;
 public class Department {
     private String name;
     private String departmentTypeId;
+    private String versionId;
+    private String id;
+    private String projectId;
 
     public String getName() {
         return name;
@@ -28,13 +31,7 @@ public class Department {
         this.description = description;
     }
 
-    public Integer getVersionId() {
-        return versionId;
-    }
 
-    public void setVersionId(Integer versionId) {
-        this.versionId = versionId;
-    }
 
     public String getId() {
         return id;
@@ -53,8 +50,15 @@ public class Department {
     }
 
     private String description;
-    private Integer versionId;
-    private String id;
-    private String projectId;
+
+    public String getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(String versionId) {
+        this.versionId = versionId;
+    }
+
+
 
 }

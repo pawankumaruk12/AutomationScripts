@@ -66,8 +66,8 @@ public class CreateDepartment extends CommonLogin{
 		String departmentTypeId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("department").get("departmentTypeId").getAsString();
 		Repository.addData("departmentTypeId",departmentTypeId);
 
-		//String versionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("department").get("versionId").getAsString();
-	//	Repository.addData("versionId",versionId);
+		String versionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("department").get("versionId").getAsString();
+		Repository.addData("versionId",versionId);
 
 	}
 

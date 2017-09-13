@@ -22,7 +22,7 @@ public class UpdateDepartment extends CommonLogin{
 		String description = (String) Repository.getValue("description");
 		String projectId = (String) Repository.getValue("projectId");
 		String departmentTypeId = (String) Repository.getValue("departmentTypeId");
-	//	String versionId = (String) Repository.getValue("versionId");
+		String versionId = (String) Repository.getValue("versionId");
 
 		String jsessionId = response.cookie("JSESSIONID");
 		String xsrfToken = response.cookie("XSRF-TOKEN");
@@ -33,7 +33,7 @@ public class UpdateDepartment extends CommonLogin{
 		department.setName(name);
 		department.setDescription(description);
 	department.setDepartmentTypeId(departmentTypeId);
-	department.setVersionId(2);
+	department.setVersionId(versionId);
 
 		Gson gson = new Gson();
 		String json = gson.toJson(department);
@@ -45,8 +45,8 @@ public class UpdateDepartment extends CommonLogin{
 				.cookie("JSESSIONID",jsessionId)
 				.cookie("XSRF-TOKEN",xsrfToken).
 				contentType(ContentType.JSON).
-				//post(API_PATH + "department/update"+"?id="+id).
-						post(API_PATH + "department/update").
+				post(API_PATH + "department/update"+"?id="+id).
+						//post(API_PATH + "department/update").
 						then().
 						assertThat().statusCode(200).and().extract().response();
 

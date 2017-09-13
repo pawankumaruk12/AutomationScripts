@@ -1,29 +1,31 @@
 package com.org.api;
+import com.org.api.model.Repository;
 import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 
 import com.org.api.unittest.DepartmentService;
 public class DeleteDepartment extends CommonLogin {
-	public static String DEPARTMENT_ID;
 
-	@Test(enabled = false)
-	public void DeleteDepartments() throws Exception {
+
+	@Test
+	public void testDeleteDepartments() throws Exception {
+		String departmentId = (String) Repository.getValue("departmentId");
 		String jsessionId= response.cookie("JSESSIONID");
 		String xsrfToken = response.cookie("XSRF-TOKEN");
-		
-		 DEPARTMENT_ID =DepartmentService.getLastDepartmentId(null, jsessionId, xsrfToken);			
+
 		
 		response = given().
 				when()
-				.cookie("JSESSION",jsessionId)
+				.cookie("JSESSIONID",jsessionId)
 				.cookie("XSRF-TOKEN",xsrfToken).
 				contentType(ContentType.JSON).
-				post(API_PATH + "department/delete/" + DEPARTMENT_ID);
-		//System.out.println(response.getBody().asString());
-		Assert.assertEquals(response.getStatusCode(), 200);
-
+				post(API_PATH + "department/delete/" + departmentId).
+						then().
+						assertThat().statusCode(200).and().extract().response();
+		AssertJUnit.assertEquals( response.getStatusCode(), 200);
 				
 	}
 }

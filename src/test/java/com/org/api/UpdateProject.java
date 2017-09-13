@@ -31,7 +31,7 @@ public class UpdateProject extends CommonLogin {
         project.setDescription(description);
         project.setProductionId(null);
         project.setName(name);
-        project.setTypeId(1);
+        project.setTypeId(2);
         project.setVersionId(versionId);
 
         Gson gson = new Gson();

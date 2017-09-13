@@ -37,7 +37,7 @@ public class CreateProject extends CommonLogin {
         project.setName("AutoProject" + new Date());
         project.setDescription("Automation Project");
         project.setProductionId(null);
-        project.setTypeId(1);
+        project.setTypeId(2);
         project.setCompanyId(companyId);
 
 
