@@ -30,7 +30,7 @@ public class CreateCompany extends CommonLogin {
 	}
 
 	@Test
-	public void TestCreateCompany(){
+	public void testCreateCompany(){
 		String accountId = (String) Repository.getValue("accountId");
 
 		Company company = new Company();
