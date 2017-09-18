@@ -9,11 +9,11 @@ import javax.xml.ws.Response;
 
 import static io.restassured.RestAssured.given;
 
-public class CreateInvitation extends CommonLogin{
+public class CreateInvitation extends CommonLogin {
 
     @Test
     public void testCreateInvitation() {
-       // String accountId = (String) Repository.getValue("accountId");
+        // String accountId = (String) Repository.getValue("accountId");
         String email = (String) Repository.getValue("personalEmail");
         String mobile = (String) Repository.getValue("personalMobile");
         String telecode = (String) Repository.getValue("teleCode");
@@ -24,7 +24,8 @@ public class CreateInvitation extends CommonLogin{
         String personalMobile = (String) Repository.getValue("personalMobile");
         String title = (String) Repository.getValue("title");
         String departmentId = (String) Repository.getValue("departmentId");
-        String stringroleTypeId = (String) Repository.getValue("stringroleTypeId");
+        String roleTypeId = (String) Repository.getValue("roleTypeId");
+        String id = (String) Repository.getValue("personId");
 
 
         //Invitation
@@ -35,6 +36,7 @@ public class CreateInvitation extends CommonLogin{
 
         //Person
         Person person = new Person();
+        person.setId(id);
         person.setLastName(lastName);
         person.setFirstName(firstName);
         person.setAccountPersonDBId(accountPersonDBId);
@@ -48,17 +50,19 @@ public class CreateInvitation extends CommonLogin{
         //ProjectMember
         ProjectMember projectMember = new ProjectMember();
         projectMember.setProjectEmail(email);
-        projectMember.setRoleTypeId(stringroleTypeId);
+
         projectMember.setPosition("Production Manager");
         projectMember.setDepartmentId(departmentId);
         projectMember.setDescription("Art Department Assistant");
         projectMember.setTeleCode(telecode);
+        projectMember.setRoleTypeId(roleTypeId);
+
 
         Links links = new Links();
         links.setPerson(person);
         links.setProjectMember(projectMember);
 
-      //  MAIN!!!
+        //  MAIN!!!
         InvitationWithLinks invitationWithLinks = new InvitationWithLinks();
         invitationWithLinks.setInvitation(invitation);
         invitationWithLinks.setLinks(links);
@@ -66,23 +70,22 @@ public class CreateInvitation extends CommonLogin{
         Gson gson = new Gson();
         String json = gson.toJson(invitationWithLinks);
 
-    String jsessionid = response.cookie("JSESSIONID");
-    String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionid = response.cookie("JSESSIONID");
+        String xsrfToken = response.cookie("XSRF-TOKEN");
 
-   response = given().
-        body(json).
-            when()
-             .cookie("JSESSIONID",jsessionid)
-             .cookie("XSRF-TOKEN",xsrfToken).
-            contentType(ContentType.JSON).
-            post("http://192.168.56.139:8080/sdw/rest/" + "invitation/create").
-    then()
+        response = given().
+                body(json).
+                when()
+                .cookie("JSESSIONID", jsessionid)
+                .cookie("XSRF-TOKEN", xsrfToken).
+                        contentType(ContentType.JSON).
+                        post(API_PATH + "invitation/create").then()
+                 .assertThat().statusCode(201).and().extract().response();
 
-               .assertThat().statusCode(201).and().extract().response();
-    }
+      }
 
 
-    }
+}
 
 
 

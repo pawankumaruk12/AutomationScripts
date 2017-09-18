@@ -42,7 +42,7 @@ public class CreateAccount extends CommonLogin{
 		Account account = new Account();
 		account.setName("AutoAccount" + new Date());
 		account.setDescription("Automation Account");
-		account.setTypeId(1);
+		account.setTypeId(2);
 		account.setAccountId(1);
 
 		Gson gson = new Gson();

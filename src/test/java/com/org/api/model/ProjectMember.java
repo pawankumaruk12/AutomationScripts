@@ -17,17 +17,6 @@ public class ProjectMember {
     private String agentPersonId;
     private String agencyId;
     private Boolean active;
-    private  String stringRoleTypeId;
-
-
-    public String getCountryABBRCode() {
-        return countryABBRCode;
-    }
-
-    public void setCountryABBRCode(String countryABBRCode) {
-        this.countryABBRCode = countryABBRCode;
-    }
-
 
 
     public String getId() {
@@ -118,6 +107,13 @@ public class ProjectMember {
         this.teleCode = teleCode;
     }
 
+    public String getCountryABBRCode() {
+        return countryABBRCode;
+    }
+
+    public void setCountryABBRCode(String countryABBRCode) {
+        this.countryABBRCode = countryABBRCode;
+    }
 
     public String getAgentPersonId() {
         return agentPersonId;
@@ -142,15 +138,6 @@ public class ProjectMember {
     public void setActive(Boolean active) {
         this.active = active;
     }
-
-    public String getStringRoleTypeId() {
-        return stringRoleTypeId;
-    }
-
-    public void setStringRoleTypeId(String stringRoleTypeId) {
-        this.stringRoleTypeId = stringRoleTypeId;
-    }
-
 
 
 }

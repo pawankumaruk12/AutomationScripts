@@ -4,6 +4,7 @@ public class Person {
 
 
     private String id;
+    private String personId;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -18,6 +19,16 @@ public class Person {
     private String versionId;
     private String personTypeId;
     private String clientReference;
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
+
 
     public String getClientReference() {
         return clientReference;
