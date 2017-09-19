@@ -4,16 +4,12 @@ import com.google.gson.Gson;
 import com.org.api.model.*;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
-
-import javax.xml.ws.Response;
-
 import static io.restassured.RestAssured.given;
 
 public class CreateInvitation extends CommonLogin {
 
     @Test
     public void testCreateInvitationWithPersonDetails() {
-        // String accountId = (String) Repository.getValue("accountId");
         String email = (String) Repository.getValue("personalEmail");
         String mobile = (String) Repository.getValue("personalMobile");
         String telecode = (String) Repository.getValue("teleCode");
@@ -26,7 +22,6 @@ public class CreateInvitation extends CommonLogin {
         String departmentId = (String) Repository.getValue("departmentId");
         String roleTypeId = (String) Repository.getValue("roleTypeId");
         String id = (String) Repository.getValue("personId");
-
 
         //Invitation
         Invitation invitation = new Invitation();
@@ -50,7 +45,6 @@ public class CreateInvitation extends CommonLogin {
         //ProjectMember
         ProjectMember projectMember = new ProjectMember();
         projectMember.setProjectEmail(email);
-
         projectMember.setPosition("Production Manager");
         projectMember.setDepartmentId(departmentId);
         projectMember.setDescription("Art Department Assistant");
@@ -80,13 +74,13 @@ public class CreateInvitation extends CommonLogin {
                 .cookie("XSRF-TOKEN", xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/create").then()
-                 .assertThat().statusCode(201).and().extract().response();
+                .assertThat().statusCode(201).and().extract().response();
 
-      }
+    }
 
     @Test(enabled = false)
     public void testCreateInvitationWithoutPersonDetails() {
-        // String accountId = (String) Repository.getValue("accountId");
+
         String email = (String) Repository.getValue("personalEmail");
         String mobile = (String) Repository.getValue("personalMobile");
         String telecode = (String) Repository.getValue("teleCode");
@@ -156,7 +150,6 @@ public class CreateInvitation extends CommonLogin {
                 .assertThat().statusCode(201).and().extract().response();
 
     }
-
 
 
 }

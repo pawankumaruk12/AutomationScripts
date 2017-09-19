@@ -23,9 +23,7 @@ public class ProjectList extends CommonLogin {
 			.cookie("XSRF-TOKEN",xsrfToken).
 			contentType(ContentType.JSON).
 			post(API_PATH + "project/list");
-	
-	
-			//System.out.println(response.getBody().asString());
+
 			AssertJUnit.assertEquals( response.getStatusCode(), 200);
 
 			

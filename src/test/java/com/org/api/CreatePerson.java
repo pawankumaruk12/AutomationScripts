@@ -1,18 +1,13 @@
 package com.org.api;
 
-import static io.restassured.RestAssured.given;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.Person;
-
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
+import static io.restassured.RestAssured.given;
 
 public class CreatePerson extends CommonLogin {
 
@@ -23,8 +18,8 @@ public class CreatePerson extends CommonLogin {
         String jsessionId = response.cookie("JSESSIONID");
         String xsrfToken = response.cookie("XSRF-TOKEN");
         Integer personCount = 0;
-        Integer mobileCount =0;
-        Integer emailCount =0;
+        Integer mobileCount = 0;
+        Integer emailCount = 0;
 
         Person person = new Person();
         person.setFirstName("AutoPerson");
@@ -33,7 +28,7 @@ public class CreatePerson extends CommonLogin {
         person.setAccountPersonDBId(accountPersonDBId);
         person.setTitle("Mrs.");
         person.setGender("F");
-        person.setPersonalMobile("077832389239" + mobileCount +1);
+        person.setPersonalMobile("077832389239" + mobileCount + 1);
         person.setCountryABBRCode("GBR");
         person.setPersonalEmail("AutoPerson" + emailCount + "@" + "gmail.com");
 
@@ -63,8 +58,6 @@ public class CreatePerson extends CommonLogin {
         Repository.addData("title", title);
         String firstName = jsonPerson.get("firstName").getAsString();
         Repository.addData("firstName", firstName);
-      //  String middleName = jsonPerson.get("middleName").getAsString();
-       // Repository.addData("middleName", middleName);
         String lastName = jsonPerson.get("lastName").getAsString();
         Repository.addData("lastName", lastName);
         String personalEmail = jsonPerson.get("personalEmail").getAsString();
@@ -77,13 +70,8 @@ public class CreatePerson extends CommonLogin {
         Repository.addData("teleCode", teleCode);
         String countryABBRCode = jsonPerson.get("countryABBRCode").getAsString();
         Repository.addData("countryABBRCode", countryABBRCode);
-        String versionId =jsonPerson.get("versionId").getAsString();
-              //  String versionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("person").get("versionId").getAsString();
+        String versionId = jsonPerson.get("versionId").getAsString();
         Repository.addData("versionId", versionId);
-    //    String agencyId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("person").get("agencyId").getAsString();
-     //   Repository.addData("agencyId", agencyId);
-     //   String personTypeId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("person").get("personTypeId").getAsString();
-    //    Repository.addData("personTypeId", personTypeId);
 
 
     }

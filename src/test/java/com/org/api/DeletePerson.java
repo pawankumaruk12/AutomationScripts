@@ -1,15 +1,10 @@
 package com.org.api;
 
 import com.org.api.model.Repository;
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import org.testng.AssertJUnit;
+import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-
-import io.restassured.http.ContentType;
-
-import com.org.api.unittest.PersonService;
 
 public class DeletePerson extends CommonLogin {
 

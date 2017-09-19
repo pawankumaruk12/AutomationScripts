@@ -2,8 +2,28 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Suite1">
+    <test name="AccountTest" group-by-instances="true" preserve-order="true">
+        <classes>
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.UpdateAccount"/>
+            <class name="com.org.api.AccountsType"/>
+            <class name="com.org.api.AccountById"/>
+            <class name="com.org.api.ListAccountsbypagination"/>
+            <class name="com.org.api.DeleteAccount"/>
+        </classes>
+    </test>
+    <test name="CompanyTest" group-by-instances="true" preserve-order="true">
+        <classes>
 
-
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.CreateCompany"/>
+            <class name="com.org.api.CompanyTypes"/>
+            <class name="com.org.api.ListCompany"/>
+            <class name="com.org.api.UpdateCompany"/>
+            <class name="com.org.api.DeleteCompany"/>
+            <class name="com.org.api.DeleteAccount"/>
+        </classes>
+    </test>
     <test name="DepartmentTest" group-by-instances="true" preserve-order="true">
         <classes>
             <class name="com.org.api.CreateAccount"/>
@@ -18,24 +38,47 @@
             <class name="com.org.api.ProjectMemberRoleTypes"/>
             <class name="com.org.api.DeleteDepartment"/>
         </classes>
-
     </test>
-
-
-    <!--<test name="Invitation" group-by-instances="true" preserve-order="true">-->
-        <!--<classes>-->
-            <!--<class name="com.org.api.CreateAccount"/>-->
-            <!--<class name="com.org.api.CreateCompany"/>-->
-            <!--<class name="com.org.api.CreateProject"/>-->
-            <!--<class name="com.org.api.CreateDepartment"/>-->
-            <!--<class name="com.org.api.AccountById"/>-->
-            <!--<class name="com.org.api.CreatePerson"/>-->
-            <!--<class name="com.org.api.GetRoleTypeId"/>-->
-            <!--&lt;!&ndash;<class name="com.org.api.CreateProjectMember"/>&ndash;&gt;-->
-
-            <!--<class name="com.org.api.CreateInvitation"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="ProjectTest" group-by-instances="true" preserve-order="true">
+        <classes>
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.CreateCompany"/>
+            <class name="com.org.api.CreateProject"/>
+            <class name="com.org.api.ProjectById"/>
+            <class name="com.org.api.ProjectList"/>
+            <class name="com.org.api.ProjectType"/>
+            <class name="com.org.api.UpdateProject"/>
+            <class name="com.org.api.DeleteProject"/>
+            <class name="com.org.api.DeleteCompany"/>
+            <class name="com.org.api.DeleteAccount"/>
+        </classes>
+    </test>
+    <test name="PersonTest" group-by-instances="true" preserve-order="true">
+        <classes>
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.CreateCompany"/>
+            <class name="com.org.api.AccountById"/>
+            <class name="com.org.api.CreatePerson"/>
+            <class name="com.org.api.UpdatePerson"/>
+            <class name="com.org.api.PersonById"/>
+            <class name="com.org.api.PersonListNoAgent"/>
+            <class name="com.org.api.DeletePerson"/>
+            <class name="com.org.api.DeleteCompany"/>
+            <class name="com.org.api.DeleteAccount"/>
+        </classes>
+    </test>
+    <test name="Invitation" group-by-instances="true" preserve-order="true">
+        <classes>
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.CreateCompany"/>
+            <class name="com.org.api.CreateProject"/>
+            <class name="com.org.api.CreateDepartment"/>
+            <class name="com.org.api.AccountById"/>
+            <class name="com.org.api.CreatePerson"/>
+            <class name="com.org.api.GetRoleTypeId"/>
+            <class name="com.org.api.CreateInvitation"/>
+        </classes>
+    </test>
 </suite>
 
 

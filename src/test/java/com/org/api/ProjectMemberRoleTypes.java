@@ -16,11 +16,10 @@ public class ProjectMemberRoleTypes extends CommonLogin {
         String departmentId = (String) Repository.getValue("departmentId");
         String projectId = (String) Repository.getValue("projectId");
 
-        String jsessionId= response.cookie("JSESSIONID");
+        String jsessionId = response.cookie("JSESSIONID");
         String xsrfToken = response.cookie("XSRF-TOKEN");
 
         Department department = new Department();
-      //  department.setProjectId(projectId);
         department.setId(departmentId);
 
         Gson gson = new Gson();
@@ -31,12 +30,12 @@ public class ProjectMemberRoleTypes extends CommonLogin {
 
                 body(json).
                 when()
-                .cookie("JSESSIONID",jsessionId)
+                .cookie("JSESSIONID", jsessionId)
                 .cookie("XSRF-TOKEN", xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "projectmember/roletypes/" + departmentId);
 
-        //System.out.println(response.getBody().asString());
+
         AssertJUnit.assertEquals(response.getStatusCode(), 200);
 
 
