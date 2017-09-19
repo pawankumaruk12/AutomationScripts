@@ -19,8 +19,7 @@ public class PreviewProjectDocument extends CommonLogin {
 				.get(API_PATH
 						+ "projectdocument/dB2IpHFeTL86I9wLRoOysg/page/31/width/1400/preview/png");
 
-		// System.out.println(response.getBody().asString()); This line generates
-		// junk codes for png file
+
 		AssertJUnit.assertEquals(response.getStatusCode(), 200);
 
 	}

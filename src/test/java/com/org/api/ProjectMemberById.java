@@ -26,7 +26,6 @@ public class ProjectMemberById extends CommonLogin {
 				.when().cookie("JSESSIONID", jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
 				.post(API_PATH + "projectmember/" + ProjectMemberId);
-		//System.out.println(response.getBody().asString());
 		AssertJUnit.assertEquals(response.statusCode(), 200);
 
 

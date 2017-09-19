@@ -1,24 +1,18 @@
 package com.org.api;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import static io.restassured.RestAssured.given;
-
 import com.google.gson.Gson;
 import com.org.api.model.Person;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.given;
 
 
 public class UpdatePerson extends CommonLogin {
     @Test
     public void testUpdatePersons() throws Exception {
-       // Person createdPerson = (Person) Repository.getValue("NEW_PERSON");
 
         String id = (String) Repository.getValue("personId");
         String accountPersonDBId = (String) Repository.getValue("accountPersonDBId");
@@ -56,7 +50,7 @@ public class UpdatePerson extends CommonLogin {
         person.setPersonTypeId(null);
         person.setAgencyId(null);
         person.setClientReference(null);
-       // person.getMiddleName(middleName);
+        // person.getMiddleName(middleName);
 
 
         Gson gson = new Gson();
@@ -70,7 +64,6 @@ public class UpdatePerson extends CommonLogin {
                         contentType(ContentType.JSON)
                 .post(API_PATH + "person/update");
 
-        System.out.println(response.getBody().asString());
         Assert.assertEquals(response.getStatusCode(), 200);
 
     }

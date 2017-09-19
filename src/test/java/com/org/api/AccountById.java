@@ -7,19 +7,12 @@ import com.google.gson.JsonParser;
 import com.org.api.model.Account;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import static io.restassured.RestAssured.given;
 
 public class AccountById extends CommonLogin {
-
-    @BeforeClass
-    public void init() {
-        System.out.println("=====Starting AccountById Test=====");
-    }
 
     @Test
     public void TestAccountById() {
@@ -29,8 +22,6 @@ public class AccountById extends CommonLogin {
         String xsrfToken = response.cookie("XSRF-TOKEN");
 
         Account account = new Account();
-
-        //accountBy.setAccountPersonDB(accountId);
 
         Gson gson = new Gson();
         String json = gson.toJson(account);

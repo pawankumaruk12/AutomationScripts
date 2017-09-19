@@ -24,7 +24,7 @@ public class RemoveAgentFromProjectMember extends CommonLogin{
 			.cookie("XSRF-TOKEN",xsrfToken).
 			contentType(ContentType.JSON).
 			post(API_PATH + "projectmember/removeagent/:id");
-	//System.out.println(response.getBody().asString());
+
 	AssertJUnit.assertEquals(response.statusCode(), 200);
 	
 

@@ -21,16 +21,11 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-// working on 31st Aug, but change the company name on json
+
 public class CreateCompany extends CommonLogin {
 
-	@BeforeClass
-	public void init(){
-		System.out.println("===== Starting CreateCompany Test =====");
-	}
-
 	@Test
-	public void TestCreateCompany(){
+	public void testCreateCompany(){
 		String accountId = (String) Repository.getValue("accountId");
 
 		Company company = new Company();
@@ -99,12 +94,7 @@ public class CreateCompany extends CommonLogin {
 		AssertJUnit.assertEquals(response.getStatusCode(), 201);
 
 		Assert.assertTrue(response.getStatusCode()==201, "API is NOT working fine");
-		//Assert.assertEquals( response.getStatusCode(), 400, "API is NOT working fine 2");
-		//Assert.assertFalse(response.getStatusCode()==400, "API is NOT working fine");
 
-	
-		
-	
 	}
 
 }

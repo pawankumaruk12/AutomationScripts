@@ -1,34 +1,64 @@
 package com.org.api;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import static io.restassured.RestAssured.given;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.org.api.model.ProjectMember;
+import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-//Need to form request json and test it, could not find this api in crewstart
-@Ignore
-public class CreateProjectMember extends CommonLogin{
-	@Test(enabled = false)
-	public void CreatesProjectMembers() throws Exception{
-		String jsessionId = response.cookie("JSESSIONID");
-		String xsrfToken = response.cookie("XSRF-TOKEN");
-		
-		response = given().
-				body(Files.readAllBytes(Paths.get("src/test/resources/CreateProjectMember.json"))).
-				when()
-				.cookie("JSESSIONID",jsessionId)
-				.cookie("XSRF-TOKEN",xsrfToken).
-				contentType(ContentType.JSON).
-				post(API_PATH + "https://uat.sargent-disc.com/sdw/projectmember/create");
-				
-		//System.out.println(response.getBody().asString());
-		AssertJUnit.assertEquals(response.getStatusCode(), 200);
-		
 
-		
-	}
-	
+import static io.restassured.RestAssured.given;
+
+public class CreateProjectMember extends CommonLogin {
+    @Test
+    public void testCreatesProjectMembers() throws Exception {
+
+        String personId = (String) Repository.getValue("personId");
+        String departmentId = (String) Repository.getValue("departmentId");
+        String projectEmail = (String) Repository.getValue("personalEmail");
+        String versionId = (String) Repository.getValue("versionId");
+        String teleCode = (String) Repository.getValue("teleCode");
+        String countryABBRCode = (String) Repository.getValue("countryABBRCode");
+        String roleTypeId = (String) Repository.getValue("roleTypeId");
+
+
+        String jsessionId = response.cookie("JSESSIONID");
+        String xsrfToken = response.cookie("XSRF-TOKEN");
+
+        ProjectMember projectmember = new ProjectMember();
+        projectmember.setPersonId(personId);
+        projectmember.setDepartmentId(departmentId);
+        projectmember.setUseit(true);
+        projectmember.setVersionId(versionId);
+        projectmember.setTeleCode(teleCode);
+        projectmember.setCountryABBRCode(countryABBRCode);
+        projectmember.setAgencyId(null);
+        projectmember.setAgentPersonId(null);
+        projectmember.setRoleTypeId(roleTypeId);
+
+
+        Gson gson = new Gson();
+        String json = gson.toJson(projectmember);
+
+
+        response = given().
+                body(json).
+                when()
+                .cookie("JSESSIONID", jsessionId)
+                .cookie("XSRF-TOKEN", xsrfToken).
+                        contentType(ContentType.JSON).
+                        post(API_PATH + "projectmember/create")
+                .then()
+                .assertThat().statusCode(201).and().extract().response();
+
+        JsonParser parser = new JsonParser();
+        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+
+        projectEmail = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectmember").get("projectEmail").getAsString();
+        Repository.addData("projectEmail", projectEmail);
+
+
+    }
+
 }

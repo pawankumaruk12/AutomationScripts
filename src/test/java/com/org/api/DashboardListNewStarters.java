@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
 
-public class DashboardListNewStarters extends CommonLogin{
+public class DashboardListNewStarters extends CommonLogin {
 
     @Test
     public void testDashboardListNewStarters() throws Exception {
@@ -20,11 +20,10 @@ public class DashboardListNewStarters extends CommonLogin{
         response = given()
                 .body(Files.readAllBytes(Paths
                         .get("src/test/resources/DashboardByMonth.json")))
-        .when().cookie("JSESSIONID", jsessionId)
+                .when().cookie("JSESSIONID", jsessionId)
                 .cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
                 .post(API_PATH + "dashboard/type");
 
-        //System.out.println(response.getBody().asString());
         AssertJUnit.assertEquals(response.getStatusCode(), 200);
 
     }

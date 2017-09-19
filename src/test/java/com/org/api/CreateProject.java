@@ -1,30 +1,24 @@
 package com.org.api;
 
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Date;
-
-import static io.restassured.RestAssured.given;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.Project;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-
 import org.testng.AssertJUnit;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Date;
+
+import static io.restassured.RestAssured.given;
 
 
 public class CreateProject extends CommonLogin {
 
-    @BeforeClass
-    public void init() {
-        System.out.println("=====Starting CreateProject Test=====");
-    }
 
     @Test
     public void testProjectCreation() {
@@ -66,7 +60,6 @@ public class CreateProject extends CommonLogin {
         String versionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("versionId").getAsString();
         Repository.addData("versionId", versionId);
 
-
     }
 
 
@@ -84,11 +77,7 @@ public class CreateProject extends CommonLogin {
                         contentType(ContentType.JSON).
                         post(API_PATH + "project/create");
 
-        //System.out.println(response.getBody().asString());
         AssertJUnit.assertEquals(response.getStatusCode(), 201);
-
-
-        //}
 
 
     }

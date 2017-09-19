@@ -6,7 +6,7 @@ import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-//working on 1st Sep
+
 public class ListDepartment extends CommonLogin {
 
 	@Test
@@ -22,7 +22,6 @@ public class ListDepartment extends CommonLogin {
 				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
 				.post(API_PATH + "department/list");
 
-		//System.out.println(response.getBody().asString());
 		AssertJUnit.assertEquals(response.getStatusCode(), 200);
 
 

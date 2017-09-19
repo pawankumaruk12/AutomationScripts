@@ -7,7 +7,7 @@ import io.restassured.http.ContentType;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-//Tested and working on 14th March 2017, but change the agency name everytime
+
 @Ignore
 
 public class CreateAgency extends CommonLogin{
@@ -23,7 +23,7 @@ public class CreateAgency extends CommonLogin{
 				.cookie("XSRF-TOKEN",xsrfToken).
 				contentType(ContentType.JSON).
 				post(API_PATH + "agency/create");
-		//System.out.println(response.getBody().asString());
+
 		AssertJUnit.assertEquals(response.getStatusCode(), 201);
 
 	}

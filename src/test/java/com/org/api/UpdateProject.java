@@ -40,12 +40,12 @@ public class UpdateProject extends CommonLogin {
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID",jsessionId)
-                .cookie("XSRF-TOKEN",xsrfToken).
-                contentType(ContentType.JSON).
-                post(API_PATH + "project/update").
-                then().
-                assertThat().statusCode(200).and().extract().response();
+                .cookie("JSESSIONID", jsessionId)
+                .cookie("XSRF-TOKEN", xsrfToken).
+                        contentType(ContentType.JSON).
+                        post(API_PATH + "project/update").
+                        then().
+                        assertThat().statusCode(200).and().extract().response();
 
 
     }
