@@ -15,26 +15,27 @@
             <class name="com.org.api.DepartmentType"/>
             <class name="com.org.api.ListDepartment"/>
             <class name="com.org.api.DepartmentsByProjectWithRoleTypes"/>
+            <class name="com.org.api.ProjectMemberRoleTypes"/>
             <class name="com.org.api.DeleteDepartment"/>
         </classes>
 
     </test>
 
 
-    <test name="Invitation" group-by-instances="true" preserve-order="true">
-        <classes>
-            <class name="com.org.api.CreateAccount"/>
-            <class name="com.org.api.CreateCompany"/>
-            <class name="com.org.api.CreateProject"/>
-            <class name="com.org.api.CreateDepartment"/>
-            <class name="com.org.api.AccountById"/>
-            <class name="com.org.api.CreatePerson"/>
-            <class name="com.org.api.GetRoleTypeId"/>
-            <!--<class name="com.org.api.CreateProjectMember"/>-->
+    <!--<test name="Invitation" group-by-instances="true" preserve-order="true">-->
+        <!--<classes>-->
+            <!--<class name="com.org.api.CreateAccount"/>-->
+            <!--<class name="com.org.api.CreateCompany"/>-->
+            <!--<class name="com.org.api.CreateProject"/>-->
+            <!--<class name="com.org.api.CreateDepartment"/>-->
+            <!--<class name="com.org.api.AccountById"/>-->
+            <!--<class name="com.org.api.CreatePerson"/>-->
+            <!--<class name="com.org.api.GetRoleTypeId"/>-->
+            <!--&lt;!&ndash;<class name="com.org.api.CreateProjectMember"/>&ndash;&gt;-->
 
-            <class name="com.org.api.CreateInvitation"/>
-        </classes>
-    </test>
+            <!--<class name="com.org.api.CreateInvitation"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 </suite>
 
 

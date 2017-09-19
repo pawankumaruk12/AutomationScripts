@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class DepartmentsByProjectWithRoleTypes extends CommonLogin {
+public class ProjectMemberRoleTypes extends CommonLogin {
 
     @Test
-    public void DepartmentTypes() throws Exception {
+    public void testProjectMemberRoleType() throws Exception {
         String departmentId = (String) Repository.getValue("departmentId");
         String projectId = (String) Repository.getValue("projectId");
 
@@ -34,7 +34,7 @@ public class DepartmentsByProjectWithRoleTypes extends CommonLogin {
                 .cookie("JSESSIONID",jsessionId)
                 .cookie("XSRF-TOKEN", xsrfToken).
                         contentType(ContentType.JSON).
-                        post(API_PATH + "department/projectid/" + projectId);
+                        post(API_PATH + "projectmember/roletypes/" + departmentId);
 
         //System.out.println(response.getBody().asString());
         AssertJUnit.assertEquals(response.getStatusCode(), 200);

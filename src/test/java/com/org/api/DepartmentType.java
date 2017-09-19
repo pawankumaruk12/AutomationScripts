@@ -18,13 +18,14 @@ public class DepartmentType extends CommonLogin {
 	@Test
 	public void DepartmentTypes() throws Exception {
 		//String departmentId = (String) Repository.getValue("departmentId");
-		String projectId = (String) Repository.getValue("projectId");
+		String projectTypeId = (String) Repository.getValue("typeId");
+		//String projectId = (String) Repository.getValue("projectId");
 
 		String jsessionId= response.cookie("JSESSIONID");
 		String xsrfToken = response.cookie("XSRF-TOKEN");
 
 		Department department = new Department();
-		department.setProjectId(projectId);
+		//department.setProjectId(projectId);
 
 		Gson gson = new Gson();
 		String json = gson.toJson(department);
@@ -37,7 +38,7 @@ public class DepartmentType extends CommonLogin {
 				.cookie("JSESSIONID",jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).
 				contentType(ContentType.JSON).
-				post(API_PATH + "department/types/" + projectId);
+				post(API_PATH + "department/types/" + projectTypeId);
 		
 		//System.out.println(response.getBody().asString());
 		AssertJUnit.assertEquals(response.getStatusCode(), 200);
