@@ -1,6 +1,8 @@
 package com.org.api;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.org.api.model.*;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
@@ -76,7 +78,29 @@ public class CreateInvitation extends CommonLogin {
                         post(API_PATH + "invitation/create").then()
                 .assertThat().statusCode(201).and().extract().response();
 
+        JsonParser parser = new JsonParser();
+        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+
+
+        String invitationIdStr =fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() -1).getAsJsonObject().getAsJsonObject("invitation").get("id").getAsString();
+        Repository.addData("invitationIdStr", invitationIdStr);
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Test(enabled = false)
     public void testCreateInvitationWithoutPersonDetails() {
@@ -148,6 +172,11 @@ public class CreateInvitation extends CommonLogin {
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/create").then()
                 .assertThat().statusCode(201).and().extract().response();
+
+        JsonParser parser = new JsonParser();
+        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+
+
 
     }
 

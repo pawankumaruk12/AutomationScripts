@@ -6,9 +6,21 @@ public class Invitation {
     private String message;
     private String email;
     private String mobile;
+    private String invitationIdStr;
+    private String securityCode;
 
 
-//    private String id;
+    public String getSecurityCode() {
+        return securityCode;
+    }
+
+    public void setSecurityCode(String securityCode) {
+        this.securityCode = securityCode;
+    }
+
+
+
+    //    private String id;
 //    private String teleCode;
 //    private String accountPersonDBId;
 //    private String position;
@@ -51,4 +63,18 @@ public class Invitation {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
+    public String getInvitationIdStr() {
+        return invitationIdStr;
+    }
+
+    public void setInvitationIdStr(String invitationIdStr) {
+        this.invitationIdStr = invitationIdStr;
+    }
+
+
+
+
+
+
 }
