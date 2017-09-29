@@ -1,5 +1,4 @@
 package com.org.api;
-
 import static io.restassured.RestAssured.given;
 
 import com.google.gson.Gson;
@@ -21,7 +20,6 @@ public abstract class CommonLogin {
 	private static final String PATH_LOGIN_PM = "src/test/resources/login_hod.json";
 	private static final String PATH_LOGIN_TM = "src/test/resources/login_tm.json";
 	private static final String PATH_LOGIN_AGENT = "src/test/resources/login_hod.json";
-
 	protected Response response = null;
 
 	public static final String API_PATH = "http://192.168.56.139:8080/sdw/rest/";
@@ -29,19 +27,11 @@ public abstract class CommonLogin {
 	@BeforeClass
 	public void login() throws IOException{
 
-
 		response = given().
-
-
 				body(Files.readAllBytes(Paths.get(PATH))).
 				when().
 				contentType(ContentType.JSON).
-
 				post("http://192.168.56.139:8080/sdw/rest/authentication/login");
-
-//		System.out.println(response.asString());
-//		System.out.println(response.getStatusCode());
-
 	}
 
 	protected void loginAsHOD() throws Exception {
@@ -86,9 +76,7 @@ public abstract class CommonLogin {
 		String json = gson.toJson(newUser);
 
 		response = given().
-						//body(json).
 						when().
-
 				cookie("JSESSIONID",jsessionId)
 				.cookie("XSRF-TOKEN", xsrfToken).
 				contentType(ContentType.JSON).
@@ -100,7 +88,6 @@ public abstract class CommonLogin {
 				contentType(ContentType.JSON).
 				post("http://192.168.56.139:8080/sdw/rest/authentication/login");
 	}
-
 
 	protected void loginAsAgent() throws Exception {
 		response = given().

@@ -1,5 +1,4 @@
 package com.org.api;
-
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 

@@ -1,5 +1,4 @@
 package com.org.api;
-
 import com.google.gson.Gson;
 import com.org.api.model.Invitation;
 import com.org.api.model.Repository;
@@ -12,13 +11,11 @@ public class CheckSecurity extends CommonLogin {
 
     @Test
     public void testCheckSecurity() throws Exception {
-
         String securityCode = (String) Repository.getValue("securityCode");
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
+
         String jsessionId = response.cookie("JSESSIONID");
         String xsrfToken = response.cookie("XSRF-TOKEN");
-
-
 
         Invitation invitation = new Invitation();
         invitation.setInvitationIdStr(invitationIdStr);
@@ -35,6 +32,5 @@ public class CheckSecurity extends CommonLogin {
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/public/checksecurity").then()
                 .assertThat().statusCode(200).and().extract().response();
-
     }
 }
