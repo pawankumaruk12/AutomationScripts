@@ -1,6 +1,10 @@
 package com.org.api;
 
 import static io.restassured.RestAssured.given;
+
+import com.google.gson.Gson;
+import com.org.api.model.NewUser;
+import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -68,18 +72,35 @@ public abstract class CommonLogin {
 				post("http://192.168.56.139:8080/sdw/rest/authentication/login");
 	}
 	protected void loginAsTeamMember() throws Exception {
+		String username = (String) Repository.getValue("username");
+		String password = (String) Repository.getValue("password");
+
+		String jsessionId  = response.cookie("JSESSIONID");
+		String xsrfToken = response.cookie("XSRF-TOKEN");
+
+		NewUser newUser = new NewUser();
+		newUser.setUsername(username);
+		newUser.setPassword(password);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(newUser);
+
 		response = given().
-						body(Files.readAllBytes(Paths.get(PATH))).
+						//body(json).
 						when().
+
+				cookie("JSESSIONID",jsessionId)
+				.cookie("XSRF-TOKEN", xsrfToken).
 				contentType(ContentType.JSON).
 				post("http://192.168.56.139:8080/sdw/rest/authentication/logout");
 
 		response = given().
-				body(Files.readAllBytes(Paths.get(PATH_LOGIN_TM))).
+				body(json).
 				when().
 				contentType(ContentType.JSON).
 				post("http://192.168.56.139:8080/sdw/rest/authentication/login");
 	}
+
 
 	protected void loginAsAgent() throws Exception {
 		response = given().

@@ -10,6 +10,7 @@ import com.org.api.model.Repository;
 import com.sun.org.apache.regexp.internal.RE;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import java.util.Date;
@@ -24,9 +25,9 @@ public class ConfirmNewUser extends CommonLogin {
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
         String username = (String) Repository.getValue("username");
         String password = (String) Repository.getValue("password");
-       // Boolean contactByMail = (Boolean) Repository.getValue("contactByMail");
-       // Boolean contactByTelephone = (Boolean) Repository.getValue("contactByTelephone");
-       // Boolean contactByEmail = (Boolean) Repository.getValue("contactByEmail");
+        // Boolean contactByMail = (Boolean) Repository.getValue("contactByMail");
+        // Boolean contactByTelephone = (Boolean) Repository.getValue("contactByTelephone");
+        // Boolean contactByEmail = (Boolean) Repository.getValue("contactByEmail");
         String firstName = (String) Repository.getValue("firstName");
         String lastName = (String) Repository.getValue("lastName");
 
@@ -39,12 +40,15 @@ public class ConfirmNewUser extends CommonLogin {
         newUser.setContactByTelephone(true);
         newUser.setInvitationIdStr(invitationIdStr);
         newUser.setPassword("0nBoard!ng12");
-        newUser.setUsername(firstName + lastName + "20" + "@sd.com");
+        Long i = (Long) new Date().getTime();
+        newUser.setUsername(firstName + lastName + i + "@sd.com");
         newUser.setSecurityCode("1314");
 
 
         Gson gson = new Gson();
         String json = gson.toJson(newUser);
+        Repository.addData("username", username);
+        Repository.addData("password", password);
 
         Response createResponse = given().
                 body(json).
@@ -57,14 +61,22 @@ public class ConfirmNewUser extends CommonLogin {
 
 
         //JsonParser parser = new JsonParser();
-       // JsonObject fullBody = parser.parse(createResponse.getBody().asString()).getAsJsonObject();
+        // JsonObject fullBody = parser.parse(createResponse.getBody().asString()).getAsJsonObject();
 
-      //  String accountId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("id").getAsString();
-      //  Repository.addData("accountId", accountId);
-     //  String username = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("newUser").get("username").getAsString();
-      //  Repository.addData("username", username);
+        //  String accountId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("id").getAsString();
+        //  Repository.addData("accountId", accountId);
+        //  String username = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("newUser").get("username").getAsString();
+        //  Repository.addData("username", username);
 
-    //   String password = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("newUser").get("password").getAsString();
-       // Repository.addData("password",password);
+        //   String password = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("newUser").get("password").getAsString();
+        // Repository.addData("password",password);
+    }
+
+
+    @AfterTest
+   // @Test   testConfirmNewUser() dependsOnMethods
+    public void loginAsNewTeamMember() throws Exception {
+
+        loginAsTeamMember();
     }
 }
