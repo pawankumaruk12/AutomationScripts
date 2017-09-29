@@ -1,12 +1,8 @@
 package com.org.api;
+
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.org.api.model.Account;
-import com.org.api.model.Invitation;
 import com.org.api.model.NewUser;
 import com.org.api.model.Repository;
-import com.sun.org.apache.regexp.internal.RE;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.AfterTest;
@@ -38,7 +34,6 @@ public class ConfirmNewUser extends CommonLogin {
         Long i = (Long) new Date().getTime();
         newUser.setUsername(firstName + lastName + i + "@sd.com");
         newUser.setSecurityCode(SECURITY_CODE);
-
 
         Gson gson = new Gson();
         String json = gson.toJson(newUser);

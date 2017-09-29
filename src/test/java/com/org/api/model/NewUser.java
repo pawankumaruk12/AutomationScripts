@@ -66,7 +66,4 @@ public class NewUser {
         this.contactByEmail = contactByEmail;
     }
 
-
-
-
 }

@@ -1,8 +1,6 @@
 package com.org.api.model;
 
 public class Project {
-
-
     private String id;
     private String name;
     private String companyId;
@@ -11,7 +9,6 @@ public class Project {
     private String description;
     private String versionId;
 
-
     public String getVersionId() {
         return versionId;
     }
@@ -19,8 +16,6 @@ public class Project {
     public void setVersionId(String versionId) {
         this.versionId = versionId;
     }
-
-
 
     public String getId() {
         return id;
@@ -69,7 +64,5 @@ public class Project {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 
 }

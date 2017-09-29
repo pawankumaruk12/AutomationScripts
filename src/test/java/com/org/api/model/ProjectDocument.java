@@ -33,9 +33,6 @@ public class ProjectDocument {
         this.active = active;
     }
 
-
-
-
     public String getProjectId() {
         return projectId;
     }
@@ -59,7 +56,5 @@ public class ProjectDocument {
     public void setRequiredByPayroll(Boolean requiredByPayroll) {
         this.requiredByPayroll = requiredByPayroll;
     }
-
-
 
 }

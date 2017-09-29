@@ -1,4 +1,5 @@
 package com.org.api;
+
 import com.google.gson.Gson;
 import com.org.api.model.Invitation;
 import com.org.api.model.Repository;
@@ -8,7 +9,6 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
 public class CheckSecurity extends CommonLogin {
-
     @Test
     public void testCheckSecurity() throws Exception {
         String securityCode = (String) Repository.getValue("securityCode");

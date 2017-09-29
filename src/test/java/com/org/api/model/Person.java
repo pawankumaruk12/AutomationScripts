@@ -1,8 +1,6 @@
 package com.org.api.model;
 
 public class Person {
-
-
     private String id;
     private String personId;
     private String firstName;
@@ -28,8 +26,6 @@ public class Person {
         this.personId = personId;
     }
 
-
-
     public String getClientReference() {
         return clientReference;
     }
@@ -38,8 +34,6 @@ public class Person {
         this.clientReference = clientReference;
     }
 
-
-
     public String getId() {
         return id;
     }
@@ -47,8 +41,6 @@ public class Person {
     public void setId(String id) {
         this.id = id;
     }
-
-
 
     public String getTeleCode() {
         return teleCode;
@@ -74,8 +66,6 @@ public class Person {
         this.personTypeId = personTypeId;
     }
 
-
-
     public String getCountryABBRCode() {
         return countryABBRCode;
     }
@@ -83,9 +73,6 @@ public class Person {
     public void setCountryABBRCode(String countryABBRCode) {
         this.countryABBRCode = countryABBRCode;
     }
-
-
-
 
     public String getFirstName() {
         return firstName;

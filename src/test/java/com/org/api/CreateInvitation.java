@@ -1,10 +1,12 @@
 package com.org.api;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.*;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
+
 import static io.restassured.RestAssured.given;
 
 public class CreateInvitation extends CommonLogin {
@@ -51,7 +53,6 @@ public class CreateInvitation extends CommonLogin {
         Links links = new Links();
         links.setPerson(person);
         links.setProjectMember(projectMember);
-
         //  MAIN!!!
         InvitationWithLinks invitationWithLinks = new InvitationWithLinks();
         invitationWithLinks.setInvitation(invitation);
@@ -74,21 +75,9 @@ public class CreateInvitation extends CommonLogin {
 
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
-        String invitationIdStr =fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() -1).getAsJsonObject().getAsJsonObject("invitation").get("id").getAsString();
+        String invitationIdStr = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("invitation").get("id").getAsString();
         Repository.addData("invitationIdStr", invitationIdStr);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Test(enabled = false)
     public void testCreateInvitationWithoutPersonDetails() {
@@ -105,14 +94,11 @@ public class CreateInvitation extends CommonLogin {
         String departmentId = (String) Repository.getValue("departmentId");
         String roleTypeId = (String) Repository.getValue("roleTypeId");
         String id = (String) Repository.getValue("personId");
-
-
         //Invitation
         Invitation invitation = new Invitation();
         invitation.setEmail(email);
         invitation.setMobile(mobile);
         invitation.setMessage("MEssage");
-
         //Person
         Person person = new Person();
         person.setId(id);
@@ -125,22 +111,18 @@ public class CreateInvitation extends CommonLogin {
         person.setPersonalMobile(personalMobile);
         person.setTeleCode(telecode);
         person.setTitle(title);
-
         //ProjectMember
         ProjectMember projectMember = new ProjectMember();
         projectMember.setProjectEmail(email);
-
         projectMember.setPosition("Production Manager");
         projectMember.setDepartmentId(departmentId);
         projectMember.setDescription("Art Department Assistant");
         projectMember.setTeleCode(telecode);
         projectMember.setRoleTypeId(roleTypeId);
-
-
+        //Links
         Links links = new Links();
         links.setPerson(person);
         links.setProjectMember(projectMember);
-
         //  MAIN!!!
         InvitationWithLinks invitationWithLinks = new InvitationWithLinks();
         invitationWithLinks.setInvitation(invitation);
@@ -164,11 +146,7 @@ public class CreateInvitation extends CommonLogin {
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
-
-
     }
-
-
 }
 
 
