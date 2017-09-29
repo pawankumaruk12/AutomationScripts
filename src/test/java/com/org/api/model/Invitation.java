@@ -7,7 +7,6 @@ public class Invitation {
     private String invitationIdStr;
     private String securityCode;
 
-
     public String getSecurityCode() {
         return securityCode;
     }
@@ -38,6 +37,4 @@ public class Invitation {
     public void setInvitationIdStr(String invitationIdStr) {
         this.invitationIdStr = invitationIdStr;
     }
-
-
 }

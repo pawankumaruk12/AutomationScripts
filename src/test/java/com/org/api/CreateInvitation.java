@@ -145,9 +145,5 @@ public class CreateInvitation extends CommonLogin {
 
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
-
     }
 }
-
-
-
