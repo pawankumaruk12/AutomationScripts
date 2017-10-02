@@ -13,12 +13,13 @@ public class RequestCode extends CommonLogin {
     @Test
     public void testRequestCode() throws Exception {
 
+        final String securityCodeValue ="1314";
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
         Invitation invitation = new Invitation();
         invitation.setInvitationIdStr(invitationIdStr);
-        invitation.setSecurityCode("1314");
+        invitation.setSecurityCode(securityCodeValue);
 
         Gson gson = new Gson();
         String json = gson.toJson(invitation);

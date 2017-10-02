@@ -5,10 +5,12 @@ import java.util.List;
 
 
 public class StandardPagedRequest {
-    /**
-     * Start position of rows in the table
-     */
+
     private int startPosition;
+    private int noOfRows;
+    private String simpleSearch;
+    private List<PaginationFilter> filters = new ArrayList<PaginationFilter>();
+    private List<PaginationSorter> sorts = new ArrayList<PaginationSorter>();
 
     public int getStartPosition() {
         return startPosition;
@@ -50,14 +52,4 @@ public class StandardPagedRequest {
         this.sorts = sorts;
     }
 
-    /**
-     * Number of rows starting from startPosition
-     */
-    private int noOfRows;
-
-    private String simpleSearch;
-
-    private List<PaginationFilter> filters = new ArrayList<PaginationFilter>();
-
-    private List <PaginationSorter>  sorts  = new ArrayList<PaginationSorter>();
 }

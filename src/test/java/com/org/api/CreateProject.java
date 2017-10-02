@@ -7,7 +7,6 @@ import com.google.gson.JsonParser;
 import com.org.api.model.Project;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import java.nio.file.Files;
@@ -61,7 +60,7 @@ public class CreateProject extends CommonLogin {
 
 
     @Test(enabled = false)
-    public void CreateProjects() throws Exception {
+    public void testCreateProjectsNegativeCase() throws Exception {
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
         String CreateProjectJson = "src/test/resources/CreateProject.json";
@@ -72,9 +71,8 @@ public class CreateProject extends CommonLogin {
                 .cookie(JSESSIONID, jsessionId)
                 .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
-                        post(API_PATH + "project/create");
-
-        AssertJUnit.assertEquals(response.getStatusCode(), 201);
+                        post(API_PATH + "project/create").then()
+                .assertThat().statusCode(201).and().extract().response();
 
     }
 }
