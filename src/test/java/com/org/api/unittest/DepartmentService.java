@@ -1,16 +1,19 @@
 package com.org.api.unittest;
 
 
-import io.restassured.response.Response;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import static io.restassured.RestAssured.given;
-import io.restassured.http.ContentType;
-import org.testng.annotations.Test;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.CommonLogin;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.testng.annotations.Test;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static com.org.api.CommonLogin.JSESSIONID;
+import static com.org.api.CommonLogin.XSRF_TOKEN;
+import static io.restassured.RestAssured.given;
 
 	public class DepartmentService {
 		public static String DEPARTMENT_ID;
@@ -21,8 +24,8 @@ import com.org.api.CommonLogin;
 			Response  resp = given()
 					.when()
 					.body(Files.readAllBytes(Paths.get(departmentListPayloadFilePath)))
-					.cookie("JSESSIONID",jsessionId)
-					.cookie("XSRF-TOKEN",xsrfToken).
+					.cookie(JSESSIONID,jsessionId)
+					.cookie(XSRF_TOKEN,xsrfToken).
 					contentType(ContentType.JSON).
 					post(CommonLogin.API_PATH + "department/list");
 			

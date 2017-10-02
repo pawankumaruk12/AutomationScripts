@@ -12,11 +12,11 @@ public class AgencyById extends CommonLogin {
 
     @Test
     public void AgencyByIds() throws Exception {
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
         AGENCY_ID = AgencyService.getLastAgencyId(null, jsessionId, xsrfToken);
-        response = given().when().cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
+        response = given().when().cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).contentType(ContentType.JSON)
                 .post(API_PATH + "agency/" + AGENCY_ID);
 
     }

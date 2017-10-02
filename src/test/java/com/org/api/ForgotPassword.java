@@ -1,8 +1,6 @@
 package com.org.api;
-//Tested and working on 29th Aug 2017
 
 import io.restassured.http.ContentType;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import java.nio.file.Files;
@@ -18,10 +16,7 @@ public class ForgotPassword extends CommonLogin {
                         .get("src/test/resources/ForgotPassword.json"))).
                         when()
                 .contentType(ContentType.JSON)
-                .post(API_PATH + "authentication/forgotpassword");
-
-        AssertJUnit.assertEquals(response.getStatusCode(), 200);
-
+                .post(API_PATH + "authentication/forgotpassword").then().
+                        assertThat().statusCode(200).and().extract().response();
     }
-
 }

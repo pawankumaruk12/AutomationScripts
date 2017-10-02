@@ -12,21 +12,17 @@ import static io.restassured.RestAssured.given;
 public class CompanyTypes extends CommonLogin {
     @Test
     public void Company_Type() throws Exception {
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given().
                 body(Files.readAllBytes(Paths.get("src/test/resources/CompanyType.json"))).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "company/types");
 
         AssertJUnit.assertEquals(response.getStatusCode(), 200);
-
-
     }
-
-
 }

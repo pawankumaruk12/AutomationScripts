@@ -12,14 +12,14 @@ import static io.restassured.RestAssured.given;
 public class AssignAgentToProjectMember extends CommonLogin {
     @Test(enabled = false)
     public void AssignAgentToProjectMembers() throws Exception {
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given()
                 .body(Files.readAllBytes(Paths
                         .get("src/test/resources/AssignAgent.json"))).when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).contentType(ContentType.JSON)
                 .post(API_PATH + "projectmember/assignagent");
 
     }

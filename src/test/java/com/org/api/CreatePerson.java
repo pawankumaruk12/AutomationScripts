@@ -7,6 +7,7 @@ import com.org.api.model.Person;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
+
 import static io.restassured.RestAssured.given;
 
 public class CreatePerson extends CommonLogin {
@@ -15,8 +16,8 @@ public class CreatePerson extends CommonLogin {
     public void testPersonCreation() {
         String accountPersonDBId = (String) Repository.getValue("accountPersonDBId");
 
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
         Integer personCount = 0;
         Integer mobileCount = 0;
         Integer emailCount = 0;
@@ -39,8 +40,8 @@ public class CreatePerson extends CommonLogin {
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "person/create").then()
                 .assertThat().statusCode(201).and().extract().response();
@@ -72,8 +73,6 @@ public class CreatePerson extends CommonLogin {
         Repository.addData("countryABBRCode", countryABBRCode);
         String versionId = jsonPerson.get("versionId").getAsString();
         Repository.addData("versionId", versionId);
-
-
     }
 }
 

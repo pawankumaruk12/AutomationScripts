@@ -23,5 +23,4 @@ public class InvitationWithLinks {
     public void setLinks(Links links) {
         this.links = links;
     }
-
 }

@@ -18,7 +18,6 @@ public class ProjectMember {
     private String agencyId;
     private Boolean active;
 
-
     public String getId() {
         return id;
     }
@@ -138,6 +137,4 @@ public class ProjectMember {
     public void setActive(Boolean active) {
         this.active = active;
     }
-
-
 }

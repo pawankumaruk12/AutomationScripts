@@ -12,9 +12,15 @@
             <class name="com.org.api.DeleteAccount"/>
         </classes>
     </test>
+    <test name="DashBoardAPITest" group-by-instances="true" preserve-order="true">
+        <classes>
+            <class name="com.org.api.DashboardListEnvelopesByMonth"/>
+            <class name="com.org.api.DashboardListEnvelopesByType"/>
+            <class name="com.org.api.DashboardListNewStarters"/>
+        </classes>
+    </test>
     <test name="CompanyTest" group-by-instances="true" preserve-order="true">
         <classes>
-
             <class name="com.org.api.CreateAccount"/>
             <class name="com.org.api.CreateCompany"/>
             <class name="com.org.api.CompanyTypes"/>
@@ -77,6 +83,26 @@
             <class name="com.org.api.CreatePerson"/>
             <class name="com.org.api.GetRoleTypeId"/>
             <class name="com.org.api.CreateInvitation"/>
+            <class name="com.org.api.RequestCode"/>
+            <class name="com.org.api.CheckSecurity"/>
+            <class name="com.org.api.ConfirmNewUser"/>
+        </classes>
+    </test>
+    <test name="Document" group-by-instances="true" preserve-order="true">
+        <classes>
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.CreateCompany"/>
+            <class name="com.org.api.CreateProject"/>
+            <class name="com.org.api.CreateDepartment"/>
+            <class name="com.org.api.DocumentType"/>
+            <class name="com.org.api.CreateNewProjectDocument"/>
+            <class name="com.org.api.UpdatesProjectDocument"/>
+            <class name="com.org.api.ProjectDocumentById"/>
+            <class name="com.org.api.DeleteProjectDocument"/>
+            <class name="com.org.api.DeleteDepartment"/>
+            <class name="com.org.api.DeleteProject"/>
+            <class name="com.org.api.DeleteCompany"/>
+            <class name="com.org.api.DeleteAccount"/>
         </classes>
     </test>
 </suite>

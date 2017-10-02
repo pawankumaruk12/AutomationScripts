@@ -1,15 +1,17 @@
 package com.org.api.unittest;
 
-import io.restassured.response.Response;
-import static io.restassured.RestAssured.given;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.org.api.CommonLogin;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.org.api.CommonLogin;
+import static com.org.api.CommonLogin.JSESSIONID;
+import static com.org.api.CommonLogin.XSRF_TOKEN;
+import static io.restassured.RestAssured.given;
 
 public class GenericService {
 
@@ -31,8 +33,8 @@ public class GenericService {
 		// "src/test/resources/department_list_payload.json";
 		Response resp = given().when()
 				.body(Files.readAllBytes(Paths.get(filePath)))
-				.cookie("JSESSIONID", this, jsessionId)
-				.cookie("XSRF-TOKEN", this.xsrfToken)
+				.cookie(JSESSIONID, this, jsessionId)
+				.cookie(XSRF_TOKEN, this.xsrfToken)
 				.contentType(ContentType.JSON)
 				.post(CommonLogin.API_PATH + entity + LIST_PATH);
 
@@ -53,8 +55,8 @@ public class GenericService {
 
 		Response resp = given().when()
 				.body(Files.readAllBytes(Paths.get(filePath)))
-				.cookie("JSESSIONID", this, jsessionId)
-				.cookie("XSRF-TOKEN", this.xsrfToken)
+				.cookie(JSESSIONID, this, jsessionId)
+				.cookie(XSRF_TOKEN, this.xsrfToken)
 				.contentType(ContentType.JSON)
 				.post(CommonLogin.API_PATH + entity + LIST_PATH);
 

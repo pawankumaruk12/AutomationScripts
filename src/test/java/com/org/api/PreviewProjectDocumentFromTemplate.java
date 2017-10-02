@@ -1,6 +1,5 @@
 package com.org.api;
 
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -9,18 +8,18 @@ import static io.restassured.RestAssured.given;
 public class PreviewProjectDocumentFromTemplate extends CommonLogin {
     @Test//(enabled = false)
     public void PreviewProjectDocumentsfromTemplate() throws Exception {
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given()
                 .when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken)
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken)
                 .get(API_PATH
-                        + "projectdocument/template/9wkSlqHAU83iJnYFPj72xw/document/YnqeHtiAOucVRJpHukJYuw/page/1/width/1400/preview/png");
+                        + "projectdocument/template/9wkSlqHAU83iJnYFPj72xw/document/YnqeHtiAOucVRJpHukJYuw/page/1/width/1400/preview/png").then()
+                .assertThat().statusCode(200).and().extract().response();
 
 
-        AssertJUnit.assertEquals(response.getStatusCode(), 200);
 
     }
 }

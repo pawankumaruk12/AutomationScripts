@@ -14,12 +14,9 @@ public class GetRoleTypeId extends CommonLogin {
 
     @Test
     public void testRoleTypeId() {
-
         String departmentId = (String) Repository.getValue("departmentId");
-
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
-
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
         ProjectMember projectmember = new ProjectMember();
 
         Gson gson = new Gson();
@@ -28,8 +25,8 @@ public class GetRoleTypeId extends CommonLogin {
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "projectmember/roletypes/" + departmentId).then()
                 .assertThat().statusCode(200).and().extract().response();

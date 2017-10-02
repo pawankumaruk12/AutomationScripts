@@ -17,15 +17,12 @@ public class UpdateProject extends CommonLogin {
         String id = (String) Repository.getValue("projectId");
         String name = (String) Repository.getValue("name");
         String productionId = (String) Repository.getValue("productionId");
-        //String typeId = (String) Repository.getValue("typeId");
         String description = (String) Repository.getValue("description");
         String versionId = (String) Repository.getValue("versionId");
-
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         Project project = new Project();
-
         project.setId(id);
         project.setCompanyId(companyId);
         project.setDescription(description);
@@ -40,13 +37,12 @@ public class UpdateProject extends CommonLogin {
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "project/update").
                         then().
                         assertThat().statusCode(200).and().extract().response();
-
 
     }
 }

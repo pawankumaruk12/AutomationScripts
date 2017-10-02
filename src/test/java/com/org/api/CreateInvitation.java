@@ -1,13 +1,15 @@
 package com.org.api;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.org.api.model.*;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
+
 import static io.restassured.RestAssured.given;
 
 public class CreateInvitation extends CommonLogin {
-
     @Test
     public void testCreateInvitationWithPersonDetails() {
         String email = (String) Repository.getValue("personalEmail");
@@ -22,13 +24,11 @@ public class CreateInvitation extends CommonLogin {
         String departmentId = (String) Repository.getValue("departmentId");
         String roleTypeId = (String) Repository.getValue("roleTypeId");
         String id = (String) Repository.getValue("personId");
-
         //Invitation
         Invitation invitation = new Invitation();
         invitation.setEmail(email);
         invitation.setMobile(mobile);
-        invitation.setMessage("MEssage");
-
+        invitation.setMessage("Message");
         //Person
         Person person = new Person();
         person.setId(id);
@@ -41,7 +41,6 @@ public class CreateInvitation extends CommonLogin {
         person.setPersonalMobile(personalMobile);
         person.setTeleCode(telecode);
         person.setTitle(title);
-
         //ProjectMember
         ProjectMember projectMember = new ProjectMember();
         projectMember.setProjectEmail(email);
@@ -50,12 +49,10 @@ public class CreateInvitation extends CommonLogin {
         projectMember.setDescription("Art Department Assistant");
         projectMember.setTeleCode(telecode);
         projectMember.setRoleTypeId(roleTypeId);
-
-
+        //Links
         Links links = new Links();
         links.setPerson(person);
         links.setProjectMember(projectMember);
-
         //  MAIN!!!
         InvitationWithLinks invitationWithLinks = new InvitationWithLinks();
         invitationWithLinks.setInvitation(invitation);
@@ -64,18 +61,22 @@ public class CreateInvitation extends CommonLogin {
         Gson gson = new Gson();
         String json = gson.toJson(invitationWithLinks);
 
-        String jsessionid = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionid = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionid)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionid)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/create").then()
                 .assertThat().statusCode(201).and().extract().response();
 
+        JsonParser parser = new JsonParser();
+        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+        String invitationIdStr = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("invitation").get("id").getAsString();
+        Repository.addData("invitationIdStr", invitationIdStr);
     }
 
     @Test(enabled = false)
@@ -93,14 +94,11 @@ public class CreateInvitation extends CommonLogin {
         String departmentId = (String) Repository.getValue("departmentId");
         String roleTypeId = (String) Repository.getValue("roleTypeId");
         String id = (String) Repository.getValue("personId");
-
-
         //Invitation
         Invitation invitation = new Invitation();
         invitation.setEmail(email);
         invitation.setMobile(mobile);
-        invitation.setMessage("MEssage");
-
+        invitation.setMessage("Message");
         //Person
         Person person = new Person();
         person.setId(id);
@@ -113,22 +111,18 @@ public class CreateInvitation extends CommonLogin {
         person.setPersonalMobile(personalMobile);
         person.setTeleCode(telecode);
         person.setTitle(title);
-
         //ProjectMember
         ProjectMember projectMember = new ProjectMember();
         projectMember.setProjectEmail(email);
-
         projectMember.setPosition("Production Manager");
         projectMember.setDepartmentId(departmentId);
         projectMember.setDescription("Art Department Assistant");
         projectMember.setTeleCode(telecode);
         projectMember.setRoleTypeId(roleTypeId);
-
-
+        //Links
         Links links = new Links();
         links.setPerson(person);
         links.setProjectMember(projectMember);
-
         //  MAIN!!!
         InvitationWithLinks invitationWithLinks = new InvitationWithLinks();
         invitationWithLinks.setInvitation(invitation);
@@ -137,22 +131,19 @@ public class CreateInvitation extends CommonLogin {
         Gson gson = new Gson();
         String json = gson.toJson(invitationWithLinks);
 
-        String jsessionid = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionid = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionid)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionid)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/create").then()
                 .assertThat().statusCode(201).and().extract().response();
 
+        JsonParser parser = new JsonParser();
+        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
     }
-
-
 }
-
-
-

@@ -11,7 +11,6 @@ import static io.restassured.RestAssured.given;
 public class UpdateDepartment extends CommonLogin {
     @Test
     public void testUpdateDepartment() throws Exception {
-
         String id = (String) Repository.getValue("departmentId");
         String name = (String) Repository.getValue("name");
         String description = (String) Repository.getValue("description");
@@ -19,8 +18,8 @@ public class UpdateDepartment extends CommonLogin {
         String departmentTypeId = (String) Repository.getValue("departmentTypeId");
         String versionId = (String) Repository.getValue("versionId");
 
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         Department department = new Department();
         department.setProjectId(projectId);
@@ -33,18 +32,15 @@ public class UpdateDepartment extends CommonLogin {
         Gson gson = new Gson();
         String json = gson.toJson(department);
 
-
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "department/update" + "?id=" + id).
                         then().
                         assertThat().statusCode(200).and().extract().response();
 
-
     }
-
 }

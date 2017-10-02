@@ -1,15 +1,17 @@
 package com.org.api.unittest;
 
-import io.restassured.response.Response;
-import static io.restassured.RestAssured.given;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.org.api.CommonLogin;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.org.api.CommonLogin;
+import static com.org.api.CommonLogin.JSESSIONID;
+import static com.org.api.CommonLogin.XSRF_TOKEN;
+import static io.restassured.RestAssured.given;
 
 //Tested on 22nd March 2017 and working
 public class ProjectDocumentService {
@@ -20,8 +22,8 @@ public class ProjectDocumentService {
 		Response resp = given().
 
 		body(Files.readAllBytes(Paths.get(ListProjectDoc))).when()
-				.cookie("JSESSIONID", jsessionId)
-				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
+				.cookie(JSESSIONID, jsessionId)
+				.cookie(XSRF_TOKEN, xsrfToken).contentType(ContentType.JSON)
 				.post(CommonLogin.API_PATH + "projectdocument/list");
 
 		JsonParser parser = new JsonParser();
@@ -33,7 +35,6 @@ public class ProjectDocumentService {
 				.getAsJsonObject().getAsJsonObject("projectDocument").get("id")
 				.getAsString();
 
-		
 	}
 
 }

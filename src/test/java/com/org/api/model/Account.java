@@ -10,8 +10,6 @@ public class Account {
     private String accountPersonDBId;
     private Integer versionId;
 
-
-
     public String getId() {
         return id;
     }

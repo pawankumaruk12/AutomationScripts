@@ -7,7 +7,6 @@ import com.google.gson.JsonParser;
 import com.org.api.model.Project;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import java.nio.file.Files;
@@ -23,10 +22,8 @@ public class CreateProject extends CommonLogin {
     @Test
     public void testProjectCreation() {
         String companyId = (String) Repository.getValue("companyId");
-
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
-
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
         Project project = new Project();
         project.setName("AutoProject" + new Date());
         project.setDescription("Automation Project");
@@ -34,15 +31,14 @@ public class CreateProject extends CommonLogin {
         project.setTypeId(2);
         project.setCompanyId(companyId);
 
-
         Gson gson = new Gson();
         String json = gson.toJson(project);
 
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "project/create");
 
@@ -64,22 +60,19 @@ public class CreateProject extends CommonLogin {
 
 
     @Test(enabled = false)
-    public void CreateProjects() throws Exception {
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+    public void testCreateProjectsNegativeCase() throws Exception {
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
         String CreateProjectJson = "src/test/resources/CreateProject.json";
 
         response = given().
                 body(Files.readAllBytes(Paths.get(CreateProjectJson))).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
-                        post(API_PATH + "project/create");
-
-        AssertJUnit.assertEquals(response.getStatusCode(), 201);
-
+                        post(API_PATH + "project/create").then()
+                .assertThat().statusCode(201).and().extract().response();
 
     }
-
 }
