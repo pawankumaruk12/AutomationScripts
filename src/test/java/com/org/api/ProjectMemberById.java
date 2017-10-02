@@ -1,35 +1,31 @@
 package com.org.api;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import static io.restassured.RestAssured.given;
+import com.org.api.unittest.ProjectMemberService;
 import io.restassured.http.ContentType;
-
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
-import com.org.api.unittest.ProjectMemberService;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
-// Tested on 22nd March 2017 and working fine
+import static io.restassured.RestAssured.given;
+
+
 public class ProjectMemberById extends CommonLogin {
 
-	@Test
-	public void ListProjectMemberForCurrentUserByPaginations() throws Exception {
+    @Test
+    public void ListProjectMemberForCurrentUserByPaginations() throws Exception {
 
-		String jsessionId = response.cookie("JSESSIONID");
-		String xsrfToken = response.cookie("XSRF-TOKEN");
-		String ProjectMemberId = ProjectMemberService.getLastProjectMemberId(
-				null, jsessionId, xsrfToken);
-		response = given()
-				.body(Files.readAllBytes(Paths
-						.get("src/test/resources/ListbyProjectDoc.json")))
-				.when().cookie("JSESSIONID", jsessionId)
-				.cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
-				.post(API_PATH + "projectmember/" + ProjectMemberId);
-		AssertJUnit.assertEquals(response.statusCode(), 200);
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
+        String ProjectMemberId = ProjectMemberService.getLastProjectMemberId(
+                null, jsessionId, xsrfToken);
+        response = given()
+                .body(Files.readAllBytes(Paths
+                        .get("src/test/resources/ListbyProjectDoc.json")))
+                .when().cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).contentType(ContentType.JSON)
+                .post(API_PATH + "projectmember/" + ProjectMemberId).then().
+                        assertThat().statusCode(200).and().extract().response();
 
-
-
-	}
-
+    }
 }

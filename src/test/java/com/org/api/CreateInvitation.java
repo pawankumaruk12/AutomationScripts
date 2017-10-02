@@ -61,14 +61,14 @@ public class CreateInvitation extends CommonLogin {
         Gson gson = new Gson();
         String json = gson.toJson(invitationWithLinks);
 
-        String jsessionid = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionid = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionid)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionid)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/create").then()
                 .assertThat().statusCode(201).and().extract().response();
@@ -131,14 +131,14 @@ public class CreateInvitation extends CommonLogin {
         Gson gson = new Gson();
         String json = gson.toJson(invitationWithLinks);
 
-        String jsessionid = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionid = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionid)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionid)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/create").then()
                 .assertThat().statusCode(201).and().extract().response();

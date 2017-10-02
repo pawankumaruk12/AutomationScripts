@@ -13,13 +13,12 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
 public class AccountById extends CommonLogin {
-
     @Test
     public void TestAccountById() {
         String accountId = (String) Repository.getValue("accountId");
 
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         Account account = new Account();
 
@@ -29,19 +28,17 @@ public class AccountById extends CommonLogin {
         Response createResponse = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "account/" + accountId).then()
                 .assertThat().statusCode(200).and().extract().response();
-
 
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(createResponse.getBody().asString()).getAsJsonObject();
 
         String accountPersonDBId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("links").get("accountPersonDBId").getAsString();
         Repository.addData("accountPersonDBId", accountPersonDBId);
-
 
     }
 

@@ -13,7 +13,6 @@ public class UpdateCompany extends CommonLogin {
 
     @Test
     public void testUpdateCompany() throws Exception {
-
         String accountId = (String) Repository.getValue("accountId");
         String name = (String) Repository.getValue("name");
         String typeId = (String) Repository.getValue("stringTypeId");
@@ -24,9 +23,8 @@ public class UpdateCompany extends CommonLogin {
         String vatType = (String) Repository.getValue("vatType");
         String versionId = (String) Repository.getValue("versionId");
 
-
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         Company company = new Company();
         company.setId(companyId);
@@ -42,17 +40,15 @@ public class UpdateCompany extends CommonLogin {
         Gson gson = new Gson();
         String json = gson.toJson(company);
 
-
         Response updateResponse = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "company/update").
                         then().
                         assertThat().statusCode(200).and().extract().response();
-
 
     }
 

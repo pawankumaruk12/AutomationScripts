@@ -11,18 +11,15 @@ import static io.restassured.RestAssured.given;
 public class AccountsType extends CommonLogin {
     @Test
     public void Accounts_Types() throws Exception {
-
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsfrToken = response.cookie("XSRF-TOKEN");
-
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsfrToken = response.cookie(XSRF_TOKEN);
         response = given().
                 body(Files.readAllBytes(Paths.get("src/test/resources/AccountType.json"))).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsfrToken)
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsfrToken)
                 .contentType(ContentType.JSON).
                         post(API_PATH + "account/types");
-
     }
 
 }

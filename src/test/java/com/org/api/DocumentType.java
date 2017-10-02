@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import java.nio.file.Files;
@@ -16,15 +15,15 @@ public class DocumentType  extends CommonLogin {
 
     @Test
     public void testDocumentType() throws Exception {
-        String jsessionId =  response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId =  response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given()
                 .body(Files.readAllBytes(Paths
                         .get("src/test/resources/DocumentType.json")))
                 .when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken)
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken)
                 .contentType(ContentType.JSON)
                 .post(API_PATH + "projectdocument/types").then()
                 .assertThat().statusCode(200).and().extract().response();

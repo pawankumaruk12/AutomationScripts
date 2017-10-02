@@ -15,8 +15,8 @@ public class CheckSecurity extends CommonLogin {
         String securityCode = (String) Repository.getValue("securityCode");
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
 
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         Invitation invitation = new Invitation();
         invitation.setInvitationIdStr(invitationIdStr);
@@ -28,8 +28,8 @@ public class CheckSecurity extends CommonLogin {
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/public/checksecurity").then()
                 .assertThat().statusCode(200).and().extract().response();

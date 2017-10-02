@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.org.api.model.Person;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -13,7 +12,6 @@ import static io.restassured.RestAssured.given;
 public class UpdatePerson extends CommonLogin {
     @Test
     public void testUpdatePersons() throws Exception {
-
         String id = (String) Repository.getValue("personId");
         String accountPersonDBId = (String) Repository.getValue("accountPersonDBId");
         String title = (String) Repository.getValue("title");
@@ -28,12 +26,10 @@ public class UpdatePerson extends CommonLogin {
         String versionId = (String) Repository.getValue("versionId");
         String agencyId = (String) Repository.getValue("agencyId");
         String personTypeId = (String) Repository.getValue("personTypeId");
-
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         Person person = new Person();
-
         person.setId(id);
         person.setTitle(title);
         person.setFirstName(firstName);
@@ -50,8 +46,6 @@ public class UpdatePerson extends CommonLogin {
         person.setPersonTypeId(null);
         person.setAgencyId(null);
         person.setClientReference(null);
-        // person.getMiddleName(middleName);
-
 
         Gson gson = new Gson();
         String json = gson.toJson(person);
@@ -59,13 +53,11 @@ public class UpdatePerson extends CommonLogin {
         response = given()
                 .body(json).
                         when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON)
-                .post(API_PATH + "person/update");
-
-        Assert.assertEquals(response.getStatusCode(), 200);
-
+                .post(API_PATH + "person/update").then().
+                        assertThat().statusCode(200).and().extract().response();
     }
 
 }

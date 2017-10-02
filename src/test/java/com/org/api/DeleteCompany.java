@@ -11,23 +11,19 @@ public class DeleteCompany extends CommonLogin {
     @Test
     public void testDeleteCompanys() throws Exception {
         String companyId = (String) Repository.getValue("companyId");
-
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given().
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "company/delete/" + companyId).
                         then().
                         assertThat().statusCode(200).and().extract().response();
 
-
     }
-
-
 }
 
 

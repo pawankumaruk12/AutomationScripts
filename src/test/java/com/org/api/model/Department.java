@@ -6,6 +6,7 @@ public class Department {
     private String versionId;
     private String id;
     private String projectId;
+    private String description;
 
     public String getName() {
         return name;
@@ -31,8 +32,6 @@ public class Department {
         this.description = description;
     }
 
-
-
     public String getId() {
         return id;
     }
@@ -49,8 +48,6 @@ public class Department {
         this.projectId = projectId;
     }
 
-    private String description;
-
     public String getVersionId() {
         return versionId;
     }
@@ -58,7 +55,5 @@ public class Department {
     public void setVersionId(String versionId) {
         this.versionId = versionId;
     }
-
-
 
 }

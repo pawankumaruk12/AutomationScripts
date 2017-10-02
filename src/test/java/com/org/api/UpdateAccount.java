@@ -9,23 +9,16 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-//import java.nio.file.Files;
-//import java.nio.file.Paths;
 
 public class UpdateAccount extends CommonLogin {
-
-
     @Test
     public void testUpdateAccount() {
-
         String accountId = (String) Repository.getValue("accountId");
         String name = (String) Repository.getValue("name");
         String typeId = (String) Repository.getValue("stringTypeId");
         String description = (String) Repository.getValue("description");
-
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
-
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         Account account = new Account();
         account.setId(accountId);
@@ -35,15 +28,14 @@ public class UpdateAccount extends CommonLogin {
         account.setDescription(description);
         account.setVersionId(1);
 
-
         Gson gson = new Gson();
         String json = gson.toJson(account);
 
         Response updateResponse = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "account/update").
                         then().

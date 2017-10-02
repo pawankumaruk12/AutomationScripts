@@ -1,19 +1,15 @@
 package com.org.api.unittest;
 
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import static io.restassured.RestAssured.given;
+import com.org.api.CommonLogin;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-import org.testng.AssertJUnit;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.org.api.CommonLogin;
+import static io.restassured.RestAssured.given;
 
 public class AccountsService extends CommonLogin{
 	public static String ACCOUNT_ID;
@@ -26,8 +22,8 @@ public class AccountsService extends CommonLogin{
 
 				body(Files.readAllBytes(Paths.get(AccountList)))
 				.when()
-				.cookie("JSESSIONID",jsessionId)
-				.cookie("XSRF-TOKEN",xsrfToken).
+				.cookie(JSESSIONID,jsessionId)
+				.cookie(XSRF_TOKEN,xsrfToken).
 						contentType(ContentType.JSON).
 				//post(CommonLogin.API_PATH + "account/list");
 						post("http://192.168.56.139:8080/sdw/rest/account/list").

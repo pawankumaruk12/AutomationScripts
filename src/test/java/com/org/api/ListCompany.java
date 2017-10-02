@@ -1,7 +1,6 @@
 package com.org.api;
 
 import io.restassured.http.ContentType;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import java.nio.file.Files;
@@ -15,18 +14,15 @@ public class ListCompany extends CommonLogin {
     @Test
     public void ListCompanys() throws Exception {
 
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
         response = given()
                 .body(Files.readAllBytes(Paths
                         .get("src/test/resources/ListbyCompany.json"))).when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
-                .post(API_PATH + "company/list");
-
-
-        AssertJUnit.assertEquals(response.getStatusCode(), 200);
-
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).contentType(ContentType.JSON)
+                .post(API_PATH + "company/list").then().
+                        assertThat().statusCode(200).and().extract().response();
     }
 
 }

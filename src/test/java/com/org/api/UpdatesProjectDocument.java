@@ -6,16 +6,9 @@ import com.org.api.model.DocumentWithProjectDocument;
 import com.org.api.model.ProjectDocument;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import static io.restassured.RestAssured.given;
-
-// This tested and working on 17th March 2017 , failing on 1st sep
 
 public class UpdatesProjectDocument extends CommonLogin {
     @Test
@@ -40,7 +33,6 @@ public class UpdatesProjectDocument extends CommonLogin {
         String pageNumber = (String) Repository.getValue("pageNumber");
 
         //setting values in projectDocument
-
         ProjectDocument projectDocument = new ProjectDocument();
         projectDocument.setId(projectDocumentId);
         projectDocument.setVersionId(projectDocumentVersionId);
@@ -50,7 +42,6 @@ public class UpdatesProjectDocument extends CommonLogin {
         projectDocument.setRequiredByPayroll(requiredByPayroll);
 
         //setting values in document
-
         Document document = new Document();
         document.setId(documentId);
         document.setName(documentName + "1");
@@ -62,25 +53,20 @@ public class UpdatesProjectDocument extends CommonLogin {
         document.setPageNumber(null);
 
         //Main
-
         DocumentWithProjectDocument documentWithProjectDocument = new DocumentWithProjectDocument();
         documentWithProjectDocument.setProjectDocument(projectDocument);
         documentWithProjectDocument.setDocument(document);
-
         Gson gson = new Gson();
         String json = gson.toJson(documentWithProjectDocument);
 
-
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given()
                 .body(json)
-                .when().cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).contentType(ContentType.JSON)
+                .when().cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).contentType(ContentType.JSON)
                 .post(API_PATH + "projectdocument/update").then()
                 .assertThat().statusCode(200).and().extract().response();
-
     }
-
 }

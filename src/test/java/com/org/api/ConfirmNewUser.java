@@ -22,8 +22,8 @@ public class ConfirmNewUser extends CommonLogin {
         String firstName = (String) Repository.getValue("firstName");
         String lastName = (String) Repository.getValue("lastName");
 
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         NewUser newUser = new NewUser();
         newUser.setContactByEmail(true);
@@ -43,8 +43,8 @@ public class ConfirmNewUser extends CommonLogin {
         Response createResponse = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/public/confirm/new").then()
                 .assertThat().statusCode(200).and().extract().response();

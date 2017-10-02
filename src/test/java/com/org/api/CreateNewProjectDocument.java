@@ -53,14 +53,14 @@ public class CreateNewProjectDocument extends CommonLogin {
         Gson gson = new Gson();
         String json = gson.toJson(documentWithProjectDocument);
 
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "projectdocument/create").then()
                 .assertThat().statusCode(201).and().extract().response();

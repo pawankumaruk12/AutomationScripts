@@ -10,15 +10,12 @@ import static io.restassured.RestAssured.given;
 
 public class DeleteProjectDocument extends CommonLogin {
 
-
     @Test
     public void testDeleteProjectDocuments() throws Exception {
 
         String projectDocumentId = (String) Repository.getValue("projectDocumentId");
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
-
-
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
         ProjectDocument projectDocument = new ProjectDocument();
         projectDocument.setId(projectDocumentId);
 

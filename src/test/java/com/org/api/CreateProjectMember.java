@@ -21,10 +21,8 @@ public class CreateProjectMember extends CommonLogin {
         String teleCode = (String) Repository.getValue("teleCode");
         String countryABBRCode = (String) Repository.getValue("countryABBRCode");
         String roleTypeId = (String) Repository.getValue("roleTypeId");
-
-
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         ProjectMember projectmember = new ProjectMember();
         projectmember.setPersonId(personId);
@@ -37,28 +35,22 @@ public class CreateProjectMember extends CommonLogin {
         projectmember.setAgentPersonId(null);
         projectmember.setRoleTypeId(roleTypeId);
 
-
         Gson gson = new Gson();
         String json = gson.toJson(projectmember);
-
-
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "projectmember/create")
                 .then()
                 .assertThat().statusCode(201).and().extract().response();
-
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
         projectEmail = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectmember").get("projectEmail").getAsString();
         Repository.addData("projectEmail", projectEmail);
 
-
     }
-
 }
