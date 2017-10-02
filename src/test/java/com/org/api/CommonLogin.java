@@ -21,6 +21,8 @@ public abstract class CommonLogin {
     private static final String PATH_LOGIN_PM = "src/test/resources/login_hod.json";
     private static final String PATH_LOGIN_TM = "src/test/resources/login_tm.json";
     private static final String PATH_LOGIN_AGENT = "src/test/resources/login_hod.json";
+    public static final String JSESSIONID = "JSESSIONID";
+    public static final String XSRF_TOKEN = "XSRF-TOKEN";
     protected Response response = null;
 
     @BeforeClass
@@ -30,40 +32,40 @@ public abstract class CommonLogin {
                 body(Files.readAllBytes(Paths.get(PATH))).
                 when().
                 contentType(ContentType.JSON).
-                post("http://192.168.56.139:8080/sdw/rest/authentication/login");
+                post(API_PATH + "authentication/login");
     }
 
     protected void loginAsHOD() throws Exception {
         response = given().
                 when().
                 contentType(ContentType.JSON).
-                post("http://192.168.56.139:8080/sdw/rest/authentication/logout");
+                post(API_PATH  + "authentication/logout");
 
         response = given().
                 body(Files.readAllBytes(Paths.get(PATH_LOGIN_HOD))).
                 when().
                 contentType(ContentType.JSON).
-                post("http://192.168.56.139:8080/sdw/rest/authentication/login");
+                post(API_PATH  + "authentication/login");
     }
 
     protected void loginAsProjectManager() throws Exception {
         response = given().
                 when().
                 contentType(ContentType.JSON).
-                post("http://192.168.56.139:8080/sdw/rest/authentication/logout");
+                post(API_PATH  + "authentication/logout");
 
         response = given().
                 body(Files.readAllBytes(Paths.get(PATH_LOGIN_PM))).
                 when().
                 contentType(ContentType.JSON).
-                post("http://192.168.56.139:8080/sdw/rest/authentication/login");
+                post(API_PATH  +"authentication/login");
     }
 
     protected void loginAsTeamMember() throws Exception {
         String username = (String) Repository.getValue("username");
         String password = (String) Repository.getValue("password");
-        String jsessionId = response.cookie("JSESSIONID");
-        String xsrfToken = response.cookie("XSRF-TOKEN");
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
 
         NewUser newUser = new NewUser();
         newUser.setUsername(username);
@@ -74,28 +76,28 @@ public abstract class CommonLogin {
 
         response = given().
                 when().
-                cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
-                        post("http://192.168.56.139:8080/sdw/rest/authentication/logout");
+                        post(API_PATH  + "authentication/logout");
 
         response = given().
                 body(json).
                 when().
                 contentType(ContentType.JSON).
-                post("http://192.168.56.139:8080/sdw/rest/authentication/login");
+                post(API_PATH  + "authentication/login");
     }
 
     protected void loginAsAgent() throws Exception {
         response = given().
                 when().
                 contentType(ContentType.JSON).
-                post("http://192.168.56.139:8080/sdw/rest/authentication/logout");
+                post(API_PATH  + "authentication/logout");
 
         response = given().
                 body(Files.readAllBytes(Paths.get(PATH_LOGIN_AGENT))).
                 when().
                 contentType(ContentType.JSON).
-                post("http://192.168.56.139:8080/sdw/rest/authentication/login");
+                post(API_PATH  + "authentication/login");
     }
 }

@@ -11,6 +11,7 @@ import static io.restassured.RestAssured.given;
 public class CheckSecurity extends CommonLogin {
     @Test
     public void testCheckSecurity() throws Exception {
+        final String securityCodeValue ="1314";
         String securityCode = (String) Repository.getValue("securityCode");
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
 
@@ -19,7 +20,7 @@ public class CheckSecurity extends CommonLogin {
 
         Invitation invitation = new Invitation();
         invitation.setInvitationIdStr(invitationIdStr);
-        invitation.setSecurityCode("1314");
+        invitation.setSecurityCode(securityCodeValue);
 
         Gson gson = new Gson();
         String json = gson.toJson(invitation);

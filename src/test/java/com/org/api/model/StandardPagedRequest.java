@@ -2,8 +2,6 @@ package com.org.api.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.org.api.model.PaginationFilter;
-import com.org.api.model.PaginationSorter;
 
 
 public class StandardPagedRequest {
@@ -11,6 +9,46 @@ public class StandardPagedRequest {
      * Start position of rows in the table
      */
     private int startPosition;
+
+    public int getStartPosition() {
+        return startPosition;
+    }
+
+    public void setStartPosition(int startPosition) {
+        this.startPosition = startPosition;
+    }
+
+    public int getNoOfRows() {
+        return noOfRows;
+    }
+
+    public void setNoOfRows(int noOfRows) {
+        this.noOfRows = noOfRows;
+    }
+
+    public String getSimpleSearch() {
+        return simpleSearch;
+    }
+
+    public void setSimpleSearch(String simpleSearch) {
+        this.simpleSearch = simpleSearch;
+    }
+
+    public List<PaginationFilter> getFilters() {
+        return filters;
+    }
+
+    public void setFilters(List<PaginationFilter> filters) {
+        this.filters = filters;
+    }
+
+    public List<PaginationSorter> getSorts() {
+        return sorts;
+    }
+
+    public void setSorts(List<PaginationSorter> sorts) {
+        this.sorts = sorts;
+    }
 
     /**
      * Number of rows starting from startPosition

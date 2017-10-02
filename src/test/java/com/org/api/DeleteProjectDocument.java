@@ -3,9 +3,7 @@ package com.org.api;
 import com.google.gson.Gson;
 import com.org.api.model.ProjectDocument;
 import com.org.api.model.Repository;
-import com.org.api.unittest.ProjectDocumentService;
 import io.restassured.http.ContentType;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -30,8 +28,8 @@ public class DeleteProjectDocument extends CommonLogin {
         response = given().
                 body(json).
                 when()
-                .cookie("JSESSIONID", jsessionId)
-                .cookie("XSRF-TOKEN", xsrfToken).
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "projectdocument/delete/" + projectDocumentId).then()
                 .assertThat().statusCode(200).and().extract().response();

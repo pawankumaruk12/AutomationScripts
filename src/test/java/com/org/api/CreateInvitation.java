@@ -28,7 +28,7 @@ public class CreateInvitation extends CommonLogin {
         Invitation invitation = new Invitation();
         invitation.setEmail(email);
         invitation.setMobile(mobile);
-        invitation.setMessage("MEssage");
+        invitation.setMessage("Message");
         //Person
         Person person = new Person();
         person.setId(id);
@@ -98,7 +98,7 @@ public class CreateInvitation extends CommonLogin {
         Invitation invitation = new Invitation();
         invitation.setEmail(email);
         invitation.setMobile(mobile);
-        invitation.setMessage("MEssage");
+        invitation.setMessage("Message");
         //Person
         Person person = new Person();
         person.setId(id);
