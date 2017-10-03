@@ -86,6 +86,11 @@
             <class name="com.org.api.RequestCode"/>
             <class name="com.org.api.CheckSecurity"/>
             <class name="com.org.api.ConfirmNewUser"/>
+            <class name="com.org.api.DocumentType"/>
+            <class name="com.org.api.CreateNewProjectDocument"/>
+            <class name="com.org.api.ProjectDocumentById"/>
+            <class name="com.org.api.GetJsonForDirectHireStartForm"/>
+            <class name="com.org.api.CreateProjectEnvelopeTemplate"/>
         </classes>
     </test>
     <test name="Document" group-by-instances="true" preserve-order="true">

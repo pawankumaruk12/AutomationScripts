@@ -1,6 +1,8 @@
 package com.org.api;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.org.api.model.Document;
 import com.org.api.model.DocumentWithProjectDocument;
 import com.org.api.model.ProjectDocument;
@@ -68,5 +70,32 @@ public class UpdatesProjectDocument extends CommonLogin {
                 .cookie(XSRF_TOKEN, xsrfToken).contentType(ContentType.JSON)
                 .post(API_PATH + "projectdocument/update").then()
                 .assertThat().statusCode(200).and().extract().response();
+
+        JsonParser parser = new JsonParser();
+        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+        //projectDocument
+         projectDocumentId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("id").getAsString();
+        Repository.addData("projectDocumentId", projectDocumentId);
+        projectDocumentVersionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("versionId").getAsString();
+        Repository.addData("projectDocumentVersionId", projectDocumentVersionId);
+        active = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("active").getAsBoolean();
+        Repository.addData("active", active);
+        requiredByPayroll = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("requiredByPayroll").getAsBoolean();
+        Repository.addData("requiredByPayroll", requiredByPayroll);
+        projectId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("projectId").getAsString();
+        Repository.addData("projectId", projectId);
+        //document
+        documentId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("id").getAsString();
+        Repository.addData("documentId", documentId);
+        documentName = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("name").getAsString();
+        Repository.addData("documentName", documentName);
+        fileName = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileName").getAsString();
+        Repository.addData("fileName", fileName);
+        fileType = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileType").getAsString();
+        Repository.addData("fileType", fileType);
+        fileLength = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileLength").getAsInt();
+        Repository.addData("fileLength", fileLength);
+        documentVersionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("versionId").getAsString();
+        Repository.addData("documentVersionId", documentVersionId);
     }
 }

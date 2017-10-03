@@ -18,7 +18,7 @@ import static io.restassured.RestAssured.given;
 public class CreateNewProjectDocument extends CommonLogin {
 
     @Test
-    public void CreatesNewProjectDocuments() throws Exception {
+    public void testCreatesNewProjectDocuments() throws Exception {
 
         String projectId = (String) Repository.getValue("projectId");
         String documentTypeId = (String) Repository.getValue("documentTypeId");
