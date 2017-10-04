@@ -9,11 +9,9 @@ import io.restassured.response.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static com.org.api.CommonLogin.JSESSIONID;
-import static com.org.api.CommonLogin.XSRF_TOKEN;
 import static io.restassured.RestAssured.given;
 
-public class ProjectService {
+public class ProjectService extends CommonLogin{
 
 	public static String getLastProjectId(String accountId, String jsessionId, String xsrfToken) throws Exception {
 		String projectListPayloadFilePath = "src/test/resources/project_list_payload.json";
@@ -27,7 +25,7 @@ public class ProjectService {
 	
 		JsonParser parser = new JsonParser();
 		JsonObject fullBody = parser.parse(resp.getBody().asString()).getAsJsonObject();
-		return fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("id").getAsString();
+		return fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("id").getAsString();
 	}
 	
 }

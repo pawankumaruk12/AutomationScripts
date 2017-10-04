@@ -6,33 +6,26 @@ import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import static io.restassured.RestAssured.given;
 
-public class DocumentType  extends CommonLogin {
-
+public class GetJsonForDirectHireStartForm extends CommonLogin{
+    private static final String GET_API_PATH = "http://192.168.56.139:8080/sdw/modular-forms/";
     @Test
-    public void testDocumentType() throws Exception {
-        String jsessionId =  response.cookie(JSESSIONID);
+    public void testProjectById() throws Exception {
+        String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
-
-        response = given()
-                .body(Files.readAllBytes(Paths
-                        .get("src/test/resources/DocumentType.json")))
-                .when()
+        response = given().
+                when()
                 .cookie(JSESSIONID, jsessionId)
                 .cookie(XSRF_TOKEN, xsrfToken)
                 .contentType(ContentType.JSON)
-                .post(API_PATH + "projectdocument/types").then()
+                .get(GET_API_PATH + "SD_Crew_Direct_Hire_Start_Form.json").then()
                 .assertThat().statusCode(200).and().extract().response();
 
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
-        String documentTypeId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() -1).getAsJsonObject().get("id").getAsString();
-        Repository.addData("documentTypeId",documentTypeId);
-
+       String directHireJson = fullBody.toString();
+       Repository.addData("json",directHireJson);
     }
 }

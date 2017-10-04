@@ -46,17 +46,17 @@ public class CreateCompany extends CommonLogin {
 		JsonParser parser = new JsonParser();
 		JsonObject fullBody = parser.parse(createdResponse.getBody().asString()).getAsJsonObject();
 
-		String companyId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("id").getAsString();
+		String companyId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("id").getAsString();
 		Repository.addData("companyId", companyId);
-		String name = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("name").getAsString();
+		String name = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("name").getAsString();
 		Repository.addData("name", name);
-		String registeredNumber = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("registeredNumber").getAsString();
+		String registeredNumber = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("registeredNumber").getAsString();
 		Repository.addData("registeredNumber", registeredNumber);
-		String vatNumber = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("vatNumber").getAsString();
+		String vatNumber = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("vatNumber").getAsString();
 		Repository.addData("vatNumber", vatNumber);
-		String vatType = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("vatType").getAsString();
+		String vatType = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("vatType").getAsString();
 		Repository.addData("vatType", vatType);
-		String sdCompanyId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("sdCompanyId").getAsString();
+		String sdCompanyId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("company").get("sdCompanyId").getAsString();
 		Repository.addData("sdCompanyId", sdCompanyId);
 	}
 }

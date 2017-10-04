@@ -49,7 +49,7 @@ public class CreateProjectMember extends CommonLogin {
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
-        projectEmail = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectmember").get("projectEmail").getAsString();
+        projectEmail = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectmember").get("projectEmail").getAsString();
         Repository.addData("projectEmail", projectEmail);
 
     }

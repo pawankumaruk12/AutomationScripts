@@ -23,6 +23,7 @@ public abstract class CommonLogin {
     private static final String PATH_LOGIN_AGENT = "src/test/resources/login_hod.json";
     public static final String JSESSIONID = "JSESSIONID";
     public static final String XSRF_TOKEN = "XSRF-TOKEN";
+    public static final String RESULTS = "results";
     protected Response response = null;
     @BeforeClass
     public void login() throws IOException {

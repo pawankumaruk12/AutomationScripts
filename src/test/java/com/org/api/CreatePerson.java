@@ -49,8 +49,8 @@ public class CreatePerson extends CommonLogin {
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
-        Person createdPerson = gson.fromJson(fullBody.get("results").getAsJsonArray().get(0).getAsJsonObject().getAsJsonObject("person").toString(), Person.class);
-        JsonObject jsonPerson = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("person");
+        Person createdPerson = gson.fromJson(fullBody.get(RESULTS).getAsJsonArray().get(0).getAsJsonObject().getAsJsonObject("person").toString(), Person.class);
+        JsonObject jsonPerson = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("person");
 
         Repository.addData("NEW_PERSON", createdPerson);
         String personId = jsonPerson.get("id").getAsString();
