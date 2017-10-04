@@ -9,10 +9,8 @@ import io.restassured.response.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static com.org.api.CommonLogin.JSESSIONID;
-import static com.org.api.CommonLogin.XSRF_TOKEN;
 import static io.restassured.RestAssured.given;
-public class ProjectMemberService {
+public class ProjectMemberService extends CommonLogin{
 	//@Test
 	public static String getLastProjectMemberId(String accountId, String jsessionId, String xsrfToken) throws Exception {
 	   String ProjectMemberList = "src/test/resources/ProjectMemberList.json";
@@ -29,7 +27,7 @@ public class ProjectMemberService {
 		JsonParser parser = new JsonParser();
 		JsonObject fullBody = parser.parse(resp.getBody().asString()).getAsJsonObject();
 	
-		return fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectMember").get("id").getAsString();
+		return fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectMember").get("id").getAsString();
 		
 	}
 	

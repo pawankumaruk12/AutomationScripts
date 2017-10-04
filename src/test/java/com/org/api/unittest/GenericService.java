@@ -9,11 +9,9 @@ import io.restassured.response.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static com.org.api.CommonLogin.JSESSIONID;
-import static com.org.api.CommonLogin.XSRF_TOKEN;
 import static io.restassured.RestAssured.given;
 
-public class GenericService {
+public class GenericService extends CommonLogin{
 
 	private String jsessionId;
 	private String xsrfToken;
@@ -42,8 +40,8 @@ public class GenericService {
 		JsonObject fullBody = parser.parse(resp.getBody().asString())
 				.getAsJsonObject();
 
-		return fullBody.get("results").getAsJsonArray()
-				.get(fullBody.get("results").getAsJsonArray().size() - 1)
+		return fullBody.get(RESULTS).getAsJsonArray()
+				.get(fullBody.get(RESULTS).getAsJsonArray().size() - 1)
 				.getAsJsonObject().getAsJsonObject(entity).get("id")
 				.getAsString();
 	}
@@ -64,8 +62,8 @@ public class GenericService {
 		JsonObject fullBody = parser.parse(resp.getBody().asString())
 				.getAsJsonObject();
 
-		String name = fullBody.get("results").getAsJsonArray()
-				.get(fullBody.get("results").getAsJsonArray().size() - 1)
+		String name = fullBody.get(RESULTS).getAsJsonArray()
+				.get(fullBody.get(RESULTS).getAsJsonArray().size() - 1)
 				.getAsJsonObject().getAsJsonObject(entity).get(entity + "Name")
 				.getAsString();
 		return getNextIdFromName(entity, name);

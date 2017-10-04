@@ -11,13 +11,11 @@ import org.testng.annotations.Test;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static com.org.api.CommonLogin.JSESSIONID;
-import static com.org.api.CommonLogin.XSRF_TOKEN;
 import static io.restassured.RestAssured.given;
 
-	public class DepartmentService {
+	public class DepartmentService extends CommonLogin {
 		public static String DEPARTMENT_ID;
-       @Test
+       @Test(enabled = false)
 		public static String getLastDepartmentId(String projectId, String jsessionId, String xsrfToken) throws Exception {
 			String departmentListPayloadFilePath = "src/test/resources/departmentlistpayload.json";
 			
@@ -33,7 +31,7 @@ import static io.restassured.RestAssured.given;
 			JsonParser parser = new JsonParser();
 			JsonObject fullBody = parser.parse(resp.getBody().asString()).getAsJsonObject();
 		
-			return fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("department").get("id").getAsString();
+			return fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("department").get("id").getAsString();
 		}
 		
 	}

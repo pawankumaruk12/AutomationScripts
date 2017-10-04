@@ -68,28 +68,28 @@ public class CreateNewProjectDocument extends CommonLogin {
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
         //projectDocument
-        String projectDocumentId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("id").getAsString();
+        String projectDocumentId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("id").getAsString();
         Repository.addData("projectDocumentId", projectDocumentId);
-        String projectDocumentVersionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("versionId").getAsString();
+        String projectDocumentVersionId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("versionId").getAsString();
         Repository.addData("projectDocumentVersionId", projectDocumentVersionId);
-        Boolean active = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("active").getAsBoolean();
+        Boolean active = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("active").getAsBoolean();
         Repository.addData("active", active);
-        Boolean requiredByPayroll = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("requiredByPayroll").getAsBoolean();
+        Boolean requiredByPayroll = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("requiredByPayroll").getAsBoolean();
         Repository.addData("requiredByPayroll", requiredByPayroll);
-        projectId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("projectId").getAsString();
+        projectId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("projectId").getAsString();
         Repository.addData("projectId", projectId);
         //document
-        String documentId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("id").getAsString();
+        String documentId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("id").getAsString();
         Repository.addData("documentId", documentId);
-        String documentName = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("name").getAsString();
+        String documentName = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("name").getAsString();
         Repository.addData("documentName", documentName);
-        String fileName = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileName").getAsString();
+        String fileName = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileName").getAsString();
         Repository.addData("fileName", fileName);
-        String fileType = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileType").getAsString();
+        String fileType = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileType").getAsString();
         Repository.addData("fileType", fileType);
-        Integer fileLength = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileLength").getAsInt();
+        Integer fileLength = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileLength").getAsInt();
         Repository.addData("fileLength", fileLength);
-        String documentVersionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("versionId").getAsString();
+        String documentVersionId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("versionId").getAsString();
         Repository.addData("documentVersionId", documentVersionId);
 
     }

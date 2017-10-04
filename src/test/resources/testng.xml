@@ -101,7 +101,7 @@
             <class name="com.org.api.CreateDepartment"/>
             <class name="com.org.api.DocumentType"/>
             <class name="com.org.api.CreateNewProjectDocument"/>
-            <class name="com.org.api.UpdatesProjectDocument"/>
+            <class name="com.org.api.UpdateProjectDocument"/>
             <class name="com.org.api.ProjectDocumentById"/>
             <class name="com.org.api.DeleteProjectDocument"/>
             <class name="com.org.api.DeleteDepartment"/>

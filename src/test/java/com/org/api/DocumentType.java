@@ -31,7 +31,7 @@ public class DocumentType  extends CommonLogin {
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
-        String documentTypeId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() -1).getAsJsonObject().get("id").getAsString();
+        String documentTypeId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() -1).getAsJsonObject().get("id").getAsString();
         Repository.addData("documentTypeId",documentTypeId);
 
     }

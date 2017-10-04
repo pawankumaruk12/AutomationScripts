@@ -37,7 +37,7 @@ public class AccountById extends CommonLogin {
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(createResponse.getBody().asString()).getAsJsonObject();
 
-        String accountPersonDBId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("links").get("accountPersonDBId").getAsString();
+        String accountPersonDBId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("links").get("accountPersonDBId").getAsString();
         Repository.addData("accountPersonDBId", accountPersonDBId);
 
     }

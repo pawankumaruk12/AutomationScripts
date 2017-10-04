@@ -75,7 +75,7 @@ public class CreateInvitation extends CommonLogin {
 
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
-        String invitationIdStr = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("invitation").get("id").getAsString();
+        String invitationIdStr = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("invitation").get("id").getAsString();
         Repository.addData("invitationIdStr", invitationIdStr);
     }
 

@@ -9,12 +9,10 @@ import io.restassured.response.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static com.org.api.CommonLogin.JSESSIONID;
-import static com.org.api.CommonLogin.XSRF_TOKEN;
 import static io.restassured.RestAssured.given;
 
 //Tested on 22nd March 2017 and working
-public class ProjectDocumentService {
+public class ProjectDocumentService extends CommonLogin{
 	public static String getLastDocumentId(String accountId, String jsessionId,
 			String xsrfToken) throws Exception {
 		String ListProjectDoc = "src/test/resources/ListbyProjectDoc.json";
@@ -30,8 +28,8 @@ public class ProjectDocumentService {
 		JsonObject fullBody = parser.parse(resp.getBody().asString())
 				.getAsJsonObject();
 
-		return fullBody.get("results").getAsJsonArray()
-				.get(fullBody.get("results").getAsJsonArray().size() - 1)
+		return fullBody.get(RESULTS).getAsJsonArray()
+				.get(fullBody.get(RESULTS).getAsJsonArray().size() - 1)
 				.getAsJsonObject().getAsJsonObject("projectDocument").get("id")
 				.getAsString();
 

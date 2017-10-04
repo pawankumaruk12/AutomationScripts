@@ -45,15 +45,15 @@ public class CreateProject extends CommonLogin {
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
-        String projectId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("id").getAsString();
+        String projectId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("id").getAsString();
         Repository.addData("projectId", projectId);
-        String name = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("name").getAsString();
+        String name = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("name").getAsString();
         Repository.addData("name", name);
-        String typeId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("typeId").getAsString();
+        String typeId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("typeId").getAsString();
         Repository.addData("typeId", typeId);
-        String description = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("description").getAsString();
+        String description = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("description").getAsString();
         Repository.addData("description", description);
-        String versionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("versionId").getAsString();
+        String versionId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("project").get("versionId").getAsString();
         Repository.addData("versionId", versionId);
 
     }

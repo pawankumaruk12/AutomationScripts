@@ -12,7 +12,9 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class UpdatesProjectDocument extends CommonLogin {
+public class UpdateProjectDocument extends CommonLogin {
+
+
     @Test
     public void testUpdatesProjectDocuments() throws Exception {
         //getting values for projectDocument
@@ -74,28 +76,28 @@ public class UpdatesProjectDocument extends CommonLogin {
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
         //projectDocument
-         projectDocumentId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("id").getAsString();
+         projectDocumentId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("id").getAsString();
         Repository.addData("projectDocumentId", projectDocumentId);
-        projectDocumentVersionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("versionId").getAsString();
+        projectDocumentVersionId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("versionId").getAsString();
         Repository.addData("projectDocumentVersionId", projectDocumentVersionId);
-        active = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("active").getAsBoolean();
+        active = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("active").getAsBoolean();
         Repository.addData("active", active);
-        requiredByPayroll = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("requiredByPayroll").getAsBoolean();
+        requiredByPayroll = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("requiredByPayroll").getAsBoolean();
         Repository.addData("requiredByPayroll", requiredByPayroll);
-        projectId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("projectId").getAsString();
+        projectId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectDocument").get("projectId").getAsString();
         Repository.addData("projectId", projectId);
         //document
-        documentId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("id").getAsString();
+        documentId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("id").getAsString();
         Repository.addData("documentId", documentId);
-        documentName = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("name").getAsString();
+        documentName = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("name").getAsString();
         Repository.addData("documentName", documentName);
-        fileName = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileName").getAsString();
+        fileName = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileName").getAsString();
         Repository.addData("fileName", fileName);
-        fileType = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileType").getAsString();
+        fileType = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileType").getAsString();
         Repository.addData("fileType", fileType);
-        fileLength = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileLength").getAsInt();
+        fileLength = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("fileLength").getAsInt();
         Repository.addData("fileLength", fileLength);
-        documentVersionId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("versionId").getAsString();
+        documentVersionId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("document").get("versionId").getAsString();
         Repository.addData("documentVersionId", documentVersionId);
     }
 }

@@ -10,11 +10,9 @@ import io.restassured.response.Response;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static com.org.api.CommonLogin.JSESSIONID;
-import static com.org.api.CommonLogin.XSRF_TOKEN;
 import static io.restassured.RestAssured.given;
 
-	public class AgencyService {
+	public class AgencyService extends CommonLogin{
 		public static String AGENCY_ID;
 
 		public static String getLastAgencyId(String accountId, String jsessionId, String xsrfToken) throws Exception {
@@ -33,7 +31,7 @@ import static io.restassured.RestAssured.given;
 			JsonParser parser = new JsonParser();
 			JsonObject fullBody = parser.parse(resp.getBody().asString()).getAsJsonObject();
 		
-			return fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().get("id").getAsString();
+			return fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().get("id").getAsString();
 			
 		}
 		

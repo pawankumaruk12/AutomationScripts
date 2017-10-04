@@ -34,7 +34,7 @@ public class GetRoleTypeId extends CommonLogin {
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
-        String roleTypeId = fullBody.get("results").getAsJsonArray().get(fullBody.get("results").getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject().get("id").getAsString();
+        String roleTypeId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject().get("id").getAsString();
         Repository.addData("roleTypeId", roleTypeId);
 
     }
