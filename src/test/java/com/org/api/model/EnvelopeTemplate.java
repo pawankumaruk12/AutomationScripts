@@ -5,7 +5,21 @@ public class EnvelopeTemplate {
     private String json;
     private boolean approvalRequired;
     private String type;
+    private String id;
+    private String versionId;
 
+    public String getVersionId() {
+        return versionId;
+    }
+    public void setVersionId(String versionId) {
+        this.versionId = versionId;
+    }
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
