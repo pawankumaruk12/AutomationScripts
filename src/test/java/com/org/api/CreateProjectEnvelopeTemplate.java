@@ -1,6 +1,8 @@
 package com.org.api;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.org.api.model.EnvelopeTemplate;
 import com.org.api.model.ProjectEnvelopeTemplate;
 import com.org.api.model.ProjectEnvelopeTemplateWithEnvelopeTemplate;
@@ -31,7 +33,6 @@ public class CreateProjectEnvelopeTemplate extends CommonLogin {
                 ProjectEnvelopeTemplateWithEnvelopeTemplate();
         projectEnvelopeTemplateWithEnvelopeTemplate.setEnvelopeTemplate(envelopeTemplate);
         projectEnvelopeTemplateWithEnvelopeTemplate.setProjectEnvelopeTemplate(projectEnvelopeTemplate);
-
         Gson gson = new Gson();
         String jsonTemp = gson.toJson(projectEnvelopeTemplateWithEnvelopeTemplate);
 
@@ -44,5 +45,22 @@ public class CreateProjectEnvelopeTemplate extends CommonLogin {
                         contentType(ContentType.JSON).
                         post(API_PATH + "projectenvelopetemplate/create").then()
                 .assertThat().statusCode(201).and().extract().response();
+
+        JsonParser parser= new JsonParser();
+        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+        //ProjectEnvelopeTemplate
+        String projectEnvelopeTemplateId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectEnvelopeTemplate").get("id").getAsString();
+        Repository.addData("projectEnvelopeTemplateId", projectEnvelopeTemplateId);
+        String templateId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectEnvelopeTemplate").get("templateId").getAsString();
+        Repository.addData("templateId", templateId);
+        String projectEnvelopeTemplateVersionId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectEnvelopeTemplate").get("versionId").getAsString();
+        Repository.addData("projectEnvelopeTemplateVersionId", projectEnvelopeTemplateVersionId);
+        //EnvelopeTemplate
+        String envelopeTemplateId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("envelopeTemplate").get("id").getAsString();
+        Repository.addData("envelopeTemplateId", envelopeTemplateId);
+        String envelopeTemplateName = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("envelopeTemplate").get("name").getAsString();
+        Repository.addData("envelopeTemplateName", envelopeTemplateName);
+        String envelopeTemplateVersionId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("envelopeTemplate").get("versionId").getAsString();
+        Repository.addData("envelopeTemplateVersionId", envelopeTemplateVersionId);
     }
 }

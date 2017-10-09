@@ -43,6 +43,9 @@
             <class name="com.org.api.DepartmentsByProjectWithRoleTypes"/>
             <class name="com.org.api.ProjectMemberRoleTypes"/>
             <class name="com.org.api.DeleteDepartment"/>
+            <class name="com.org.api.DeleteProject"/>
+            <class name="com.org.api.DeleteCompany"/>
+            <class name="com.org.api.DeleteAccount"/>
         </classes>
     </test>
     <test name="ProjectTest" group-by-instances="true" preserve-order="true">
@@ -73,6 +76,23 @@
             <class name="com.org.api.DeleteAccount"/>
         </classes>
     </test>
+    <test name="Document" group-by-instances="true" preserve-order="true">
+        <classes>
+            <class name="com.org.api.CreateAccount"/>
+            <class name="com.org.api.CreateCompany"/>
+            <class name="com.org.api.CreateProject"/>
+            <class name="com.org.api.CreateDepartment"/>
+            <class name="com.org.api.DocumentType"/>
+            <class name="com.org.api.CreateNewProjectDocument"/>
+            <class name="com.org.api.UpdateProjectDocument"/>
+            <class name="com.org.api.ProjectDocumentById"/>
+            <class name="com.org.api.DeleteProjectDocument"/>
+            <class name="com.org.api.DeleteDepartment"/>
+            <class name="com.org.api.DeleteProject"/>
+            <class name="com.org.api.DeleteCompany"/>
+            <class name="com.org.api.DeleteAccount"/>
+        </classes>
+    </test>
     <test name="Invitation" group-by-instances="true" preserve-order="true">
         <classes>
             <class name="com.org.api.CreateAccount"/>
@@ -91,23 +111,11 @@
             <class name="com.org.api.ProjectDocumentById"/>
             <class name="com.org.api.GetJsonForDirectHireStartForm"/>
             <class name="com.org.api.CreateProjectEnvelopeTemplate"/>
-        </classes>
-    </test>
-    <test name="Document" group-by-instances="true" preserve-order="true">
-        <classes>
-            <class name="com.org.api.CreateAccount"/>
-            <class name="com.org.api.CreateCompany"/>
-            <class name="com.org.api.CreateProject"/>
-            <class name="com.org.api.CreateDepartment"/>
-            <class name="com.org.api.DocumentType"/>
-            <class name="com.org.api.CreateNewProjectDocument"/>
-            <class name="com.org.api.UpdateProjectDocument"/>
-            <class name="com.org.api.ProjectDocumentById"/>
-            <class name="com.org.api.DeleteProjectDocument"/>
-            <class name="com.org.api.DeleteDepartment"/>
-            <class name="com.org.api.DeleteProject"/>
-            <class name="com.org.api.DeleteCompany"/>
-            <class name="com.org.api.DeleteAccount"/>
+            <class name="com.org.api.EnableorDisableProjectEnvelopeTemplate"/>
+            <class name="com.org.api.UpdateProjectEnvelopeTemplate"/>
+            <class name="com.org.api.ExportProjectDocumentTemplate"/>
+            <class name="com.org.api.CopyProjectEnvelopeTemplate"/>
+            <class name="com.org.api.ImportProjectEnvelopeTemplate"/>
         </classes>
     </test>
 </suite>
