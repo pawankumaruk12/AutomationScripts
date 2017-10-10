@@ -14,6 +14,7 @@ import static io.restassured.RestAssured.given;
 
 public class ConfirmNewUser extends CommonLogin {
     private final String SECURITY_CODE = "1314";
+    private final String PASSWORD = "0nBoard!ng12";
     @Test
     public void testConfirmNewUser() {
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
@@ -30,10 +31,14 @@ public class ConfirmNewUser extends CommonLogin {
         newUser.setContactByMail(true);
         newUser.setContactByTelephone(true);
         newUser.setInvitationIdStr(invitationIdStr);
-        newUser.setPassword("0nBoard!ng12");
+        password = PASSWORD;
+        newUser.setPassword(password);
         Long i = (Long) new Date().getTime();
-        newUser.setUsername(firstName + lastName + i + "@sd.com");
+        username = (firstName + lastName + i + "@sd.com");
+        newUser.setUsername(username);
         newUser.setSecurityCode(SECURITY_CODE);
+        Repository.addData("username",username);
+        Repository.addData("password",password);
 
         Gson gson = new Gson();
         String json = gson.toJson(newUser);
