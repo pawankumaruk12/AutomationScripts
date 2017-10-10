@@ -23,6 +23,7 @@ public abstract class CommonLogin {
     public static final String JSESSIONID = "JSESSIONID";
     public static final String XSRF_TOKEN = "XSRF-TOKEN";
     public static final String RESULTS = "results";
+    public static final String PASSWORD = "0nBoard!ng12";
     protected Response response = null;
     @BeforeClass
     public void login() throws IOException {
