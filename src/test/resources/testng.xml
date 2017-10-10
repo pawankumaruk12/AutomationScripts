@@ -116,10 +116,11 @@
             <class name="com.org.api.ExportProjectDocumentTemplate"/>
             <class name="com.org.api.CopyProjectEnvelopeTemplate"/>
             <class name="com.org.api.ImportProjectEnvelopeTemplate"/>
+            <class name="com.org.api.SecurityRoleTypes"/>
+            <class name="com.org.api.CreateTemplateApprovalStage"/>
         </classes>
     </test>
 </suite>
-
 
 
 

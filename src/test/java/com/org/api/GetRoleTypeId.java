@@ -18,10 +18,8 @@ public class GetRoleTypeId extends CommonLogin {
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
         ProjectMember projectmember = new ProjectMember();
-
         Gson gson = new Gson();
         String json = gson.toJson(projectmember);
-
         response = given().
                 body(json).
                 when()
@@ -30,12 +28,10 @@ public class GetRoleTypeId extends CommonLogin {
                         contentType(ContentType.JSON).
                         post(API_PATH + "projectmember/roletypes/" + departmentId).then()
                 .assertThat().statusCode(200).and().extract().response();
-
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
-        String roleTypeId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject().get("id").getAsString();
+        String roleTypeId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().get("id").getAsString();
         Repository.addData("roleTypeId", roleTypeId);
-
     }
 }

@@ -18,27 +18,24 @@ public class ConfirmNewUser extends CommonLogin {
     public void testConfirmNewUser() {
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
         String username = (String) Repository.getValue("username");
-        String password = (String) Repository.getValue("password");
         String firstName = (String) Repository.getValue("firstName");
         String lastName = (String) Repository.getValue("lastName");
-
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
-
         NewUser newUser = new NewUser();
         newUser.setContactByEmail(true);
         newUser.setContactByMail(true);
         newUser.setContactByTelephone(true);
         newUser.setInvitationIdStr(invitationIdStr);
-        newUser.setPassword("0nBoard!ng12");
-        Long i = (Long) new Date().getTime();
-        newUser.setUsername(firstName + lastName + i + "@sd.com");
+        newUser.setPassword(PASSWORD);
+        Long timeInNumber = (Long) new Date().getTime();
+        username = (firstName + lastName + timeInNumber + "@sd.com");
+        newUser.setUsername(username);
         newUser.setSecurityCode(SECURITY_CODE);
-
+        Repository.addData("username",username);
+        Repository.addData("password",PASSWORD);
         Gson gson = new Gson();
         String json = gson.toJson(newUser);
-        Repository.addData("username", username);
-        Repository.addData("password", password);
 
         Response createResponse = given().
                 body(json).

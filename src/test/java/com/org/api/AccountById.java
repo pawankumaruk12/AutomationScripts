@@ -19,9 +19,7 @@ public class AccountById extends CommonLogin {
 
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
-
         Account account = new Account();
-
         Gson gson = new Gson();
         String json = gson.toJson(account);
 
@@ -39,7 +37,5 @@ public class AccountById extends CommonLogin {
 
         String accountPersonDBId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("links").get("accountPersonDBId").getAsString();
         Repository.addData("accountPersonDBId", accountPersonDBId);
-
     }
-
 }
