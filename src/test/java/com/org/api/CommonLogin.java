@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.given;
 public abstract class CommonLogin {
 
     public static final String API_PATH = "http://192.168.56.139:8080/sdw/rest/";
-    private static final String PATH_LOGIN_SUPERUSER = "src/test/resources/login.json";
+    private static final String PATH_LOGIN_SUPERUSER = "src/test/resources/loginAsSuperUser.json";
     private static final String PATH_LOGIN_HOD = "src/test/resources/login_hod.json";
     private static final String PATH_LOGIN_PM = "src/test/resources/login_hod.json";
     private static final String PATH_LOGIN_TM = "src/test/resources/login_tm.json";
@@ -25,38 +25,24 @@ public abstract class CommonLogin {
     public static final String RESULTS = "results";
     public static final String PASSWORD = "0nBoard!ng12";
     protected Response response = null;
+
     @BeforeClass
-    public void login() throws IOException {
-
-        response = given().
-                body(Files.readAllBytes(Paths.get(PATH_LOGIN_SUPERUSER))).
-                when().
-                contentType(ContentType.JSON).
-                post(API_PATH + "authentication/login");
+    public void loginAsSuperUser() throws IOException {
+        response = login(PATH_LOGIN_SUPERUSER);
     }
+
     protected void loginAsHOD() throws Exception {
-        response = given().
-                when().
-                contentType(ContentType.JSON).
-                post(API_PATH  + "authentication/logout");
-        response = given().
-                body(Files.readAllBytes(Paths.get(PATH_LOGIN_HOD))).
-                when().
-                contentType(ContentType.JSON).
-                post(API_PATH  + "authentication/login");
+        response = logout();
+        response = login(PATH_LOGIN_HOD);
     }
-    protected void loginAsProjectManager() throws Exception {
-        response = given().
-                when().
-                contentType(ContentType.JSON).
-                post(API_PATH  + "authentication/logout");
 
-        response = given().
-                body(Files.readAllBytes(Paths.get(PATH_LOGIN_PM))).
-                when().
-                contentType(ContentType.JSON).
-                post(API_PATH  +"authentication/login");
+    protected void loginAsProjectManager() throws Exception {
+        response = logout();
+
+        response = login(PATH_LOGIN_PM);
     }
+
+
     protected void loginAsTeamMember() throws Exception {
         String username = (String) Repository.getValue("username");
         String password = (String) Repository.getValue("password");
@@ -68,13 +54,7 @@ public abstract class CommonLogin {
         loginBody.addProperty("password", password);
         String json = loginBody.toString();
 
-        response = given().
-                when().
-                cookie(JSESSIONID, jsessionId)
-                .cookie(XSRF_TOKEN, xsrfToken).
-                        contentType(ContentType.JSON).
-                        post(API_PATH  + "authentication/logout").then()
-                .assertThat().statusCode(200).and().extract().response();
+        response = logout();
 
         response = given().
                 body(json).
@@ -85,16 +65,25 @@ public abstract class CommonLogin {
     }
 
     protected void loginAsAgent() throws Exception {
-        response = given().
-                when().
-                contentType(ContentType.JSON).
-                post(API_PATH  + "authentication/logout");
+        response = logout();
 
-        response = given().
-                body(Files.readAllBytes(Paths.get(PATH_LOGIN_AGENT))).
+        response = login(PATH_LOGIN_AGENT);
+    }
+
+    private Response login(final String loginPath) throws IOException {
+        return given().
+                body(Files.readAllBytes(Paths.get(loginPath))).
                 when().
                 contentType(ContentType.JSON).
-                post(API_PATH  + "authentication/login").then()
+                post(API_PATH + "authentication/login").then()
+                .assertThat().statusCode(200).and().extract().response();
+    }
+
+    private Response logout() {
+        return given().
+                when().
+                contentType(ContentType.JSON).
+                post(API_PATH  + "authentication/logout").then()
                 .assertThat().statusCode(200).and().extract().response();
     }
 }
