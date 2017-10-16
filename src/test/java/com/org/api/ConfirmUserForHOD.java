@@ -12,7 +12,7 @@ import java.util.Date;
 
 import static io.restassured.RestAssured.given;
 
-public class ConfirmNewUser extends CommonLogin {
+public class ConfirmUserForHOD extends CommonLogin {
     @Test
     public void testConfirmNewUser() {
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
@@ -21,7 +21,6 @@ public class ConfirmNewUser extends CommonLogin {
         String lastName = (String) Repository.getValue("lastName");
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
-
         NewUser newUser = new NewUser();
         newUser.setContactByEmail(true);
         newUser.setContactByMail(true);
@@ -34,9 +33,9 @@ public class ConfirmNewUser extends CommonLogin {
         newUser.setSecurityCode(SECURITY_CODE);
         Repository.addData("username",username);
         Repository.addData("password",PASSWORD);
-
         Gson gson = new Gson();
         String json = gson.toJson(newUser);
+
         Response createResponse = given().
                 body(json).
                 when()
@@ -46,6 +45,7 @@ public class ConfirmNewUser extends CommonLogin {
                         post(API_PATH + "invitation/public/confirm/new").then()
                 .assertThat().statusCode(200).and().extract().response();
     }
+
     @AfterTest
     public void loginAsNewTeamMember() throws Exception {
         loginAsTeamMember();

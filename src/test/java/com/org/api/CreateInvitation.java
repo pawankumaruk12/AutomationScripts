@@ -77,6 +77,11 @@ public class CreateInvitation extends CommonLogin {
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
         String invitationIdStr = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("invitation").get("id").getAsString();
         Repository.addData("invitationIdStr", invitationIdStr);
+        String projectMemberId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() -1).getAsJsonObject().getAsJsonObject("links").getAsJsonObject("projectMember").get("id").getAsString();
+        Repository.addData("projectMemberId", projectMemberId);
+
+        String projectMemberId1 = fullBody.get(RESULTS).getAsJsonArray().get(0).getAsJsonObject().getAsJsonObject("links").getAsJsonObject("projectMember").get("id").getAsString();
+        Repository.addData("projectMemberId1",projectMemberId1);
     }
 
     @Test(enabled = false)
