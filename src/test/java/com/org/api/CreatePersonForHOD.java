@@ -14,27 +14,20 @@ public class CreatePersonForHOD extends CommonLogin {
     @Test
     public void testPersonCreation() {
         String accountPersonDBId = (String) Repository.getValue("accountPersonDBId");
-
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
-        Integer personCount = 0;
-        Integer mobileCount = 0;
-        Integer emailCount = 0;
-
         Person person = new Person();
         person.setFirstName("AutoPerson");
         //person.setMiddleName(null);
-        person.setLastName("HOD" + personCount + 1);
+        person.setLastName("HOD");
         person.setAccountPersonDBId(accountPersonDBId);
         person.setTitle("Mrs.");
         person.setGender("F");
-        person.setPersonalMobile("077832389333" + mobileCount + 1);
+        person.setPersonalMobile("077832389333");
         person.setCountryABBRCode("GBR");
-        person.setPersonalEmail("AutoPersonHOD" + emailCount + "@" + "gmail.com");
-
+        person.setPersonalEmail("AutoPersonHOD" + "@" + "gmail.com");
         Gson gson = new Gson();
         String json = gson.toJson(person);
-
         response = given().
                 body(json).
                 when()
@@ -49,7 +42,6 @@ public class CreatePersonForHOD extends CommonLogin {
 
         Person createdPerson = gson.fromJson(fullBody.get(RESULTS).getAsJsonArray().get(0).getAsJsonObject().getAsJsonObject("person").toString(), Person.class);
         JsonObject jsonPerson = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("person");
-
         Repository.addData("NEW_PERSON", createdPerson);
         String personId = jsonPerson.get("id").getAsString();
         Repository.addData("personId", personId);

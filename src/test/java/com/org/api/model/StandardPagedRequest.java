@@ -5,9 +5,6 @@ import java.util.List;
 
 
 public class StandardPagedRequest {
-
-
-
     private boolean includeLinks;
     private int startPosition;
     private int noOfRows;

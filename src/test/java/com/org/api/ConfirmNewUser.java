@@ -13,12 +13,10 @@ import java.util.Date;
 import static io.restassured.RestAssured.given;
 
 public class ConfirmNewUser extends CommonLogin {
-    private final String SECURITY_CODE = "1314";
     @Test
     public void testConfirmNewUser() {
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
         String username = (String) Repository.getValue("username");
-       // String password = (String) Repository.getValue("password");
         String firstName = (String) Repository.getValue("firstName");
         String lastName = (String) Repository.getValue("lastName");
 
@@ -34,7 +32,7 @@ public class ConfirmNewUser extends CommonLogin {
         Long timeInNumber = (Long) new Date().getTime();
         username = (firstName + lastName + timeInNumber + "@sd.com");
         newUser.setUsername(username);
-        newUser.setSecurityCode(SECURITY_CODE);
+        newUser.setSecurityCode(SECRURITYCODEVALUE);
         Repository.addData("username",username);
         Repository.addData("password",PASSWORD);
 

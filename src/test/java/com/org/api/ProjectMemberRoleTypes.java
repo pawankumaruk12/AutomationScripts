@@ -1,8 +1,6 @@
 package com.org.api;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.org.api.model.Department;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -30,8 +28,5 @@ public class ProjectMemberRoleTypes extends CommonLogin {
                         contentType(ContentType.JSON).
                         post(API_PATH + "projectmember/roletypes/" + departmentId).then().
                         assertThat().statusCode(200).and().extract().response();
-
-        JsonParser parser = new JsonParser();
-        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
     }
 }

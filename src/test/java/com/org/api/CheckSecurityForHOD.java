@@ -11,20 +11,14 @@ import static io.restassured.RestAssured.given;
 public class CheckSecurityForHOD extends CommonLogin{
     @Test
     public void testCheckSecurity() throws Exception {
-        final String securityCodeValue ="1314";
-        String securityCode = (String) Repository.getValue("securityCode");
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
-
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
-
         Invitation invitation = new Invitation();
         invitation.setInvitationIdStr(invitationIdStr);
-        invitation.setSecurityCode(securityCodeValue);
-
+        invitation.setSecurityCode(SECRURITYCODEVALUE);
         Gson gson = new Gson();
         String json = gson.toJson(invitation);
-
         response = given().
                 body(json).
                 when()

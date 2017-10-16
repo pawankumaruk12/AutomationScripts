@@ -1,8 +1,6 @@
 package com.org.api;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.org.api.model.Repository;
 import com.org.api.model.UserSecurityRole;
 import io.restassured.http.ContentType;
@@ -24,7 +22,6 @@ public class CreateUserSecurityRole extends CommonLogin {
         userSecurityRole.setUserId(userId);
         Gson gson = new Gson();
         String json = gson.toJson(userSecurityRole);
-
         response = given().
                 body(json).
                 when()
@@ -33,7 +30,5 @@ public class CreateUserSecurityRole extends CommonLogin {
                 .contentType(ContentType.JSON).
                 post(API_PATH + "usersecurityrole/create").then()
                 .assertThat().statusCode(201).and().extract().response();
-        JsonParser parser = new JsonParser();
-        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
     }
 }

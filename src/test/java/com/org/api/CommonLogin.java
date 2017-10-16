@@ -24,6 +24,7 @@ public abstract class CommonLogin {
     public static final String XSRF_TOKEN = "XSRF-TOKEN";
     public static final String RESULTS = "results";
     public static final String PASSWORD = "0nBoard!ng12";
+    public static final String SECRURITYCODEVALUE = "1314";
     protected Response response = null;
 
     @BeforeClass

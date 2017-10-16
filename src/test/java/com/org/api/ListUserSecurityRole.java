@@ -1,8 +1,6 @@
 package com.org.api;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.org.api.model.PaginationFilter;
 import com.org.api.model.Repository;
 import com.org.api.model.StandardPagedRequest;
@@ -45,8 +43,5 @@ public class ListUserSecurityRole extends CommonLogin {
                 .contentType(ContentType.JSON).
                 post(API_PATH + "usersecurityrole/list").then()
                 .assertThat().statusCode(200).and().extract().response();
-
-        JsonParser parser = new JsonParser();
-        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
     }
 }

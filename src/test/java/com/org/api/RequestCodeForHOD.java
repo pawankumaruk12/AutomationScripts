@@ -11,15 +11,12 @@ import static io.restassured.RestAssured.given;
 public class RequestCodeForHOD extends CommonLogin{
     @Test
     public void testRequestCode() throws Exception {
-
-        final String securityCodeValue ="1314";
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
         Invitation invitation = new Invitation();
         invitation.setInvitationIdStr(invitationIdStr);
-        invitation.setSecurityCode(securityCodeValue);
-
+        invitation.setSecurityCode(SECRURITYCODEVALUE);
         Gson gson = new Gson();
         String json = gson.toJson(invitation);
         response = given().
@@ -30,6 +27,5 @@ public class RequestCodeForHOD extends CommonLogin{
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/public/requestcode").then()
                 .assertThat().statusCode(200).and().extract().response();
-
     }
 }
