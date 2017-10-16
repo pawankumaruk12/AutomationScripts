@@ -45,12 +45,14 @@ public class CreateProjectMember extends CommonLogin {
                         contentType(ContentType.JSON).
                         post(API_PATH + "projectmember/create")
                 .then()
-                .assertThat().statusCode(201).and().extract().response();
+                .assertThat().statusCode(200).and().extract().response();
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
 
         projectEmail = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectmember").get("projectEmail").getAsString();
         Repository.addData("projectEmail", projectEmail);
+        String projectMemberId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size()-1).getAsJsonObject().getAsJsonObject("projectmember").get("id").getAsString();
+        Repository.addData("projectMemberId",projectMemberId);
 
     }
 }

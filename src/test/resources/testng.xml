@@ -118,6 +118,15 @@
             <class name="com.org.api.ImportProjectEnvelopeTemplate"/>
             <class name="com.org.api.SecurityRoleTypes"/>
             <class name="com.org.api.CreateTemplateApprovalStage"/>
+            <class name="com.org.api.CreatePersonForHOD"/>
+            <class name="com.org.api.CreateInvitationForHOD"/>
+            <class name="com.org.api.RequestCodeForHOD"/>
+            <class name="com.org.api.CheckSecurityForHOD"/>
+            <class name="com.org.api.ConfirmUserForHOD"/>
+            <class name="com.org.api.ProjectMemberById"/>
+            <class name="com.org.api.ListUserSecurityRole"/>
+            <class name="com.org.api.ListDepartment"/>
+            <class name="com.org.api.CreateUserSecurityRole"/>
         </classes>
     </test>
 </suite>
