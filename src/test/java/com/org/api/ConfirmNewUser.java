@@ -19,7 +19,6 @@ public class ConfirmNewUser extends CommonLogin {
         String username = (String) Repository.getValue("username");
         String firstName = (String) Repository.getValue("firstName");
         String lastName = (String) Repository.getValue("lastName");
-
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
 
@@ -32,13 +31,12 @@ public class ConfirmNewUser extends CommonLogin {
         Long timeInNumber = (Long) new Date().getTime();
         username = (firstName + lastName + timeInNumber + "@sd.com");
         newUser.setUsername(username);
-        newUser.setSecurityCode(SECRURITYCODEVALUE);
+        newUser.setSecurityCode(SECURITY_CODE);
         Repository.addData("username",username);
         Repository.addData("password",PASSWORD);
 
         Gson gson = new Gson();
         String json = gson.toJson(newUser);
-
         Response createResponse = given().
                 body(json).
                 when()
@@ -48,7 +46,6 @@ public class ConfirmNewUser extends CommonLogin {
                         post(API_PATH + "invitation/public/confirm/new").then()
                 .assertThat().statusCode(200).and().extract().response();
     }
-
     @AfterTest
     public void loginAsNewTeamMember() throws Exception {
         loginAsTeamMember();

@@ -16,7 +16,7 @@ public class RequestCodeForHOD extends CommonLogin{
         String xsrfToken = response.cookie(XSRF_TOKEN);
         Invitation invitation = new Invitation();
         invitation.setInvitationIdStr(invitationIdStr);
-        invitation.setSecurityCode(SECRURITYCODEVALUE);
+        invitation.setSecurityCode(SECURITY_CODE);
         Gson gson = new Gson();
         String json = gson.toJson(invitation);
         response = given().

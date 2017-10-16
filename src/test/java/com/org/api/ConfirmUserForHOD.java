@@ -13,7 +13,6 @@ import java.util.Date;
 import static io.restassured.RestAssured.given;
 
 public class ConfirmUserForHOD extends CommonLogin {
-    private final String SECURITY_CODE = "1314";
     @Test
     public void testConfirmNewUser() {
         String invitationIdStr = (String) Repository.getValue("invitationIdStr");
