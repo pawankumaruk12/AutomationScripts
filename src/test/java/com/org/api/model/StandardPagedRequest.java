@@ -9,8 +9,16 @@ public class StandardPagedRequest {
     private int startPosition;
     private int noOfRows;
     private String simpleSearch;
-    private List<PaginationFilter> filters = new ArrayList<PaginationFilter>();
-    private List<PaginationSorter> sorts = new ArrayList<PaginationSorter>();
+    private List<PaginationFilter> filters = new ArrayList<>();
+    private List<PaginationSorter> sorts = new ArrayList<>();
+
+    public static final StandardPagedRequest defaultPageRequest() {
+        StandardPagedRequest standardPagedRequest = new StandardPagedRequest();
+        standardPagedRequest.setIncludeLinks(true);
+        standardPagedRequest.setNoOfRows(-1);
+        standardPagedRequest.setStartPosition(0);
+        return standardPagedRequest;
+    }
 
     public boolean isIncludeLinks() {
         return includeLinks;
