@@ -58,7 +58,6 @@ public class CreateAccount extends CommonLogin {
         String stringTypeId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("account").get("typeId").getAsString();
         Repository.addData("stringTypeId", stringTypeId);
 
-
     }
 
     //@Test

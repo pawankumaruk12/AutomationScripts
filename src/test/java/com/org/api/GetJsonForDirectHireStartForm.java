@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
 public class GetJsonForDirectHireStartForm extends CommonLogin {
-    private static final String GET_API_PATH = "http://192.168.56.139:8080/sdw/modular-forms/";
+    private static final String GET_API_PATH = ROOT_PATH + "/modular-forms/";
 
     @Test
     public void testProjectById() throws Exception {

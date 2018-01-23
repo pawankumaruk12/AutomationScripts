@@ -6,6 +6,7 @@ public class PaginationFilter {
     private String columnName;
     private List<? extends Object> dataList;
     private String condition;
+    private String tableAlias;
 
     public String getColumnName() {
         return columnName;
@@ -31,5 +32,4 @@ public class PaginationFilter {
     public void setTableAlias(String tableAlias) {
         this.tableAlias = tableAlias;
     }
-    private String tableAlias;
 }

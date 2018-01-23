@@ -76,7 +76,7 @@ public class CreateInvitationForHOD extends CommonLogin {
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
         String invitationIdStr = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("invitation").get("id").getAsString();
         Repository.addData("invitationIdStr", invitationIdStr);
-        String projectMemberId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() -1).getAsJsonObject().getAsJsonObject("links").getAsJsonObject("projectMember").get("id").getAsString();
-        Repository.addData("projectMemberId", projectMemberId);
+        String projectMemberIdforHOD = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() -1).getAsJsonObject().getAsJsonObject("links").getAsJsonObject("projectMember").get("id").getAsString();
+        Repository.addData("projectMemberIdforHOD", projectMemberIdforHOD);
     }
 }

@@ -112,10 +112,10 @@
             <class name="com.org.api.GetJsonForDirectHireStartForm"/>
             <class name="com.org.api.CreateProjectEnvelopeTemplate"/>
             <class name="com.org.api.EnableorDisableProjectEnvelopeTemplate"/>
-            <class name="com.org.api.UpdateProjectEnvelopeTemplate"/>
-            <class name="com.org.api.ExportProjectDocumentTemplate"/>
-            <class name="com.org.api.CopyProjectEnvelopeTemplate"/>
-            <class name="com.org.api.ImportProjectEnvelopeTemplate"/>
+            <!--<class name="com.org.api.UpdateProjectEnvelopeTemplate"/>-->
+            <!--<class name="com.org.api.ExportProjectDocumentTemplate"/>-->
+            <!--<class name="com.org.api.CopyProjectEnvelopeTemplate"/>-->
+            <!--<class name="com.org.api.ImportProjectEnvelopeTemplate"/>-->
             <class name="com.org.api.SecurityRoleTypes"/>
             <class name="com.org.api.CreateTemplateApprovalStage"/>
             <class name="com.org.api.CreatePersonForHOD"/>
@@ -127,6 +127,8 @@
             <class name="com.org.api.ListUserSecurityRole"/>
             <class name="com.org.api.ListDepartment"/>
             <class name="com.org.api.CreateUserSecurityRole"/>
+            <class name="com.org.api.ListDepartmentEnvelopeTemplate"/>
+            <class name="com.org.api.CreateEnvelope"/>
         </classes>
     </test>
 </suite>
