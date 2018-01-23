@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.PaginationFilter;
 import com.org.api.model.Repository;
 import com.org.api.model.StandardPagedRequest;
@@ -33,7 +32,6 @@ public class ListUserSecurityRole extends CommonLogin {
         filters.add(filter);
         standardPagedRequest.setFilters(filters);
 
-        Gson gson = new Gson();
         String json = gson.toJson(standardPagedRequest);
         response = given().
                 body(json).

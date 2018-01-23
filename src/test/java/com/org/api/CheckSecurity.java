@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.Invitation;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -22,7 +21,7 @@ public class CheckSecurity extends CommonLogin {
         invitation.setInvitationIdStr(invitationIdStr);
         invitation.setSecurityCode(securityCodeValue);
 
-        Gson gson = new Gson();
+       ;
         String json = gson.toJson(invitation);
 
         response = given().

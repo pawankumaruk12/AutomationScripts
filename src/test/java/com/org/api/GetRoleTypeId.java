@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.ProjectMember;
@@ -18,7 +17,7 @@ public class GetRoleTypeId extends CommonLogin {
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
         ProjectMember projectmember = new ProjectMember();
-        Gson gson = new Gson();
+       ;
         String json = gson.toJson(projectmember);
         response = given().
                 body(json).

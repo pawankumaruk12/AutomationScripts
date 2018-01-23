@@ -1,7 +1,6 @@
 package com.org.api;
 
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.Account;
@@ -33,7 +32,6 @@ public class CreateAccount extends CommonLogin {
         account.setTypeId(2);
         account.setAccountId(1);
 
-        Gson gson = new Gson();
         String json = gson.toJson(account);
 
         Response createResponse = given().

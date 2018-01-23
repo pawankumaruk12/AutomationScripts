@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.NewUser;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -33,7 +32,7 @@ public class ConfirmNewUser extends CommonLogin {
         Repository.addData("userNameForTeamMember",username);
         Repository.addData("password",PASSWORD);
 
-        Gson gson = new Gson();
+       ;
         String json = gson.toJson(newUser);
         Response createResponse = given().
                 body(json).

@@ -1,7 +1,6 @@
 package com.org.api;
 
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.Project;
@@ -31,7 +30,7 @@ public class CreateProject extends CommonLogin {
         project.setTypeId(2);
         project.setCompanyId(companyId);
 
-        Gson gson = new Gson();
+       ;
         String json = gson.toJson(project);
 
         response = given().

@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.Document;
@@ -50,7 +49,7 @@ public class CreateNewProjectDocument extends CommonLogin {
         documentWithProjectDocument.setDocument(document);
         documentWithProjectDocument.setProjectDocument(projectDocument);
 
-        Gson gson = new Gson();
+       ;
         String json = gson.toJson(documentWithProjectDocument);
 
         String jsessionId = response.cookie(JSESSIONID);

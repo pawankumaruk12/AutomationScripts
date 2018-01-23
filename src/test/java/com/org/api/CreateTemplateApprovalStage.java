@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.ProjectEnvelopeTemplateWithTemplateApprovalStage;
 import com.org.api.model.Repository;
 import com.org.api.model.TemplateApprovalStage;
@@ -28,7 +27,7 @@ public class CreateTemplateApprovalStage extends CommonLogin {
         projectEnvelopeTemplateWithTemplateApprovalStage.setProjectOrAccountEnvelopetemplateId(projectOrAccountEnvelopetemplateId);
         projectEnvelopeTemplateWithTemplateApprovalStage.setTemplateType("ProjectEnvelopeTemplate");
         projectEnvelopeTemplateWithTemplateApprovalStage.setTemplateApprovalStage(templateApprovalStage);
-        Gson gson = new Gson();
+       ;
         String json = gson.toJson(projectEnvelopeTemplateWithTemplateApprovalStage);
         response = given().
                 body(json).

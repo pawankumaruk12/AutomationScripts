@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.ProjectDocument;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -19,7 +18,7 @@ public class ProjectDocumentById extends CommonLogin {
         String xsrfToken = response.cookie(XSRF_TOKEN);
         ProjectDocument projectDocument = new ProjectDocument();
         projectDocument.setId(projectDocumentId);
-        Gson gson = new Gson();
+       ;
         String json = gson.toJson(projectDocument);
         response = given().
                 body(json).

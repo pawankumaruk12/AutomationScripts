@@ -1,5 +1,6 @@
 package com.org.api;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -27,6 +28,8 @@ public abstract class CommonLogin {
     public static final String PASSWORD = "Cr3w_M3mb3rs";
     public static final String SECURITY_CODE = "1314";
     protected Response response = null;
+
+    public static final Gson gson = new Gson();
 
     @BeforeClass
     public void loginAsSuperUser() throws IOException {

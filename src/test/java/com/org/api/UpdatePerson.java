@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.Person;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -47,7 +46,7 @@ public class UpdatePerson extends CommonLogin {
         person.setAgencyId(null);
         person.setClientReference(null);
 
-        Gson gson = new Gson();
+       ;
         String json = gson.toJson(person);
 
         response = given()

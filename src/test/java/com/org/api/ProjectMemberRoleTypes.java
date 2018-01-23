@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.Department;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -18,7 +17,7 @@ public class ProjectMemberRoleTypes extends CommonLogin {
         String xsrfToken = response.cookie(XSRF_TOKEN);
         Department department = new Department();
         department.setId(departmentId);
-        Gson gson = new Gson();
+       ;
         String json = gson.toJson(department);
         response = given().
                 body(json).

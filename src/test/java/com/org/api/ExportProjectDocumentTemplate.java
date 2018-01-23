@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.ProjectEnvelopeTemplate;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -16,7 +15,7 @@ public class ExportProjectDocumentTemplate extends CommonLogin {
         ProjectEnvelopeTemplate projectEnvelopeTemplate = new ProjectEnvelopeTemplate();
         projectEnvelopeTemplate.setId(projectEnvelopeTemplateId);
 
-        Gson gson = new Gson();
+       ;
         String jsonTemp = gson.toJson(projectEnvelopeTemplate);
 
         String jsessionId = response.cookie(JSESSIONID);

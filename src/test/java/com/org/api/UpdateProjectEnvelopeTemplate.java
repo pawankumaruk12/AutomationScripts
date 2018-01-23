@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.EnvelopeTemplate;
 import com.org.api.model.ProjectEnvelopeTemplate;
 import com.org.api.model.ProjectEnvelopeTemplateWithEnvelopeTemplate;
@@ -47,7 +46,7 @@ public class UpdateProjectEnvelopeTemplate extends CommonLogin {
         projectEnvelopeTemplateWithEnvelopeTemplate.setEnvelopeTemplate(envelopeTemplate);
         projectEnvelopeTemplateWithEnvelopeTemplate.setProjectEnvelopeTemplate(projectEnvelopeTemplate);
 
-        Gson gson = new Gson();
+       ;
         String jsonTemp = gson.toJson(projectEnvelopeTemplateWithEnvelopeTemplate);
         String jsessionid = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);

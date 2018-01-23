@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.Project;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -31,7 +30,7 @@ public class UpdateProject extends CommonLogin {
         project.setTypeId(2);
         project.setVersionId(versionId);
 
-        Gson gson = new Gson();
+       ;
         String json = gson.toJson(project);
 
         response = given().
