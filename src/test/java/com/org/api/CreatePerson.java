@@ -33,7 +33,7 @@ public class CreatePerson extends CommonLogin {
         person.setPersonalEmail("AutoPerson" + emailCount + "@" + "gmail.com");
 
 
-       ;
+
         String json = gson.toJson(person);
 
         response = given().

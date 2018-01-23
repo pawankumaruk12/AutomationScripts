@@ -27,7 +27,7 @@ public class UpdateAccount extends CommonLogin {
         account.setDescription(description);
         account.setVersionId(1);
 
-       ;
+
         String json = gson.toJson(account);
 
         Response updateResponse = given().

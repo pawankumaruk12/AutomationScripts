@@ -30,7 +30,7 @@ public class UpdateProject extends CommonLogin {
         project.setTypeId(2);
         project.setVersionId(versionId);
 
-       ;
+
         String json = gson.toJson(project);
 
         response = given().

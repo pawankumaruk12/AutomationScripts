@@ -46,7 +46,7 @@ public class UpdatePerson extends CommonLogin {
         person.setAgencyId(null);
         person.setClientReference(null);
 
-       ;
+
         String json = gson.toJson(person);
 
         response = given()

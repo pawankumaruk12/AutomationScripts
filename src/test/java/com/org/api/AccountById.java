@@ -19,7 +19,7 @@ public class AccountById extends CommonLogin {
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
         Account account = new Account();
-       ;
+
         String json = gson.toJson(account);
 
         Response createResponse = given().

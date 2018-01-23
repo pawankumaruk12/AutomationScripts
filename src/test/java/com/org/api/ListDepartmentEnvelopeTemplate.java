@@ -35,7 +35,7 @@ public class ListDepartmentEnvelopeTemplate extends CommonLogin {
 
         pagedRequest.setSorts(new ArrayList<>());
 
-       ;
+
         String json = gson.toJson(pagedRequest);
         response = given().
                 body(json).

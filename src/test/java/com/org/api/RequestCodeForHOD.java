@@ -16,7 +16,7 @@ public class RequestCodeForHOD extends CommonLogin{
         Invitation invitation = new Invitation();
         invitation.setInvitationIdStr(invitationIdStr);
         invitation.setSecurityCode(SECURITY_CODE);
-       ;
+
         String json = gson.toJson(invitation);
         response = given().
                 body(json).

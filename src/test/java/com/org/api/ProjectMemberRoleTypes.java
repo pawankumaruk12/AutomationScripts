@@ -17,7 +17,7 @@ public class ProjectMemberRoleTypes extends CommonLogin {
         String xsrfToken = response.cookie(XSRF_TOKEN);
         Department department = new Department();
         department.setId(departmentId);
-       ;
+
         String json = gson.toJson(department);
         response = given().
                 body(json).

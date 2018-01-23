@@ -15,7 +15,7 @@ public class ExportProjectDocumentTemplate extends CommonLogin {
         ProjectEnvelopeTemplate projectEnvelopeTemplate = new ProjectEnvelopeTemplate();
         projectEnvelopeTemplate.setId(projectEnvelopeTemplateId);
 
-       ;
+
         String jsonTemp = gson.toJson(projectEnvelopeTemplate);
 
         String jsessionId = response.cookie(JSESSIONID);

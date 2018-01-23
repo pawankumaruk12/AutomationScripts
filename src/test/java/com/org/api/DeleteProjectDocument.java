@@ -18,7 +18,7 @@ public class DeleteProjectDocument extends CommonLogin {
         ProjectDocument projectDocument = new ProjectDocument();
         projectDocument.setId(projectDocumentId);
 
-       ;
+
         String json = gson.toJson(projectDocument);
 
         response = given().

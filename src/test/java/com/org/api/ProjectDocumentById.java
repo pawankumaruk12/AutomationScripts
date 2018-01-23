@@ -18,7 +18,7 @@ public class ProjectDocumentById extends CommonLogin {
         String xsrfToken = response.cookie(XSRF_TOKEN);
         ProjectDocument projectDocument = new ProjectDocument();
         projectDocument.setId(projectDocumentId);
-       ;
+
         String json = gson.toJson(projectDocument);
         response = given().
                 body(json).

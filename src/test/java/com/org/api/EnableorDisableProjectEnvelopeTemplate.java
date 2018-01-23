@@ -39,7 +39,7 @@ public class EnableorDisableProjectEnvelopeTemplate extends CommonLogin {
                 ProjectEnvelopeTemplateWithEnvelopeTemplate();
         projectEnvelopeTemplateWithEnvelopeTemplate.setEnvelopeTemplate(envelopeTemplate);
         projectEnvelopeTemplateWithEnvelopeTemplate.setProjectEnvelopeTemplate(projectEnvelopeTemplate);
-       ;
+
         String jsonTemp = gson.toJson(projectEnvelopeTemplateWithEnvelopeTemplate);
 
         String jsessionid = response.cookie(JSESSIONID);

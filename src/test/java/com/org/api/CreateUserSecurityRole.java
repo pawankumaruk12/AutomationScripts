@@ -19,7 +19,7 @@ public class CreateUserSecurityRole extends CommonLogin {
         userSecurityRole.setSecurityItemId(securityitemId);
         userSecurityRole.setSecurityRoleTypeId(securityRoleTypeId);
         userSecurityRole.setUserId(userId);
-       ;
+
         String json = gson.toJson(userSecurityRole);
         response = given().
                 body(json).

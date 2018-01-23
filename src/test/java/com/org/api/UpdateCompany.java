@@ -36,7 +36,7 @@ public class UpdateCompany extends CommonLogin {
         company.setSdCompanyId(companyId);
         company.setVersionId("1");
 
-       ;
+
         String json = gson.toJson(company);
 
         Response updateResponse = given().

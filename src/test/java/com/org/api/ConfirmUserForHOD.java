@@ -30,7 +30,7 @@ public class ConfirmUserForHOD extends CommonLogin {
         newUser.setSecurityCode(SECURITY_CODE);
         Repository.addData("userNameForHOD",username);
         Repository.addData("password",PASSWORD);
-       ;
+
         String json = gson.toJson(newUser);
 
         Response createResponse = given().

@@ -46,7 +46,7 @@ public class UpdateProjectEnvelopeTemplate extends CommonLogin {
         projectEnvelopeTemplateWithEnvelopeTemplate.setEnvelopeTemplate(envelopeTemplate);
         projectEnvelopeTemplateWithEnvelopeTemplate.setProjectEnvelopeTemplate(projectEnvelopeTemplate);
 
-       ;
+
         String jsonTemp = gson.toJson(projectEnvelopeTemplateWithEnvelopeTemplate);
         String jsessionid = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);

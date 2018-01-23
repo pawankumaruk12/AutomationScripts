@@ -21,7 +21,7 @@ public class CheckSecurity extends CommonLogin {
         invitation.setInvitationIdStr(invitationIdStr);
         invitation.setSecurityCode(securityCodeValue);
 
-       ;
+
         String json = gson.toJson(invitation);
 
         response = given().

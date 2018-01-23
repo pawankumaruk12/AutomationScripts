@@ -17,7 +17,7 @@ public class GetRoleTypeId extends CommonLogin {
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
         ProjectMember projectmember = new ProjectMember();
-       ;
+
         String json = gson.toJson(projectmember);
         response = given().
                 body(json).

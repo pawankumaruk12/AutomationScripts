@@ -27,7 +27,7 @@ public class CreateTemplateApprovalStage extends CommonLogin {
         projectEnvelopeTemplateWithTemplateApprovalStage.setProjectOrAccountEnvelopetemplateId(projectOrAccountEnvelopetemplateId);
         projectEnvelopeTemplateWithTemplateApprovalStage.setTemplateType("ProjectEnvelopeTemplate");
         projectEnvelopeTemplateWithTemplateApprovalStage.setTemplateApprovalStage(templateApprovalStage);
-       ;
+
         String json = gson.toJson(projectEnvelopeTemplateWithTemplateApprovalStage);
         response = given().
                 body(json).

@@ -59,7 +59,7 @@ public class UpdateProjectDocument extends CommonLogin {
         DocumentWithProjectDocument documentWithProjectDocument = new DocumentWithProjectDocument();
         documentWithProjectDocument.setProjectDocument(projectDocument);
         documentWithProjectDocument.setDocument(document);
-       ;
+
         String json = gson.toJson(documentWithProjectDocument);
 
         String jsessionId = response.cookie(JSESSIONID);

@@ -16,7 +16,7 @@ public class DepartmentType extends CommonLogin {
         String xsrfToken = response.cookie(XSRF_TOKEN);
         Department department = new Department();
 
-       ;
+
         String json = gson.toJson(department);
         response = given().
                 body(json).

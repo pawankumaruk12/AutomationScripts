@@ -18,7 +18,7 @@ public class DepartmentsByProjectWithRoleTypes extends CommonLogin {
         Department department = new Department();
         department.setId(departmentId);
 
-       ;
+
         String json = gson.toJson(department);
         response = given().
                 body(json).

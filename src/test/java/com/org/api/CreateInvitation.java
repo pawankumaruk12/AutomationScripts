@@ -57,7 +57,7 @@ public class CreateInvitation extends CommonLogin {
         invitationWithLinks.setInvitation(invitation);
         invitationWithLinks.setLinks(links);
 
-       ;
+
         String json = gson.toJson(invitationWithLinks);
 
         String jsessionid = response.cookie(JSESSIONID);
@@ -132,7 +132,7 @@ public class CreateInvitation extends CommonLogin {
         invitationWithLinks.setInvitation(invitation);
         invitationWithLinks.setLinks(links);
 
-       ;
+
         String json = gson.toJson(invitationWithLinks);
 
         String jsessionid = response.cookie(JSESSIONID);

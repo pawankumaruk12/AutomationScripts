@@ -49,7 +49,7 @@ public class CreateNewProjectDocument extends CommonLogin {
         documentWithProjectDocument.setDocument(document);
         documentWithProjectDocument.setProjectDocument(projectDocument);
 
-       ;
+
         String json = gson.toJson(documentWithProjectDocument);
 
         String jsessionId = response.cookie(JSESSIONID);

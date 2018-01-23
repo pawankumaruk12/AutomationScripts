@@ -32,7 +32,7 @@ public class ConfirmNewUser extends CommonLogin {
         Repository.addData("userNameForTeamMember",username);
         Repository.addData("password",PASSWORD);
 
-       ;
+
         String json = gson.toJson(newUser);
         Response createResponse = given().
                 body(json).

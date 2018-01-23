@@ -28,7 +28,7 @@ public class UpdateDepartment extends CommonLogin {
         department.setDepartmentTypeId(departmentTypeId);
         department.setVersionId(versionId);
 
-       ;
+
         String json = gson.toJson(department);
 
         response = given().

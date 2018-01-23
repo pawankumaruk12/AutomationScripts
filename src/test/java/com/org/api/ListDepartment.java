@@ -41,7 +41,7 @@ public class ListDepartment extends CommonLogin {
         List<PaginationSorter> sorts = new ArrayList<>();
         standardPagedRequest.setSorts(sorts);
 
-       ;
+
         String json = gson.toJson(standardPagedRequest);
         response = given().
                 body(json).

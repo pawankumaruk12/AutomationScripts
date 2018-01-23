@@ -30,7 +30,7 @@ public class CreateProject extends CommonLogin {
         project.setTypeId(2);
         project.setCompanyId(companyId);
 
-       ;
+
         String json = gson.toJson(project);
 
         response = given().

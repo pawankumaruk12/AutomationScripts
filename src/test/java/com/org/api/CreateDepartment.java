@@ -27,7 +27,7 @@ public class CreateDepartment extends CommonLogin {
         department.setDescription("Automation Accounts");
         department.setProjectId(projectId);
 
-       ;
+
         String json = gson.toJson(department);
         response = given().
                 body(json).
