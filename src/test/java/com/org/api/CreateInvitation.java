@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.*;
@@ -58,7 +57,7 @@ public class CreateInvitation extends CommonLogin {
         invitationWithLinks.setInvitation(invitation);
         invitationWithLinks.setLinks(links);
 
-        Gson gson = new Gson();
+
         String json = gson.toJson(invitationWithLinks);
 
         String jsessionid = response.cookie(JSESSIONID);
@@ -133,7 +132,7 @@ public class CreateInvitation extends CommonLogin {
         invitationWithLinks.setInvitation(invitation);
         invitationWithLinks.setLinks(links);
 
-        Gson gson = new Gson();
+
         String json = gson.toJson(invitationWithLinks);
 
         String jsessionid = response.cookie(JSESSIONID);

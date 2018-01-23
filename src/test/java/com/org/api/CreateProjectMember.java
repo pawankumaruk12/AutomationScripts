@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.ProjectMember;
@@ -35,7 +34,6 @@ public class CreateProjectMember extends CommonLogin {
         projectmember.setAgentPersonId(null);
         projectmember.setRoleTypeId(roleTypeId);
 
-        Gson gson = new Gson();
         String json = gson.toJson(projectmember);
         response = given().
                 body(json).

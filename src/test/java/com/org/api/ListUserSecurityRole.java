@@ -1,14 +1,13 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.PaginationFilter;
 import com.org.api.model.Repository;
 import com.org.api.model.StandardPagedRequest;
 import io.restassured.http.ContentType;
+import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import static io.restassured.RestAssured.given;
 
@@ -18,23 +17,15 @@ public class ListUserSecurityRole extends CommonLogin {
        String userId = (String) Repository.getValue("userId");
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
-        //StandardPageRequest
-        StandardPagedRequest standardPagedRequest = new StandardPagedRequest();
-        standardPagedRequest.setIncludeLinks(false);
-        standardPagedRequest.setNoOfRows(-1);
-        standardPagedRequest.setStartPosition(0);
-        List <PaginationFilter> filters = new ArrayList<>();
+
+        StandardPagedRequest pagedRequest = StandardPagedRequest.defaultPageRequest();
         PaginationFilter filter = new PaginationFilter();
         filter.setColumnName("userId");
         filter.setCondition("=");
-        List<String> dataList = new ArrayList<>();
-        dataList.add(userId);
-        filter.setDataList(dataList);
-        filters.add(filter);
-        standardPagedRequest.setFilters(filters);
+        filter.setDataList(Arrays.asList(userId));
+        pagedRequest.setFilters(Arrays.asList(filter));
 
-        Gson gson = new Gson();
-        String json = gson.toJson(standardPagedRequest);
+        String json = gson.toJson(pagedRequest);
         response = given().
                 body(json).
                 when()
@@ -42,6 +33,6 @@ public class ListUserSecurityRole extends CommonLogin {
                 .cookie(XSRF_TOKEN, xsrfToken)
                 .contentType(ContentType.JSON).
                 post(API_PATH + "usersecurityrole/list").then()
-                .assertThat().statusCode(200).and().extract().response();
+                .assertThat().statusCode(HttpStatus.SC_OK).and().extract().response();
     }
 }

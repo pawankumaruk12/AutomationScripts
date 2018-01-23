@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.Company;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -37,7 +36,7 @@ public class UpdateCompany extends CommonLogin {
         company.setSdCompanyId(companyId);
         company.setVersionId("1");
 
-        Gson gson = new Gson();
+
         String json = gson.toJson(company);
 
         Response updateResponse = given().

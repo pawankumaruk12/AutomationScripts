@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.Person;
@@ -26,7 +25,7 @@ public class CreatePersonForHOD extends CommonLogin {
         person.setPersonalMobile("077832389333");
         person.setCountryABBRCode("GBR");
         person.setPersonalEmail("AutoPersonHOD" + "@" + "gmail.com");
-        Gson gson = new Gson();
+
         String json = gson.toJson(person);
         response = given().
                 body(json).

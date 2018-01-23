@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.Department;
@@ -28,7 +27,7 @@ public class CreateDepartment extends CommonLogin {
         department.setDescription("Automation Accounts");
         department.setProjectId(projectId);
 
-        Gson gson = new Gson();
+
         String json = gson.toJson(department);
         response = given().
                 body(json).

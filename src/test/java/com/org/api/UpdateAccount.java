@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.org.api.model.Account;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
@@ -28,7 +27,7 @@ public class UpdateAccount extends CommonLogin {
         account.setDescription(description);
         account.setVersionId(1);
 
-        Gson gson = new Gson();
+
         String json = gson.toJson(account);
 
         Response updateResponse = given().

@@ -1,6 +1,5 @@
 package com.org.api;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.org.api.model.PaginationFilter;
@@ -42,7 +41,7 @@ public class ListDepartment extends CommonLogin {
         List<PaginationSorter> sorts = new ArrayList<>();
         standardPagedRequest.setSorts(sorts);
 
-        Gson gson = new Gson();
+
         String json = gson.toJson(standardPagedRequest);
         response = given().
                 body(json).
