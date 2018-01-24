@@ -51,3 +51,5 @@ public class ListDepartmentEnvelopeTemplate extends CommonLogin {
        Repository.addData("departmentEnvelopeTemplateParentId",departmentEnvelopeTemplateParentId);
     }
 }
+
+
