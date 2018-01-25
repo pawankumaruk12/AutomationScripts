@@ -6,9 +6,7 @@ import com.google.gson.JsonParser;
 import com.org.api.model.Account;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.nio.file.Files;
@@ -20,11 +18,14 @@ import static io.restassured.RestAssured.given;
 
 public class CreateAccount extends CommonLogin {
 
+    private String tempJsessionId;
+    private String tempXsrfToken;
+
     @Test
     public void testAccountCreation() {
 
-        String jsessionId = response.cookie(JSESSIONID);
-        String xsrfToken = response.cookie(XSRF_TOKEN);
+        tempJsessionId = response.cookie(JSESSIONID);
+        tempXsrfToken = response.cookie(XSRF_TOKEN);
 
         Account account = new Account();
         account.setName("AutoAccount" + new Date());
@@ -37,12 +38,11 @@ public class CreateAccount extends CommonLogin {
         Response createResponse = given().
                 body(json).
                 when()
-                .cookie(JSESSIONID, jsessionId)
-                .cookie(XSRF_TOKEN, xsrfToken).
+                .cookie(JSESSIONID, tempJsessionId)
+                .cookie(XSRF_TOKEN, tempXsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "account/create").then()
                 .assertThat().statusCode(201).and().extract().response();
-
 
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(createResponse.getBody().asString()).getAsJsonObject();
@@ -58,121 +58,62 @@ public class CreateAccount extends CommonLogin {
 
     }
 
-    //@Test
-    @Test(enabled = false)
-    public void Create_Account() throws Exception {
 
-        String jsessionId = response.cookie(JSESSIONID);
-        String xsrfToken = response.cookie(XSRF_TOKEN);
-        String createAcc_json_path = "src/test/resources/createAccount.json";
-
-        Response res = given().
-                body(Files.readAllBytes(Paths.get(createAcc_json_path))).
-                when()
-                .cookie(JSESSIONID, jsessionId)
-                .cookie(XSRF_TOKEN, xsrfToken).
-                        contentType(ContentType.JSON).
-                //post(loginapiPath);
-                        post(API_PATH + "account/create").then()
-                .assertThat().statusCode(201).and().extract().response();
-
-        String responseString = res.asString();
-        System.out.println(res.body().asString());
-
-        JsonPath js = new JsonPath(responseString);
-        String AccountId = js.get("results[0].account.id");
-        System.out.println(AccountId);
-
-        Assert.assertEquals(res.getStatusCode(), 201);
-        if (res.getStatusCode() == 201) {
-            System.out.println("API is working fine");
-            System.out.println(res.getStatusCode());
-        } else {
-            System.out.println("API is not working fine");
-
-        }
-
-
-    }
-
-    @Test(enabled = false)
-
-    //@Test(priority=2, dependsOnMethods = {"Create_Account"})
+    @Test(dependsOnMethods = {"testAccountCreation"})
     public void CheckingDuplicateAccount() throws Exception {
-
-        String jsessionId = response.cookie(JSESSIONID);
-        String xsrfToken = response.cookie(XSRF_TOKEN);
+        tempJsessionId = response.cookie(JSESSIONID);
+        tempXsrfToken = response.cookie(XSRF_TOKEN);
         String createAcc_json_path = "src/test/resources/createAccount.json";
-
         Response res = given().
                 body(Files.readAllBytes(Paths.get(createAcc_json_path))).
                 when()
-                .cookie(JSESSIONID, jsessionId)
-                .cookie(XSRF_TOKEN, xsrfToken).
+                .cookie(JSESSIONID, tempJsessionId)
+                .cookie(XSRF_TOKEN, tempXsrfToken).
                         contentType(ContentType.JSON).
-                //post(loginapiPath);
                         post(API_PATH + "account/create").then()
                 .assertThat().statusCode(500).and().extract().response();
 
-
-        Assert.assertEquals(res.getStatusCode(), 500);
-        if (res.getStatusCode() == 500) {
-            System.out.println("API is working fine");
-            System.out.println(res.getStatusCode());
-        } else {
-            System.out.println("API is not working fine");
-
-        }
-
-
     }
 
-    @Test(enabled = false)
-//	@Test(priority=3, dependsOnMethods = {"CheckingDuplicateAccount"})
-    public void CheckingBlankAccount() throws Exception {
 
-        String jsessionId = response.cookie(JSESSIONID);
-        String xsrfToken = response.cookie(XSRF_TOKEN);
-        //String createAcc_json_path = "src/test/resources/createAccount.json";
+     @Test(dependsOnMethods = {"testAccountCreation"})
+    public void CheckingInvalidSession403() throws Exception {
 
-        Response res = given().
-                //body(Files.readAllBytes(Paths.get(createAcc_json_path))).
-                        when()
-                .cookie(JSESSIONID, jsessionId)
-                .cookie(XSRF_TOKEN, xsrfToken).
-                        contentType(ContentType.JSON).
-                //post(loginapiPath);
-                        post(API_PATH + "account/create").then()
-                .assertThat().statusCode(400).and().extract().response();
-
-
-        Assert.assertEquals(res.getStatusCode(), 400);
-
-
-    }
-
-    @Test(enabled = false)
-//	@Test(priority=4, dependsOnMethods = {"CheckingBlankAccount"})
-    public void createAccountAsHOD() throws Exception {
-
-        this.loginAsHOD();
-        String jsessionId = response.cookie(JSESSIONID);
-        String xsrfToken = response.cookie(XSRF_TOKEN);
         String createAcc_json_path = "src/test/resources/createAccount.json";
-        //String createAcc_json_path = "src/test/resources/createAccount.json";
-
         Response res = given().
                 body(Files.readAllBytes(Paths.get(createAcc_json_path))).
+                        when()
+                        .contentType(ContentType.JSON).
+                        post(API_PATH + "account/create").then()
+                .assertThat().statusCode(403).and().extract().response();
+    }
+
+
+	@Test(dependsOnMethods = {"testAccountCreation"})
+    public void createAccountWithoutPayload400() throws Exception {
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
+        Response res = given().
                 when()
                 .cookie(JSESSIONID, jsessionId)
                 .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
-                //post(loginapiPath);
                         post(API_PATH + "account/create").then()
-                .assertThat().statusCode(401).and().extract().response();
+                .assertThat().statusCode(400).and().extract().response();
+    }
 
-        Assert.assertEquals(res.getStatusCode(), 401);
-
+    @Test(dependsOnMethods = {"testAccountCreation"})
+    public void createAccountMediaType415() throws Exception {
+        String createAcc_json_path = "src/test/resources/createAccount.json";
+        String jsessionId = response.cookie(JSESSIONID);
+        String xsrfToken = response.cookie(XSRF_TOKEN);
+        Response res = given().
+                 body(Files.readAllBytes(Paths.get(createAcc_json_path))).
+                        when()
+                .cookie(JSESSIONID, jsessionId)
+                .cookie(XSRF_TOKEN, xsrfToken).
+                        post(API_PATH + "account/create").then()
+                .assertThat().statusCode(415).and().extract().response();
     }
 
 }
