@@ -41,6 +41,7 @@ public class ConfirmUserForHOD extends CommonLogin {
                         contentType(ContentType.JSON).
                         post(API_PATH + "invitation/public/confirm/new").then()
                 .assertThat().statusCode(200).and().extract().response();
+
     }
 
     @Test (dependsOnMethods = {"testConirmUserForHOD"})
