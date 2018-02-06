@@ -42,6 +42,14 @@ public abstract class CommonLogin {
         response = login(PATH_LOGIN_PM);
     }
 
+    protected String getJsessionId() {
+        return response.cookie(JSESSIONID);
+    }
+
+    protected String getXSRFToken() {
+        return response.cookie(XSRF_TOKEN);
+    }
+
 
     protected void loginAsTeamMember() throws Exception {
         String username = (String) Repository.getValue("userNameForTeamMember");

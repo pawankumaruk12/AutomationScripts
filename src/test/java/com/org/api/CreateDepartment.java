@@ -5,41 +5,32 @@ import com.google.gson.JsonParser;
 import com.org.api.model.Department;
 import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
-import org.testng.AssertJUnit;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
 
 public class CreateDepartment extends CommonLogin {
 
-
     @Test
-    public void testDepartmentCreation() {
+    public void testDepartmentCreation200() {
         String projectId = (String) Repository.getValue("projectId");
-        String jsessionId = response.cookie(JSESSIONID);
-        String xsrfToken = response.cookie(XSRF_TOKEN);
         Department department = new Department();
         department.setName("AutoAccounts");
         department.setDepartmentTypeId("1");
         department.setDescription("Automation Accounts");
         department.setProjectId(projectId);
-
-
         String json = gson.toJson(department);
-        response = given().
+        Response createResponse  = given().
                 body(json).
                 when()
-                .cookie(JSESSIONID, jsessionId)
-                .cookie(XSRF_TOKEN, xsrfToken).
+                .cookie(JSESSIONID, getJsessionId())
+                .cookie(XSRF_TOKEN, getXSRFToken()).
                         contentType(ContentType.JSON).
-                        post(API_PATH + "department/create");
-
+                        post(API_PATH + "department/create").then()
+                .assertThat().statusCode(200).and().extract().response();
         JsonParser parser = new JsonParser();
-        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
-
+        JsonObject fullBody = parser.parse(createResponse.getBody().asString()).getAsJsonObject();
         projectId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("department").get("projectId").getAsString();
         Repository.addData("projectId", projectId);
         String departmentId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("department").get("id").getAsString();
@@ -54,28 +45,38 @@ public class CreateDepartment extends CommonLogin {
         Repository.addData("versionId", versionId);
     }
 
-    @Test(enabled = false)
-    public void CreateDepartments() throws Exception {
-        String jsessionId = response.cookie(JSESSIONID);
-        String xsrfToken = response.cookie(XSRF_TOKEN);
-        String CreateDeptJson = "src/test/resources/CreateDept.json";
-
+ /*   @Test(dependsOnMethods = {"testDepartmentCreation415"})
+    public void CreateDepartments403() throws Exception {
+        String projectId = (String) Repository.getValue("projectId");
+        Department department = new Department();
+        department.setName("AutoAccounts");
+        department.setDepartmentTypeId("1");
+        department.setDescription("Automation Accounts");
+        department.setProjectId(projectId);
+        String json = gson.toJson(department);
         response = given().
-                body(Files.readAllBytes(Paths.get(CreateDeptJson))).
+                body(json).
                 when()
-                .cookie(JSESSIONID, jsessionId)
-                .cookie(XSRF_TOKEN, xsrfToken).
-                        contentType(ContentType.JSON).
-                        post(API_PATH + "department/create");
-        System.out.println(response.getBody().asString());
-        AssertJUnit.assertEquals(response.getStatusCode(), 200);
-        if (response.getStatusCode() == 200) {
-            System.out.println("API is working fine");
-            System.out.println(response.getStatusCode());
-        } else {
-            System.out.println("API is not working");
-        }
+                .contentType(ContentType.JSON).
+                        post(API_PATH + "department/create").then()
+                .assertThat().statusCode(403).and().extract().response();
+    }*/
 
+    @Test(dependsOnMethods = {"testDepartmentCreation200"})
+    public void testDepartmentCreation415() {
+        String projectId = (String) Repository.getValue("projectId");
+        Department department = new Department();
+        department.setName("AutoAccounts");
+        department.setDepartmentTypeId("1");
+        department.setDescription("Automation Accounts");
+        department.setProjectId(projectId);
+        String json = gson.toJson(department);
+        response = given().
+                body(json).
+                when()
+                .cookie(JSESSIONID, getJsessionId())
+                .cookie(XSRF_TOKEN, getXSRFToken()).
+                        post(API_PATH + "department/create").then()
+                .assertThat().statusCode(415).and().extract().response();
     }
-
 }

@@ -8,15 +8,12 @@ import com.org.api.model.Repository;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Date;
 
 import static io.restassured.RestAssured.given;
 
 
 public class CreateProject extends CommonLogin {
-
 
     @Test
     public void testProjectCreation() {
@@ -39,7 +36,8 @@ public class CreateProject extends CommonLogin {
                 .cookie(JSESSIONID, jsessionId)
                 .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
-                        post(API_PATH + "project/create");
+                        post(API_PATH + "project/create").then()
+                .assertThat().statusCode(201).and().extract().response();
 
         JsonParser parser = new JsonParser();
         JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
@@ -58,20 +56,30 @@ public class CreateProject extends CommonLogin {
     }
 
 
-    @Test(enabled = false)
-    public void testCreateProjectsNegativeCase() throws Exception {
+    @Test(dependsOnMethods = {"testProjectCreation"})
+    public void testProjectCreation500() {
+        String name = (String) Repository.getValue("name");
+        String companyId = (String) Repository.getValue("companyId");
         String jsessionId = response.cookie(JSESSIONID);
         String xsrfToken = response.cookie(XSRF_TOKEN);
-        String CreateProjectJson = "src/test/resources/CreateProject.json";
+        Project project = new Project();
+        project.setName(name);
+        project.setDescription("Automation Project");
+        project.setProductionId(null);
+        project.setTypeId(2);
+        project.setCompanyId(companyId);
+
+
+        String json = gson.toJson(project);
 
         response = given().
-                body(Files.readAllBytes(Paths.get(CreateProjectJson))).
+                body(json).
                 when()
                 .cookie(JSESSIONID, jsessionId)
                 .cookie(XSRF_TOKEN, xsrfToken).
                         contentType(ContentType.JSON).
                         post(API_PATH + "project/create").then()
-                .assertThat().statusCode(201).and().extract().response();
+                .assertThat().statusCode(403).and().extract().response();
 
     }
 }
