@@ -65,7 +65,6 @@ public class CreateDepartment extends CommonLogin {
     @Test(dependsOnMethods = {"testDepartmentCreation200"})
     public void testDepartmentCreation415() {
         String projectId = (String) Repository.getValue("projectId");
-
         Department department = new Department();
         department.setName("AutoAccounts");
         department.setDepartmentTypeId("1");
@@ -77,9 +76,7 @@ public class CreateDepartment extends CommonLogin {
                 when()
                 .cookie(JSESSIONID, getJsessionId())
                 .cookie(XSRF_TOKEN, getXSRFToken()).
-                //contentType(ContentType.JSON).
                         post(API_PATH + "department/create").then()
                 .assertThat().statusCode(415).and().extract().response();
-
     }
 }

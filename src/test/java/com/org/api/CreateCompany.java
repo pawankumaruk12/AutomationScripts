@@ -116,7 +116,6 @@ public class CreateCompany extends CommonLogin {
 				when()
 				.cookie(JSESSIONID, jsessionId)
 				.cookie(XSRF_TOKEN, xsrfToken).
-				//contentType(ContentType.JSON).
 						post(API_PATH + "company/create").then()
 				.assertThat().statusCode(415).and().extract().response();
 
@@ -170,6 +169,7 @@ public class CreateCompany extends CommonLogin {
                 contentType(ContentType.JSON).
                         post(API_PATH + "company/create").then()
                 .assertThat().statusCode(400).and().extract().response();
+        //Since we are not passing any body json it returns 400 bad request
 
     }
 

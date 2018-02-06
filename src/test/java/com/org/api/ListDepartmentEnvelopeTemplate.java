@@ -24,7 +24,6 @@ public class ListDepartmentEnvelopeTemplate extends CommonLogin {
         String projectId = (String) Repository.getValue("departmentId");
         tempJsessionId = response.cookie(JSESSIONID);
         tempXsrfToken = response.cookie(XSRF_TOKEN);
-        //StandardPageRequest
         StandardPagedRequest pagedRequest = StandardPagedRequest.defaultPageRequest();
         PaginationFilter filter = new PaginationFilter();
         filter.setColumnName("departmentId");
@@ -51,9 +50,6 @@ public class ListDepartmentEnvelopeTemplate extends CommonLogin {
     @Test(dependsOnMethods = {"testListDepartmentEnvelopeTemplate200"})
     public void testListDepartmentEnvelopeTemplate415() throws Exception {
         String projectId = (String) Repository.getValue("departmentId");
-        // tempJsessionId = response.cookie(JSESSIONID);
-        // tempXsrfToken = response.cookie(XSRF_TOKEN);
-        //StandardPageRequest
         StandardPagedRequest pagedRequest = StandardPagedRequest.defaultPageRequest();
         PaginationFilter filter = new PaginationFilter();
         filter.setColumnName("departmentId");
@@ -67,7 +63,6 @@ public class ListDepartmentEnvelopeTemplate extends CommonLogin {
                 when()
                 .cookie(JSESSIONID, tempJsessionId)
                 .cookie(XSRF_TOKEN, tempXsrfToken)
-                //.contentType(ContentType.JSON)
                 .post(API_PATH + "departmentenvelopetemplate/list").then()
                 .assertThat().statusCode(415).and().extract().response();
 
