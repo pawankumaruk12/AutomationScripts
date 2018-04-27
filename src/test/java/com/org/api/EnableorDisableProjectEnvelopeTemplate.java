@@ -1,5 +1,7 @@
 package com.org.api;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.org.api.model.EnvelopeTemplate;
 import com.org.api.model.ProjectEnvelopeTemplate;
 import com.org.api.model.ProjectEnvelopeTemplateWithEnvelopeTemplate;
@@ -51,5 +53,10 @@ public class EnableorDisableProjectEnvelopeTemplate extends CommonLogin {
                         contentType(ContentType.JSON).
                         post(API_PATH + "projectenvelopetemplate/enableordisable").then()
                 .assertThat().statusCode(200).and().extract().response();
+        JsonParser parser= new JsonParser();
+        JsonObject fullBody = parser.parse(response.getBody().asString()).getAsJsonObject();
+
+        String versionId = fullBody.get(RESULTS).getAsJsonArray().get(0).getAsJsonObject().getAsJsonObject("projectEnvelopeTemplate").get("versionId").getAsString();
+        Repository.addData("projectEnvelopeTemplateVersionId", versionId);
     }
 }
