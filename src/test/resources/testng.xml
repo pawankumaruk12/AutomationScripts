@@ -12,7 +12,7 @@
             <class name="com.org.api.DeleteAccount"/>
         </classes>
     </test>
-    <test name="DashBoardAPITest" group-by-instances="true" preserve-order="true">
+ <test name="DashBoardAPITest" group-by-instances="true" preserve-order="true">
         <classes>
             <class name="com.org.api.DashboardListEnvelopesByMonth"/>
             <class name="com.org.api.DashboardListEnvelopesByType"/>

@@ -66,7 +66,7 @@ public class CreateAccount extends CommonLogin {
                 .cookie(XSRF_TOKEN, getXSRFToken()).
                         contentType(ContentType.JSON).
                         post(API_PATH + "account/create").then()
-                .assertThat().statusCode(500).and().extract().response();
+                .assertThat().statusCode(400).and().extract().response();
 
     }
 
