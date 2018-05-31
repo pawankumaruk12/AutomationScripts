@@ -28,5 +28,6 @@ public class ExportProjectDocumentTemplate extends CommonLogin {
                 .contentType(ContentType.JSON).
                 post(API_PATH + "projectenvelopetemplate/export/" + projectEnvelopeTemplateId).then()
                 .assertThat().statusCode(200).and().extract().response();
+        System.out.println(projectEnvelopeTemplateId );
     }
 }

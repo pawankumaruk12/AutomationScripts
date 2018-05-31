@@ -21,5 +21,6 @@ public class CopyProjectEnvelopeTemplate extends CommonLogin {
                 .contentType(ContentType.JSON).
                         post(API_PATH + "projectenvelopetemplate/copy/" + projectEnvelopeTemplateId + "/" + projectId + "/" + "NewCopiedTemplate" + "/" +"true").then()
                 .assertThat().statusCode(200).and().extract().response();
+
     }
 }

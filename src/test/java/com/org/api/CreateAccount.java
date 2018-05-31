@@ -22,8 +22,6 @@ public class CreateAccount extends CommonLogin {
     @Test
     public void testAccountCreation() {
 
-
-
         Account account = new Account();
         account.setName("AutoAccount" + new Date());
         account.setDescription("Automation Account");
