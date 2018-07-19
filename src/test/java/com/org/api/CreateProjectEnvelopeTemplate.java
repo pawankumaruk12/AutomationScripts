@@ -50,8 +50,8 @@ public class CreateProjectEnvelopeTemplate extends CommonLogin {
         //ProjectEnvelopeTemplate
         String projectEnvelopeTemplateId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectEnvelopeTemplate").get("id").getAsString();
         Repository.addData("projectEnvelopeTemplateId", projectEnvelopeTemplateId);
-        String templateId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectEnvelopeTemplate").get("templateId").getAsString();
-        Repository.addData("templateId", templateId);
+       // String templateId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectEnvelopeTemplate").get("templateId").getAsString();
+        //Repository.addData("templateId", templateId);
         String projectEnvelopeTemplateVersionId = fullBody.get(RESULTS).getAsJsonArray().get(fullBody.get(RESULTS).getAsJsonArray().size() - 1).getAsJsonObject().getAsJsonObject("projectEnvelopeTemplate").get("versionId").getAsString();
         Repository.addData("projectEnvelopeTemplateVersionId", projectEnvelopeTemplateVersionId);
         //EnvelopeTemplate

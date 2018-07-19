@@ -23,6 +23,7 @@ public class CreateInvitation extends CommonLogin {
         String departmentId = (String) Repository.getValue("departmentId");
         String roleTypeId = (String) Repository.getValue("roleTypeId");
         String id = (String) Repository.getValue("personId");
+
         //Invitation
         Invitation invitation = new Invitation();
         invitation.setEmail(email);

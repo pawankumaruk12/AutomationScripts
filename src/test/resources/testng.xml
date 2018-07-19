@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Suite1">
-   <test name="AccountTest" group-by-instances="true" preserve-order="true">
+  <test name="AccountTest" group-by-instances="true" preserve-order="true">
         <classes>
             <class name="com.org.api.CreateAccount"/>
             <class name="com.org.api.UpdateAccount"/>
@@ -104,6 +104,7 @@
             <class name="com.org.api.GetRoleTypeId"/>
             <class name="com.org.api.CreatePrivacyNotice"/>
             <class name="com.org.api.ApprovePrivacyNotice"/>
+            <class name="com.org.api.AgreementNotRequiredforPrivacyNotice"/>
             <class name="com.org.api.CreateInvitation"/>
             <class name="com.org.api.RequestCode"/>
             <class name="com.org.api.CheckSecurity"/>
