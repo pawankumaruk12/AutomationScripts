@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.given;
 
 public abstract class CommonLogin {
 
-    public static final String ROOT_PATH = "http://192.168.56.139:8080/sdw";
+    public static final String ROOT_PATH = "https://dev-crewstart.sargent-disc.com:9443/sdw";
     public static final String API_PATH = ROOT_PATH + "/rest/";
     private static final String PATH_LOGIN_SUPERUSER = "src/test/resources/loginAsSuperUser.json";
     private static final String PATH_LOGIN_HOD = "src/test/resources/login_hod.json";
