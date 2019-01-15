@@ -114,7 +114,7 @@
             <class name="com.org.api.ProjectDocumentById"/>
             <class name="com.org.api.GetJsonForDirectHireStartForm"/>
             <class name="com.org.api.CreateProjectEnvelopeTemplate"/>
-            <class name="com.org.api.EnableorDisableProjectEnvelopeTemplate"/>1
+            <class name="com.org.api.EnableorDisableProjectEnvelopeTemplate"/>
             <class name="com.org.api.UpdateProjectEnvelopeTemplate"/>
             <class name="com.org.api.ExportProjectDocumentTemplate"/>
             <class name="com.org.api.CopyProjectEnvelopeTemplate"/>
