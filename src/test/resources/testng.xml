@@ -131,6 +131,7 @@
             <class name="com.org.api.ListDepartment"/>
             <class name="com.org.api.CreateUserSecurityRole"/>
             <class name="com.org.api.ListDepartmentEnvelopeTemplate"/>
+            <!--<class name="com.org.api.CreateDailyTimeReports"/> -->
         </classes>
     </test>
 </suite>
